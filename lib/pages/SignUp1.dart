@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+import 'Signup.dart';
+
+class SignUp1 extends StatefulWidget {
+  const SignUp1({Key? key}) : super(key: key);
 
   @override
-  _SignUpState createState() => _SignUpState();
+  _SignUp1State createState() => _SignUp1State();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignUp1State extends State<SignUp1> {
   final TextEditingController _dateController = TextEditingController();
 
   @override
@@ -305,9 +307,7 @@ class _SignUpState extends State<SignUp> {
                         color: Colors.transparent,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(99),
-                          onTap: () {
-                            print("clicked");
-                          },
+                          onTap: () {},
                           child: const SizedBox(
                             height: 60,
                             child: Row(
