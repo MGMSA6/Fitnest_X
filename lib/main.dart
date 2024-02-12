@@ -1,3 +1,4 @@
+import 'package:fitnest_x/pages/Finalized.dart';
 import 'package:fitnest_x/pages/Login.dart';
 import 'package:fitnest_x/pages/Onboarding.dart';
 import 'package:fitnest_x/pages/SignUp1.dart';
@@ -21,14 +22,15 @@ class FitnestX extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       darkTheme: ThemeData(brightness: Brightness.dark),
-      initialRoute: "/Login",
+      initialRoute: "/Finalized",
       routes: {
         "/Welcome": (context) => const Welcome(),
         "/Welcome1": (context) => const Welcome1(),
         "/Walkthrough": (context) => const Onboarding(),
         "/SignUp": (context) => const Signup(),
         "/SignUp1": (context) => const SignUp1(),
-        "/Login": (context) => const Login()
+        "/Login": (context) => const Login(),
+        "/Finalized": (context) => const Finalized()
       },
     );
   }
