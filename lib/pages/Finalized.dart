@@ -1,3 +1,5 @@
+import 'package:fitnest_x/pages/Home.dart';
+import 'package:fitnest_x/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -16,28 +18,28 @@ class _FinalizedState extends State<Finalized> {
       home: Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.symmetric(vertical: 20),
             child: Center(
                 child: Column(
               children: [
                 SvgPicture.asset("assets/images/welcome.svg"),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Text(
+                const Text(
                   "Welcome, Stefani",
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
-                      color: Color(0XFF1D1617)),
+                      color: AppColor.blackColor),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   "You are all set now, let’s reach your\ngoals together with us",
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 12, color: Color(0XFF7B6F72)),
+                  style: TextStyle(fontSize: 12, color: AppColor.grayColor1),
                 ),
                 Expanded(
                   child: Container(),
@@ -46,9 +48,7 @@ class _FinalizedState extends State<Finalized> {
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(99),
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF9DCEFF), Color(0xFF92A3FD)],
-                    ),
+                    gradient: AppColor.buttonColors,
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.5),
@@ -64,12 +64,10 @@ class _FinalizedState extends State<Finalized> {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(99),
                       onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => SignUp()));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Home()));
                       },
-                      child: SizedBox(
+                      child: const SizedBox(
                         height: 60,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

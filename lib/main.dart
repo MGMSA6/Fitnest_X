@@ -1,5 +1,6 @@
 import 'package:fitnest_x/pages/Carousel.dart';
 import 'package:fitnest_x/pages/Finalized.dart';
+import 'package:fitnest_x/pages/Home.dart';
 import 'package:fitnest_x/pages/Login.dart';
 import 'package:fitnest_x/pages/Onboarding.dart';
 import 'package:fitnest_x/pages/Responsive.dart';
@@ -24,7 +25,7 @@ class FitnestX extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       darkTheme: ThemeData(brightness: Brightness.dark),
-      initialRoute: "/Carousel",
+      initialRoute: "/Finalized",
       routes: {
         "/Welcome": (context) => const Welcome(),
         "/Welcome1": (context) => const Welcome1(),
@@ -34,7 +35,8 @@ class FitnestX extends StatelessWidget {
         "/Login": (context) => const Login(),
         "/Finalized": (context) => const Finalized(),
         "/Carousel": (context) => const Carousel(),
-        "/Responsive": (context) => Responsive()
+        "/Responsive": (context) => Responsive(),
+        "/Home": (context) => Home()
       },
     );
   }

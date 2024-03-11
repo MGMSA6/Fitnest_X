@@ -1,3 +1,6 @@
+import 'package:fitnest_x/pages/Carousel.dart';
+import 'package:fitnest_x/pages/Signup.dart';
+import 'package:fitnest_x/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -81,6 +84,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                   ),
                   FloatingActionButton(
                     onPressed: () {
+                      if (_pageController.page == 3) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Carousel()));
+                      }
                       _pageController.nextPage(
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.easeInOut,
@@ -92,14 +101,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                       width: 60,
                       height: 60,
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [
-                            Color(0xFF92A3FD),
-                            Color(0xFF9DCEFF),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
+                        gradient: AppColor.buttonColors,
                         shape: BoxShape.circle,
                         border: Border.all(
                           color: Colors.transparent,
@@ -163,7 +165,7 @@ class OnBoardingPage extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xff1D1617),
+                        color: AppColor.blackColor,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -171,7 +173,7 @@ class OnBoardingPage extends StatelessWidget {
                       description,
                       style: const TextStyle(
                         fontSize: 14,
-                        color: Color(0xff7B6F72),
+                        color: AppColor.grayColor1,
                       ),
                       textDirection: TextDirection.ltr,
                     ),
@@ -195,14 +197,7 @@ class CircularProgressBarPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..shader = const LinearGradient(
-        colors: [
-          Color(0xFF92A3FD),
-          Color(0xFF9DCEFF),
-        ],
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-      ).createShader(
+      ..shader = AppColor.buttonColors.createShader(
           Rect.fromCircle(center: size.center(Offset.zero), radius: 1.0))
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke

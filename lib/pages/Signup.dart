@@ -1,4 +1,5 @@
 import 'package:fitnest_x/pages/SignUp1.dart';
+import 'package:fitnest_x/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -11,6 +12,15 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   bool isChecked = false;
+
+  final TextEditingController _emailController = TextEditingController();
+  final RegExp _emailRegExp = RegExp(
+    r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+    caseSensitive: false,
+    multiLine: false,
+  );
+
+  String _errorText = "Invalid Email";
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +36,15 @@ class _SignupState extends State<Signup> {
                   children: [
                     const Text(
                       "Hey there,",
-                      style: TextStyle(fontSize: 15, color: Color(0xff1D1617)),
+                      style:
+                          TextStyle(fontSize: 15, color: AppColor.blackColor),
                     ),
                     const Text(
                       "Create an Account",
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xff1D1617)),
+                          color: AppColor.blackColor),
                     ),
                     const SizedBox(
                       height: 15,
@@ -41,14 +52,14 @@ class _SignupState extends State<Signup> {
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF7F8F8),
+                        color: AppColor.borderColor,
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextField(
                         decoration: InputDecoration(
                             labelText: "First Name",
                             labelStyle:
-                                const TextStyle(color: Color(0XFFADA4A5)),
+                                const TextStyle(color: AppColor.grayColor2),
                             prefixIcon: Padding(
                               padding: const EdgeInsets.all(12.0),
                               child: SvgPicture.asset(
@@ -77,14 +88,14 @@ class _SignupState extends State<Signup> {
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF7F8F8),
+                        color: AppColor.borderColor,
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextField(
                         decoration: InputDecoration(
                             labelText: "Last Name",
                             labelStyle:
-                                const TextStyle(color: Color(0XFFADA4A5)),
+                                const TextStyle(color: AppColor.grayColor2),
                             prefixIcon: Padding(
                               padding: const EdgeInsets.all(12.0),
                               child: SvgPicture.asset(
@@ -112,14 +123,17 @@ class _SignupState extends State<Signup> {
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF7F8F8),
+                        color: AppColor.borderColor,
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextField(
+                        controller: _emailController,
                         decoration: InputDecoration(
                             labelText: "Email",
+                            errorText: _errorText,
+                            // Handle null value
                             labelStyle:
-                                const TextStyle(color: Color(0XFFADA4A5)),
+                                const TextStyle(color: AppColor.grayColor2),
                             prefixIcon: Padding(
                               padding: const EdgeInsets.all(12.0),
                               child:
@@ -138,6 +152,15 @@ class _SignupState extends State<Signup> {
                                   color: Colors.transparent, width: 0),
                             )),
                         onTap: () {},
+                        onChanged: (value) {
+                          setState(() {
+                            if (_emailRegExp.hasMatch(value)) {
+                              _errorText = "";
+                            } else {
+                              _errorText = 'Enter a valid email';
+                            }
+                          });
+                        },
                       ),
                     ),
                     const SizedBox(
@@ -146,21 +169,21 @@ class _SignupState extends State<Signup> {
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF7F8F8),
+                        color: AppColor.borderColor,
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextField(
                         decoration: InputDecoration(
                             labelText: "Password",
                             labelStyle:
-                                const TextStyle(color: Color(0XFFADA4A5)),
+                                const TextStyle(color: AppColor.grayColor2),
                             prefixIcon: Padding(
                               padding: const EdgeInsets.all(12.0),
                               child: SvgPicture.asset("assets/images/lock.svg"),
                             ),
                             suffixIcon: const Icon(
                               Icons.visibility_off_outlined,
-                              color: Color(0XFF7B6F72),
+                              color: AppColor.grayColor1,
                             ),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(14)),
@@ -193,7 +216,7 @@ class _SignupState extends State<Signup> {
                                 return null;
                               }),
                               checkColor: Colors.white,
-                              side: BorderSide(color: Color(0XFFADA4A5)),
+                              side: BorderSide(color: AppColor.grayColor2),
                               value: isChecked,
                               onChanged: (bool? value) {
                                 setState(() {
@@ -203,7 +226,7 @@ class _SignupState extends State<Signup> {
                           const Text(
                             "By continuing you accept our Privacy Policy\nand Term of Use",
                             style: TextStyle(
-                                color: Color(0XFFADA4A5), fontSize: 12),
+                                color: AppColor.grayColor2, fontSize: 12),
                           )
                         ],
                       ),
@@ -215,9 +238,7 @@ class _SignupState extends State<Signup> {
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(99),
-                        gradient: const LinearGradient(
-                          colors: [Color(0xFF9DCEFF), Color(0xFF92A3FD)],
-                        ),
+                        gradient: AppColor.buttonColors,
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
@@ -269,7 +290,7 @@ class _SignupState extends State<Signup> {
                           Expanded(
                             child: Container(
                               height: 1,
-                              color: const Color(0XFFDDDADA),
+                              color: AppColor.grayColor3,
                             ),
                           ),
                           const Padding(
@@ -277,13 +298,13 @@ class _SignupState extends State<Signup> {
                             child: Text(
                               "Or",
                               style: TextStyle(
-                                  fontSize: 12, color: Color(0XFF1D1617)),
+                                  fontSize: 12, color: AppColor.blackColor),
                             ),
                           ),
                           Expanded(
                             child: Container(
                               height: 1,
-                              color: const Color(0XFFDDDADA),
+                              color: AppColor.grayColor3,
                             ),
                           ),
                         ],
@@ -305,8 +326,8 @@ class _SignupState extends State<Signup> {
                               width: 50,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(
-                                      color: const Color(0XFFDDDADA))),
+                                  border:
+                                      Border.all(color: AppColor.grayColor3)),
                               child: Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: SvgPicture.asset(
@@ -326,8 +347,8 @@ class _SignupState extends State<Signup> {
                               width: 50,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(
-                                      color: const Color(0XFFDDDADA))),
+                                  border:
+                                      Border.all(color: AppColor.grayColor3)),
                               child: Padding(
                                 padding: const EdgeInsets.all(12),
                                 child: SvgPicture.asset(
@@ -358,7 +379,7 @@ class _SignupState extends State<Signup> {
                             borderRadius: BorderRadius.circular(8),
                             child: const Text("Login",
                                 style: TextStyle(
-                                  color: Color(0XFFC58BF2),
+                                  color: AppColor.secondaryColor,
                                   fontSize: 14,
                                 )),
                           ),
@@ -373,5 +394,11 @@ class _SignupState extends State<Signup> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
   }
 }

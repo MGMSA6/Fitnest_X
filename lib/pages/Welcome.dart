@@ -1,6 +1,8 @@
 import 'package:fitnest_x/pages/Onboarding.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/colors.dart';
+
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
 
@@ -24,7 +26,7 @@ class _SplashScreenPageState extends State<Welcome> {
                 Text(
                   'Fitnest',
                   style: TextStyle(
-                    color: Color(0XFF1D1617),
+                    color: AppColor.blackColor,
                     fontSize: 36,
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w700,
@@ -32,11 +34,7 @@ class _SplashScreenPageState extends State<Welcome> {
                 ),
                 GradientText(
                   text: 'X',
-                  gradient: LinearGradient(
-                    begin: Alignment(-0.83, 0.0),
-                    end: Alignment(0.86, 0.0),
-                    colors: [Color(0xFFCC8FED), Color(0xFF9DCEFF)],
-                  ),
+                  gradient: AppColor.textGradient,
                   style: TextStyle(
                     fontSize: 50.0,
                     fontWeight: FontWeight.bold,
@@ -48,7 +46,7 @@ class _SplashScreenPageState extends State<Welcome> {
             const Text(
               'Everybody Can Train',
               style: TextStyle(
-                color: Color(0XFF7B6F72),
+                color: AppColor.grayColor1,
                 fontSize: 18,
                 fontWeight: FontWeight.w400,
               ),
@@ -61,36 +59,38 @@ class _SplashScreenPageState extends State<Welcome> {
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.only(left: 30, right: 30),
-                child: InkWell(
-                  child: Container(
-                    margin: const EdgeInsets.only(bottom: 30),
-                    // Adjust margin as needed
-                    height: 60,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Color(0xff9DCEFF), Color(0xff92A3FD)],
-                      ),
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "Get Started",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: 'Poppins'),
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 30),
+                  // Adjust margin as needed
+                  height: 60,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: AppColor.brandColors,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(99),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Onboarding()),
+                        );
+                      },
+                      child: const Center(
+                        child: Text(
+                          "Get Started",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'Poppins'),
+                        ),
                       ),
                     ),
                   ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Onboarding()),
-                    );
-                  },
                 ),
               ),
             ),

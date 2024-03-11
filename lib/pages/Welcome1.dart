@@ -1,4 +1,5 @@
 import 'package:fitnest_x/pages/Onboarding.dart';
+import 'package:fitnest_x/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class Welcome1 extends StatefulWidget {
@@ -15,16 +16,7 @@ class _SplashScreenPageState extends State<Welcome1> {
       child: Scaffold(
         body: Container(
           decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment(0.0, -1.0),
-              end: Alignment(0.0, 1.0),
-              transform: GradientRotation(274 * (3.1415926535 / 180.0)),
-              colors: [
-                Color(0xFF92A3FD),
-                Color(0xFF9DCEFF),
-              ],
-              stops: [0.0, 1.2445],
-            ),
+            gradient: AppColor.brandColors,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -37,7 +29,7 @@ class _SplashScreenPageState extends State<Welcome1> {
                   Text(
                     'Fitnest',
                     style: TextStyle(
-                      color: Color(0XFF1D1617),
+                      color: AppColor.blackColor,
                       fontSize: 36,
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w700,
@@ -57,7 +49,7 @@ class _SplashScreenPageState extends State<Welcome1> {
               const Text(
                 'Everybody Can Train',
                 style: TextStyle(
-                  color: Color(0XFF7B6F72),
+                  color: AppColor.grayColor1,
                   fontSize: 18,
                   fontWeight: FontWeight.w400,
                 ),
@@ -83,11 +75,7 @@ class _SplashScreenPageState extends State<Welcome1> {
                       child: const Center(
                         child: GradientText(
                           text: "Get Started",
-                          gradient: LinearGradient(
-                            begin: Alignment(-0.83, 0.0),
-                            end: Alignment(0.86, 0.0),
-                            colors: [Color(0xFFCC8FED), Color(0xFF9DCEFF)],
-                          ),
+                          gradient: AppColor.textGradient,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -97,8 +85,10 @@ class _SplashScreenPageState extends State<Welcome1> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Onboarding()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Onboarding()));
                     },
                   ),
                 ),

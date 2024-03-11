@@ -1,7 +1,9 @@
+import 'package:fitnest_x/pages/Login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../utils/colors.dart';
 import 'Signup.dart';
 
 class SignUp1 extends StatefulWidget {
@@ -39,14 +41,14 @@ class _SignUp1State extends State<SignUp1> {
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xff1D1617)),
+                      color: AppColor.blackColor),
                 ),
                 Text(
                   "It will help us to know more about you!",
                   style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
-                      color: Color(0xff7B6F72)),
+                      color: AppColor.grayColor1),
                 ),
                 SizedBox(
                   height: 30,
@@ -55,17 +57,17 @@ class _SignUp1State extends State<SignUp1> {
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF7F8F8),
+                      color: AppColor.borderColor,
                       borderRadius: BorderRadius.circular(14),
                     ),
                     child: DropdownButtonFormField<String>(
                       icon: const Icon(Icons.keyboard_arrow_down_rounded),
-                      iconEnabledColor: Color(0xffADA4A5),
+                      iconEnabledColor: AppColor.grayColor2,
                       iconSize: 23,
                       borderRadius: BorderRadius.zero,
                       decoration: InputDecoration(
                           label: Text("Choose Gender"),
-                          labelStyle: TextStyle(color: Color(0XFFADA4A5)),
+                          labelStyle: TextStyle(color: AppColor.grayColor2),
                           prefixIcon: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: SvgPicture.asset(
@@ -105,14 +107,14 @@ class _SignUp1State extends State<SignUp1> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
-                    color: Color(0xFFF7F8F8),
+                    color: AppColor.borderColor,
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: TextField(
                     readOnly: true,
                     decoration: InputDecoration(
                         labelText: "Date of Birth",
-                        labelStyle: TextStyle(color: Color(0XFFADA4A5)),
+                        labelStyle: TextStyle(color: AppColor.grayColor2),
                         prefixIcon: Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: SvgPicture.asset(
@@ -148,7 +150,7 @@ class _SignUp1State extends State<SignUp1> {
                         flex: 8, // 80% space for TextField
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Color(0xFFF7F8F8),
+                              color: AppColor.borderColor,
                               borderRadius: BorderRadius.circular(14)),
                           child: TextField(
                             keyboardType: TextInputType.number,
@@ -158,7 +160,8 @@ class _SignUp1State extends State<SignUp1> {
                             ],
                             decoration: InputDecoration(
                                 labelText: "Your Weight",
-                                labelStyle: TextStyle(color: Color(0XFFADA4A5)),
+                                labelStyle:
+                                    TextStyle(color: AppColor.grayColor2),
                                 prefixIcon: Padding(
                                   padding: const EdgeInsets.all(12.0),
                                   child: SvgPicture.asset(
@@ -189,12 +192,7 @@ class _SignUp1State extends State<SignUp1> {
                           width: 48,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(14),
-                            gradient: const LinearGradient(
-                              colors: [Color(0XFFC58BF2), Color(0XFFEEA4CE)],
-                              // Replace with your gradient colors
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                            ),
+                            gradient: AppColor.unitGradient,
                           ),
                           child: const Center(
                             child: Text(
@@ -221,7 +219,7 @@ class _SignUp1State extends State<SignUp1> {
                         flex: 8, // 80% space for TextField
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Color(0xFFF7F8F8),
+                              color: AppColor.borderColor,
                               borderRadius: BorderRadius.circular(14)),
                           child: TextField(
                             keyboardType: TextInputType.number,
@@ -232,7 +230,7 @@ class _SignUp1State extends State<SignUp1> {
                             decoration: InputDecoration(
                                 labelText: "Your Height",
                                 labelStyle:
-                                    const TextStyle(color: Color(0XFFADA4A5)),
+                                    const TextStyle(color: AppColor.grayColor2),
                                 prefixIcon: Padding(
                                   padding: const EdgeInsets.all(12.0),
                                   child: SvgPicture.asset(
@@ -263,9 +261,7 @@ class _SignUp1State extends State<SignUp1> {
                           width: 58,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(14),
-                            gradient: const LinearGradient(
-                              colors: [Color(0XFFEEA4CE), Color(0XFFC58BF2)],
-                            ),
+                            gradient: AppColor.unitGradient,
                           ),
                           child: const Center(
                             child: Text(
@@ -290,9 +286,7 @@ class _SignUp1State extends State<SignUp1> {
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(99),
-                        gradient: const LinearGradient(
-                          colors: [Color(0xFF9DCEFF), Color(0xFF92A3FD)],
-                        ),
+                        gradient: AppColor.buttonColors,
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
@@ -307,7 +301,12 @@ class _SignUp1State extends State<SignUp1> {
                         color: Colors.transparent,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(99),
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Login()));
+                          },
                           child: const SizedBox(
                             height: 60,
                             child: Row(

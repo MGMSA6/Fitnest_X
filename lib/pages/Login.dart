@@ -1,3 +1,6 @@
+import 'package:fitnest_x/pages/Finalized.dart';
+import 'package:fitnest_x/pages/Welcome.dart';
+import 'package:fitnest_x/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -22,14 +25,14 @@ class _LoginState extends State<Login> {
                 children: [
                   Text(
                     "Hey there,",
-                    style: TextStyle(fontSize: 15, color: Color(0xff1D1617)),
+                    style: TextStyle(fontSize: 15, color: AppColor.blackColor),
                   ),
                   Text(
                     "Welcome Back",
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xff1D1617)),
+                        color: AppColor.blackColor),
                   ),
                   SizedBox(
                     height: 15,
@@ -37,13 +40,13 @@ class _LoginState extends State<Login> {
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
-                      color: Color(0xFFF7F8F8),
+                      color: AppColor.borderColor,
                       borderRadius: BorderRadius.circular(14),
                     ),
                     child: TextField(
                       decoration: InputDecoration(
                           labelText: "Email",
-                          labelStyle: TextStyle(color: Color(0XFFADA4A5)),
+                          labelStyle: TextStyle(color: AppColor.grayColor2),
                           prefixIcon: Padding(
                             padding: EdgeInsets.all(12.0),
                             child: SvgPicture.asset(
@@ -71,20 +74,21 @@ class _LoginState extends State<Login> {
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF7F8F8),
+                      color: AppColor.borderColor,
                       borderRadius: BorderRadius.circular(14),
                     ),
                     child: TextField(
                       decoration: InputDecoration(
                           labelText: "Password",
-                          labelStyle: const TextStyle(color: Color(0XFFADA4A5)),
+                          labelStyle:
+                              const TextStyle(color: AppColor.grayColor2),
                           prefixIcon: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: SvgPicture.asset("assets/images/lock.svg"),
                           ),
                           suffixIcon: const Icon(
                             Icons.visibility_off_outlined,
-                            color: Color(0XFF7B6F72),
+                            color: AppColor.grayColor1,
                           ),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(14)),
@@ -106,7 +110,7 @@ class _LoginState extends State<Login> {
                   ),
                   Text(
                     "Forgot your password?",
-                    style: TextStyle(fontSize: 12, color: Color(0xffADA4A5)),
+                    style: TextStyle(fontSize: 12, color: AppColor.grayColor2),
                   ),
                   Expanded(
                     child: Container(),
@@ -117,9 +121,7 @@ class _LoginState extends State<Login> {
                         margin: const EdgeInsets.symmetric(horizontal: 20),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(99),
-                          gradient: const LinearGradient(
-                            colors: [Color(0xFF9DCEFF), Color(0xFF92A3FD)],
-                          ),
+                          gradient: AppColor.buttonColors,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.5),
@@ -135,10 +137,10 @@ class _LoginState extends State<Login> {
                           child: InkWell(
                             borderRadius: BorderRadius.circular(99),
                             onTap: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => SignUp()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Finalized()));
                             },
                             child: SizedBox(
                               height: 60,
@@ -175,7 +177,7 @@ class _LoginState extends State<Login> {
                             Expanded(
                               child: Container(
                                 height: 1,
-                                color: const Color(0XFFDDDADA),
+                                color: AppColor.grayColor3,
                               ),
                             ),
                             const Padding(
@@ -183,13 +185,13 @@ class _LoginState extends State<Login> {
                               child: Text(
                                 "Or",
                                 style: TextStyle(
-                                    fontSize: 12, color: Color(0XFF1D1617)),
+                                    fontSize: 12, color: AppColor.blackColor),
                               ),
                             ),
                             Expanded(
                               child: Container(
                                 height: 1,
-                                color: const Color(0XFFDDDADA),
+                                color: AppColor.grayColor3,
                               ),
                             ),
                           ],
@@ -211,8 +213,8 @@ class _LoginState extends State<Login> {
                                 width: 50,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
-                                    border: Border.all(
-                                        color: const Color(0XFFDDDADA))),
+                                    border:
+                                        Border.all(color: AppColor.grayColor3)),
                                 child: Padding(
                                   padding: const EdgeInsets.all(12.0),
                                   child: SvgPicture.asset(
@@ -232,8 +234,8 @@ class _LoginState extends State<Login> {
                                 width: 50,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
-                                    border: Border.all(
-                                        color: const Color(0XFFDDDADA))),
+                                    border:
+                                        Border.all(color: AppColor.grayColor3)),
                                 child: Padding(
                                   padding: const EdgeInsets.all(12),
                                   child: SvgPicture.asset(
@@ -264,7 +266,7 @@ class _LoginState extends State<Login> {
                               borderRadius: BorderRadius.circular(8),
                               child: const Text("Register",
                                   style: TextStyle(
-                                    color: Color(0XFFC58BF2),
+                                    color: AppColor.secondaryColor,
                                     fontSize: 14,
                                   )),
                             ),

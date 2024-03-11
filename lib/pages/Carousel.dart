@@ -1,5 +1,8 @@
+import 'package:fitnest_x/pages/Signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../utils/colors.dart';
 
 class Carousel extends StatefulWidget {
   const Carousel({Key? key}) : super(key: key);
@@ -39,12 +42,12 @@ class _CarouselState extends State<Carousel> {
                           style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
-                              color: Color(0XFF1D1617)),
+                              color: AppColor.blackColor),
                         ),
                         Text(
                           'It will help us to choose a best\nprogram for you',
-                          style:
-                              TextStyle(fontSize: 12, color: Color(0XFF7B6F72)),
+                          style: TextStyle(
+                              fontSize: 12, color: AppColor.grayColor1),
                           textAlign: TextAlign.center,
                         ),
                       ]),
@@ -58,9 +61,7 @@ class _CarouselState extends State<Carousel> {
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(99),
-                        gradient: const LinearGradient(
-                          colors: [Color(0xFF9DCEFF), Color(0xFF92A3FD)],
-                        ),
+                        gradient: AppColor.buttonColors,
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
@@ -76,10 +77,10 @@ class _CarouselState extends State<Carousel> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(99),
                           onTap: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => SignUp()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Signup()));
                           },
                           child: const SizedBox(
                             height: 60,
@@ -109,21 +110,18 @@ class _CarouselState extends State<Carousel> {
   Widget buildCardCarousel() {
     final List<Widget> cards = [
       const CustomCard(
-        gradientColors: [Color(0XFF92A3FD), Color(0xff9DCEFF)],
         title: 'Improve Shape',
         description:
             'I have a low amount of body fat\nand need / want to build more\nmuscle',
         imageUrl: 'assets/images/onboard_1.svg',
       ),
       const CustomCard(
-        gradientColors: [Color(0XFF92A3FD), Color(0xff9DCEFF)],
         title: 'Lean & Tone',
         description:
             'I’m “skinny fat”. look thin but have\nno shape. I want to add learn\nmuscle in the right way',
         imageUrl: 'assets/images/onboard_2.svg',
       ),
       const CustomCard(
-        gradientColors: [Color(0XFF92A3FD), Color(0xff9DCEFF)],
         title: 'Loose a Fat',
         description:
             'I have over 20 lbs to lose.\nI want to drop all this fat and gain muscle\nmass',
@@ -147,14 +145,12 @@ class _CarouselState extends State<Carousel> {
 }
 
 class CustomCard extends StatelessWidget {
-  final List<Color> gradientColors;
   final String title;
   final String description;
   final String imageUrl;
 
   const CustomCard({
     Key? key,
-    required this.gradientColors,
     required this.title,
     required this.description,
     required this.imageUrl,
@@ -176,11 +172,7 @@ class CustomCard extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25.0),
-              gradient: LinearGradient(
-                colors: gradientColors,
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft,
-              ),
+              gradient: AppColor.cardsGradient,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
