@@ -1,4 +1,5 @@
 import 'package:fitnest_x/pages/Onboarding.dart';
+import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/colors.dart';
@@ -24,7 +25,7 @@ class _SplashScreenPageState extends State<Welcome> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Fitnest',
+                  AppString.appName,
                   style: TextStyle(
                     color: AppColor.blackColor,
                     fontSize: 36,
@@ -33,7 +34,7 @@ class _SplashScreenPageState extends State<Welcome> {
                   ),
                 ),
                 GradientText(
-                  text: 'X',
+                  text: AppString.X,
                   gradient: AppColor.textGradient,
                   style: TextStyle(
                     fontSize: 50.0,
@@ -44,7 +45,7 @@ class _SplashScreenPageState extends State<Welcome> {
             ),
 
             const Text(
-              'Everybody Can Train',
+              AppString.trainAll,
               style: TextStyle(
                 color: AppColor.grayColor1,
                 fontSize: 18,
@@ -81,7 +82,7 @@ class _SplashScreenPageState extends State<Welcome> {
                       },
                       child: const Center(
                         child: Text(
-                          "Get Started",
+                          AppString.startButtonLabel,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,

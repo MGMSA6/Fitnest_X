@@ -1,6 +1,6 @@
 import 'package:fitnest_x/pages/Carousel.dart';
-import 'package:fitnest_x/pages/Signup.dart';
 import 'package:fitnest_x/utils/colors.dart';
+import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -38,27 +38,23 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
             children: const [
               OnBoardingPage(
                 imageUrl: "assets/images/onboard1.svg",
-                title: "Track Your Goal",
-                description:
-                    "Don't worry if you have trouble determining\nyour goals, We can help you determine your\ngoals and track your goals.",
+                title: AppString.trackGoal,
+                description: AppString.goalDescription,
               ),
               OnBoardingPage(
                 imageUrl: "assets/images/onboard2.svg",
-                title: "Get Burn",
-                description:
-                    "Let’s keep burning, to achieve yours goals,\nit hurts only temporarily, if you give up now\nyou will be in pain forever.",
+                title: AppString.getBurn,
+                description: AppString.burnDescription,
               ),
               OnBoardingPage(
                 imageUrl: "assets/images/onboard3.svg",
-                title: "Eat Well",
-                description:
-                    "Let's start a healthy lifestyle with us, we can\ndetermine your diet every day. healthy\neating is fun.",
+                title: AppString.eatWell,
+                description: AppString.eatDescription,
               ),
               OnBoardingPage(
                 imageUrl: "assets/images/onboard4.svg",
-                title: "Improve Sleep\nQuality",
-                description:
-                    "Improve the quality of your sleep with us,\ngood quality sleep can bring a good mood\nin the morning.",
+                title: AppString.sleepQuality,
+                description: AppString.sleepDescription,
               ),
             ],
           ),

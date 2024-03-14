@@ -1,4 +1,5 @@
 import 'package:fitnest_x/pages/Signup.dart';
+import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -38,14 +39,14 @@ class _CarouselState extends State<Carousel> {
                       flex: 1,
                       child: Column(children: [
                         Text(
-                          'What is your goal ?',
+                          AppString.goalText,
                           style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                               color: AppColor.blackColor),
                         ),
                         Text(
-                          'It will help us to choose a best\nprogram for you',
+                          AppString.programDescription,
                           style: TextStyle(
                               fontSize: 12, color: AppColor.grayColor1),
                           textAlign: TextAlign.center,
@@ -80,7 +81,7 @@ class _CarouselState extends State<Carousel> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Signup()));
+                                    builder: (context) => const Signup()));
                           },
                           child: const SizedBox(
                             height: 60,
@@ -88,7 +89,7 @@ class _CarouselState extends State<Carousel> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Confirm",
+                                  AppString.confirmText,
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700,
@@ -110,21 +111,18 @@ class _CarouselState extends State<Carousel> {
   Widget buildCardCarousel() {
     final List<Widget> cards = [
       const CustomCard(
-        title: 'Improve Shape',
-        description:
-            'I have a low amount of body fat\nand need / want to build more\nmuscle',
+        title: AppString.improveShapeTitle,
+        description: AppString.improveShapeDescription,
         imageUrl: 'assets/images/onboard_1.svg',
       ),
       const CustomCard(
-        title: 'Lean & Tone',
-        description:
-            'I’m “skinny fat”. look thin but have\nno shape. I want to add learn\nmuscle in the right way',
+        title: AppString.leanToneTitle,
+        description: AppString.leanToneDescription,
         imageUrl: 'assets/images/onboard_2.svg',
       ),
       const CustomCard(
-        title: 'Loose a Fat',
-        description:
-            'I have over 20 lbs to lose.\nI want to drop all this fat and gain muscle\nmass',
+        title: AppString.loseFatTitle,
+        description: AppString.loseFatDescription,
         imageUrl: 'assets/images/onboard_3.svg',
       ),
     ];
@@ -162,7 +160,7 @@ class CustomCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.8,
       height: MediaQuery.of(context).size.height * 0.6,
       child: Padding(
-        padding: EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.only(bottom: 12),
         child: Card(
           elevation: 8.0,
           shadowColor: const Color(0xFFE8CEE5),
@@ -210,7 +208,7 @@ class CustomCard extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: Padding(
-                    padding: EdgeInsets.only(left: 20, right: 20),
+                    padding: const EdgeInsets.only(left: 20, right: 20),
                     child: Text(
                       description,
                       style: const TextStyle(
