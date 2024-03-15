@@ -2,6 +2,7 @@ import 'package:fitnest_x/pages/Login.dart';
 import 'package:fitnest_x/pages/SignUp1.dart';
 import 'package:fitnest_x/utils/colors.dart';
 import 'package:fitnest_x/utils/strings.dart';
+import 'package:fitnest_x/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -39,7 +40,7 @@ class _SignupState extends State<Signup> {
                       const Text(
                         AppString.hey_there_title,
                         style:
-                        TextStyle(fontSize: 15, color: AppColor.blackColor),
+                            TextStyle(fontSize: 15, color: AppColor.blackColor),
                       ),
                       const Text(
                         AppString.create_account_title,
@@ -62,7 +63,7 @@ class _SignupState extends State<Signup> {
                           decoration: InputDecoration(
                               labelText: AppString.first_name,
                               labelStyle:
-                              const TextStyle(color: AppColor.grayColor2),
+                                  const TextStyle(color: AppColor.grayColor2),
                               prefixIcon: Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: SvgPicture.asset(
@@ -81,11 +82,9 @@ class _SignupState extends State<Signup> {
                                 borderSide: const BorderSide(
                                     color: Colors.transparent, width: 0),
                               )),
+                          maxLength: 12,
                           validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "";
-                            }
-                            return null;
+                            return AppValidator.validateFirstName(value);
                           },
                           onTap: () {},
                         ),
@@ -105,7 +104,7 @@ class _SignupState extends State<Signup> {
                           decoration: InputDecoration(
                               labelText: AppString.last_name,
                               labelStyle:
-                              const TextStyle(color: AppColor.grayColor2),
+                                  const TextStyle(color: AppColor.grayColor2),
                               prefixIcon: Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: SvgPicture.asset(
@@ -124,11 +123,9 @@ class _SignupState extends State<Signup> {
                                 borderSide: const BorderSide(
                                     color: Colors.transparent, width: 0),
                               )),
+                          maxLength: 15,
                           validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your last name';
-                            }
-                            return null;
+                            return AppValidator.validateLastName(value);
                           },
                           onTap: () {},
                         ),
@@ -148,11 +145,11 @@ class _SignupState extends State<Signup> {
                               labelText: AppString.email,
                               // Handle null value
                               labelStyle:
-                              const TextStyle(color: AppColor.grayColor2),
+                                  const TextStyle(color: AppColor.grayColor2),
                               prefixIcon: Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child:
-                                SvgPicture.asset("assets/images/email.svg"),
+                                    SvgPicture.asset("assets/images/email.svg"),
                               ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(14)),
@@ -166,11 +163,9 @@ class _SignupState extends State<Signup> {
                                 borderSide: const BorderSide(
                                     color: Colors.transparent, width: 0),
                               )),
+                          maxLength: 25,
                           validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "return 'Please enter your email";
-                            }
-                            return null;
+                            return AppValidator.validateEmail(value);
                           },
                           onTap: () {},
                         ),
@@ -189,11 +184,11 @@ class _SignupState extends State<Signup> {
                           decoration: InputDecoration(
                               labelText: AppString.password,
                               labelStyle:
-                              const TextStyle(color: AppColor.grayColor2),
+                                  const TextStyle(color: AppColor.grayColor2),
                               prefixIcon: Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child:
-                                SvgPicture.asset("assets/images/lock.svg"),
+                                    SvgPicture.asset("assets/images/lock.svg"),
                               ),
                               suffixIcon: const Icon(
                                 Icons.visibility_off_outlined,
@@ -211,11 +206,10 @@ class _SignupState extends State<Signup> {
                                 borderSide: const BorderSide(
                                     color: Colors.transparent, width: 0),
                               )),
+                          obscureText: true,
+                          maxLength: 6,
                           validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your first name';
-                            }
-                            return null;
+                            return AppValidator.validatePassword(value);
                           },
                           onTap: () {},
                         ),
@@ -229,7 +223,7 @@ class _SignupState extends State<Signup> {
                           children: [
                             Checkbox(
                                 fillColor:
-                                MaterialStateProperty.resolveWith((states) {
+                                    MaterialStateProperty.resolveWith((states) {
                                   if (states.contains(MaterialState.selected)) {
                                     return Colors.black;
                                   }
@@ -274,10 +268,12 @@ class _SignupState extends State<Signup> {
                           child: InkWell(
                             borderRadius: BorderRadius.circular(99),
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SignUp1()));
+                              if (_formKey.currentState!.validate()) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => SignUp1()));
+                              }
                             },
                             child: const SizedBox(
                               height: 60,
@@ -347,7 +343,7 @@ class _SignupState extends State<Signup> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
                                     border:
-                                    Border.all(color: AppColor.grayColor3)),
+                                        Border.all(color: AppColor.grayColor3)),
                                 child: Padding(
                                   padding: const EdgeInsets.all(12.0),
                                   child: SvgPicture.asset(
@@ -368,7 +364,7 @@ class _SignupState extends State<Signup> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
                                     border:
-                                    Border.all(color: AppColor.grayColor3)),
+                                        Border.all(color: AppColor.grayColor3)),
                                 child: Padding(
                                   padding: const EdgeInsets.all(12),
                                   child: SvgPicture.asset(
