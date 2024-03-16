@@ -61,13 +61,48 @@ class AppString {
   static const String last_name = "Last Name";
   static const String email = "Email";
   static const String password = "Password";
-  static const String privacy_policy_message = "By continuing you accept our Privacy Policy\nand Term of Use";
+  static const String privacy_policy_message =
+      "By continuing you accept our Privacy Policy\nand Term of Use";
   static const String register = "Register";
   static const String or = "or";
   static const String haveAccount = "Already have an account? ";
   static const String login = "Login";
 
+/*------  SignUp End ------*/
 
+/*------  SignUp1 ------*/
+
+  static const String completeProfile = "Let’s complete your profile";
+  static const String completeProfileDesc =
+      "It will help us to know more about you!";
+  static const String chooseGender = "Choose Gender";
+  static const String male = "Male";
+  static const String female = "Female";
+  static const String other = "Other";
+  static const String dob = "Date of Birth";
+  static const String weight = "Your Weight";
+  static const String height = "Your Height";
+  static const String KG = "KG";
+  static const String CM = "CM";
+  static const String next = "Next";
+  static const String notAccount = "Don't have an account yet? ";
 
 /*------  SignUp End ------*/
+
+/*------  Login ------*/
+
+  static const String hey = "Hey there";
+  static const String welcome = "Welcome Back";
+  static const String forgotPass = "Forgot your password?";
+
+/*------  Login End ------*/
+
+/*------  Final ------*/
+
+  static const String wel = "Welcome, Stefani";
+  static const String finalDesc =
+      "You are all set now, let’s reach your\ngoals together with us";
+  static const String goHome = "Go To Home";
+
+/*------  Final End ------*/
 }

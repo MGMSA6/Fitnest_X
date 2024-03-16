@@ -4,8 +4,8 @@ import 'package:fitnest_x/pages/Home.dart';
 import 'package:fitnest_x/pages/Login.dart';
 import 'package:fitnest_x/pages/Onboarding.dart';
 import 'package:fitnest_x/pages/Responsive.dart';
-import 'package:fitnest_x/pages/SignUp1.dart';
-import 'package:fitnest_x/pages/Signup.dart';
+import 'package:fitnest_x/pages/SignUp.dart';
+import 'package:fitnest_x/pages/Signup1.dart';
 
 import 'package:fitnest_x/pages/Welcome.dart';
 import 'package:fitnest_x/pages/Welcome1.dart';
@@ -30,8 +30,8 @@ class FitnestX extends StatelessWidget {
         "/Welcome": (context) => const Welcome(),
         "/Welcome1": (context) => const Welcome1(),
         "/Walkthrough": (context) => const Onboarding(),
-        "/SignUp": (context) => const Signup(),
-        "/SignUp1": (context) => const SignUp1(),
+        "/SignUp": (context) => const SignUp(),
+        "/SignUp1": (context) => const Signup1(),
         "/Login": (context) => const Login(),
         "/Finalized": (context) => const Finalized(),
         "/Carousel": (context) => const Carousel(),

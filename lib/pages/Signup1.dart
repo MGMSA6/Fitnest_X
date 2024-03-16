@@ -1,19 +1,20 @@
 import 'package:fitnest_x/pages/Login.dart';
-import 'package:fitnest_x/pages/SignUp1.dart';
 import 'package:fitnest_x/utils/colors.dart';
 import 'package:fitnest_x/utils/strings.dart';
 import 'package:fitnest_x/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
+import 'SignUp.dart';
+
+class Signup1 extends StatefulWidget {
+  const Signup1({super.key});
 
   @override
   _SignupState createState() => _SignupState();
 }
 
-class _SignupState extends State<Signup> {
+class _SignupState extends State<Signup1> {
   bool isChecked = false;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -62,6 +63,7 @@ class _SignupState extends State<Signup> {
                           controller: _firstNameController,
                           decoration: InputDecoration(
                               labelText: AppString.first_name,
+                              counterText: "",
                               labelStyle:
                                   const TextStyle(color: AppColor.grayColor2),
                               prefixIcon: Padding(
@@ -103,6 +105,7 @@ class _SignupState extends State<Signup> {
                           controller: _lastNameController,
                           decoration: InputDecoration(
                               labelText: AppString.last_name,
+                              counterText: "",
                               labelStyle:
                                   const TextStyle(color: AppColor.grayColor2),
                               prefixIcon: Padding(
@@ -143,6 +146,7 @@ class _SignupState extends State<Signup> {
                           controller: _emailController,
                           decoration: InputDecoration(
                               labelText: AppString.email,
+                              counterText: "",
                               // Handle null value
                               labelStyle:
                                   const TextStyle(color: AppColor.grayColor2),
@@ -183,6 +187,7 @@ class _SignupState extends State<Signup> {
                           controller: _passwordController,
                           decoration: InputDecoration(
                               labelText: AppString.password,
+                              counterText: "",
                               labelStyle:
                                   const TextStyle(color: AppColor.grayColor2),
                               prefixIcon: Padding(
@@ -230,7 +235,8 @@ class _SignupState extends State<Signup> {
                                   return null;
                                 }),
                                 checkColor: Colors.white,
-                                side: BorderSide(color: AppColor.grayColor2),
+                                side: const BorderSide(
+                                    color: AppColor.grayColor2),
                                 value: isChecked,
                                 onChanged: (bool? value) {
                                   setState(() {
@@ -269,10 +275,18 @@ class _SignupState extends State<Signup> {
                             borderRadius: BorderRadius.circular(99),
                             onTap: () {
                               if (_formKey.currentState!.validate()) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => SignUp1()));
+                                if (isChecked) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Login()));
+                                } else {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                    content: Text(
+                                        "Please accept the terms and conditions"),
+                                  ));
+                                }
                               }
                             },
                             child: const SizedBox(

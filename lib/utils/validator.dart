@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class AppValidator {
   static String? validateFirstName(String? value) {
     if (value == null || value.isEmpty) {
@@ -44,6 +46,27 @@ class AppValidator {
       return 'Please enter your password';
     } else if (value.length < 6) {
       return 'Password must be at least 6 characters long';
+    }
+    return null;
+  }
+
+  static String? validateDob(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Date of Birth is required';
+    }
+    return null;
+  }
+
+  static String? validateHeight(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Please enter your height";
+    }
+    return null;
+  }
+
+  static String? validateWeight(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Please enter your weight";
     }
     return null;
   }

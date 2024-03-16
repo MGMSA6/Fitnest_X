@@ -1,5 +1,6 @@
 import 'package:fitnest_x/pages/Home.dart';
 import 'package:fitnest_x/utils/colors.dart';
+import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -27,7 +28,7 @@ class _FinalizedState extends State<Finalized> {
                   height: 30,
                 ),
                 const Text(
-                  "Welcome, Stefani",
+                  AppString.wel,
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
@@ -37,7 +38,7 @@ class _FinalizedState extends State<Finalized> {
                   height: 10,
                 ),
                 const Text(
-                  "You are all set now, let’s reach your\ngoals together with us",
+                  AppString.finalDesc,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 12, color: AppColor.grayColor1),
                 ),
@@ -73,7 +74,7 @@ class _FinalizedState extends State<Finalized> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Go To Home",
+                              AppString.goHome,
                               style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w700,

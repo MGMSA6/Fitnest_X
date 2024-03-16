@@ -1,4 +1,5 @@
-import 'package:fitnest_x/pages/Signup.dart';
+import 'package:fitnest_x/pages/SignUp.dart';
+import 'package:fitnest_x/pages/Signup1.dart';
 import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -81,7 +82,7 @@ class _CarouselState extends State<Carousel> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const Signup()));
+                                    builder: (context) => const SignUp()));
                           },
                           child: const SizedBox(
                             height: 60,
