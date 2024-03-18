@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class AppColor {
@@ -62,5 +63,14 @@ class AppColor {
     colors: AppColor.gradientColors,
     begin: Alignment.bottomRight,
     end: Alignment.bottomLeft,
+  );
+
+  static const Gradient notification = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomRight,
+    colors: [
+      Color(0xffF8F8F8),
+      Colors.white,
+    ],
   );
 }

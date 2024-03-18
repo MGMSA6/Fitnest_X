@@ -41,9 +41,9 @@ class _LoginState extends State<Login> {
                         fontWeight: FontWeight.w700,
                         color: AppColor.blackColor),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
                       color: AppColor.borderColor,
                       borderRadius: BorderRadius.circular(14),
@@ -56,7 +56,7 @@ class _LoginState extends State<Login> {
                           labelStyle:
                               const TextStyle(color: AppColor.grayColor2),
                           prefixIcon: Padding(
-                            padding: EdgeInsets.all(12.0),
+                            padding: const EdgeInsets.all(12.0),
                             child: SvgPicture.asset(
                               "assets/images/email.svg",
                             ),
@@ -70,8 +70,8 @@ class _LoginState extends State<Login> {
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(14),
-                            borderSide:
-                                BorderSide(color: Colors.transparent, width: 0),
+                            borderSide: const BorderSide(
+                                color: Colors.transparent, width: 0),
                           )),
                       onTap: () {},
                       validator: (value) {
@@ -120,12 +120,12 @@ class _LoginState extends State<Login> {
                       },
                     ),
                   ),
-                  SizedBox(height: 15),
-                  Text(
+                  const SizedBox(height: 15),
+                  const Text(
                     AppString.forgotPass,
                     style: TextStyle(fontSize: 12, color: AppColor.grayColor2),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
@@ -149,7 +149,7 @@ class _LoginState extends State<Login> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Finalized()));
+                                    builder: (context) => const Finalized()));
                           }
                         },
                         child: SizedBox(
@@ -158,8 +158,8 @@ class _LoginState extends State<Login> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SvgPicture.asset("assets/images/login1.svg"),
-                              SizedBox(width: 10),
-                              Text(
+                              const SizedBox(width: 10),
+                              const Text(
                                 AppString.login,
                                 style: TextStyle(
                                     fontSize: 16,
@@ -173,7 +173,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
@@ -226,7 +226,7 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 30),
+                      const SizedBox(width: 30),
                       Material(
                         color: Colors.transparent,
                         child: InkWell(
@@ -248,7 +248,7 @@ class _LoginState extends State<Login> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -265,7 +265,7 @@ class _LoginState extends State<Login> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SignUp()));
+                                    builder: (context) => const SignUp()));
                           },
                           borderRadius: BorderRadius.circular(8),
                           child: const Text(

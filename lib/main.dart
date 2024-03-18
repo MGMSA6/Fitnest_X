@@ -25,7 +25,7 @@ class FitnestX extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       darkTheme: ThemeData(brightness: Brightness.dark),
-      initialRoute: "/SignUp",
+      initialRoute: "/Home",
       routes: {
         "/Welcome": (context) => const Welcome(),
         "/Welcome1": (context) => const Welcome1(),
@@ -36,7 +36,7 @@ class FitnestX extends StatelessWidget {
         "/Finalized": (context) => const Finalized(),
         "/Carousel": (context) => const Carousel(),
         "/Responsive": (context) => Responsive(),
-        "/Home": (context) => Home()
+        "/Home": (context) => const Home()
       },
     );
   }
