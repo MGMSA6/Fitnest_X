@@ -1,9 +1,12 @@
+import 'dart:developer';
 import 'package:fitnest_x/pages/Welcome.dart';
 import 'package:fitnest_x/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
+import '../utils/TimelineIndicator.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -51,6 +54,299 @@ class Home extends StatelessWidget {
               ),
             ],
           ),
+          child: Padding(
+            padding: EdgeInsets.only(top: 20, right: 15, bottom: 20, left: 15),
+            child: Padding(
+              padding: EdgeInsets.all(0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    child: Container(
+                      height: double.infinity,
+                      width: 25,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(99),
+                        gradient: LinearGradient(
+                          colors: [Color(0xFFC58BF2), Color(0xFFB3BFFD)],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          tileMode: TileMode.clamp,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Water Intake',
+                          style: TextStyle(
+                            color: Color(0xFF1C242A),
+                            fontSize: 12,
+                            height: 0.12,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        GradientText(
+                          text: "4 Liters",
+                          gradient: LinearGradient(
+                            begin: Alignment(-1.00, 0.08),
+                            end: Alignment(1, -0.08),
+                            colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
+                          ),
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          'Real time updates',
+                          style: TextStyle(
+                            color: Color(0xFF7B6F72),
+                            fontSize: 10,
+                            height: 0.15,
+                          ),
+                        ),
+                        Flexible(
+                          child: TimelineIndicator(
+                            lineGap: 10,
+                            itemGap: 30,
+                            indicators: <Widget>[
+                              Container(
+                                width: 1,
+                                height: 1,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: LinearGradient(
+                                    begin: Alignment(-1.00, 0.08),
+                                    end: Alignment(1, -0.08),
+                                    colors: [
+                                      Color(0xFFC58BF2),
+                                      Color(0xFFEEA4CE)
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: 6,
+                                height: 6,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: LinearGradient(
+                                    begin: Alignment(-1.00, 0.08),
+                                    end: Alignment(1, -0.08),
+                                    colors: [
+                                      Color(0xFFC58BF2),
+                                      Color(0xFFEEA4CE)
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: 6,
+                                height: 6,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: LinearGradient(
+                                    begin: Alignment(-1.00, 0.08),
+                                    end: Alignment(1, -0.08),
+                                    colors: [
+                                      Color(0xFFC58BF2),
+                                      Color(0xFFEEA4CE)
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: 6,
+                                height: 6,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: LinearGradient(
+                                    begin: Alignment(-1.00, 0.08),
+                                    end: Alignment(1, -0.08),
+                                    colors: [
+                                      Color(0xFFC58BF2),
+                                      Color(0xFFEEA4CE)
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: 6,
+                                height: 6,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: LinearGradient(
+                                    begin: Alignment(-1.00, 0.08),
+                                    end: Alignment(1, -0.08),
+                                    colors: [
+                                      Color(0xFFC58BF2),
+                                      Color(0xFFEEA4CE)
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                            children: const <Widget>[
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '6am - 8am',
+                                    style: TextStyle(
+                                      color: Color(0xFFACA3A5),
+                                      fontSize: 8,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0.19,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    '600ml',
+                                    style: TextStyle(
+                                      color: Color(0xFFC58BF2),
+                                      fontSize: 8,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w500,
+                                      height: 0.19,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '6am - 8am',
+                                    style: TextStyle(
+                                      color: Color(0xFFACA3A5),
+                                      fontSize: 8,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0.19,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Text(
+                                    '600ml',
+                                    style: TextStyle(
+                                      color: Color(0xFFC58BF2),
+                                      fontSize: 8,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w500,
+                                      height: 0.19,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '6am - 8am',
+                                    style: TextStyle(
+                                      color: Color(0xFFACA3A5),
+                                      fontSize: 8,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0.19,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Text(
+                                    '600ml',
+                                    style: TextStyle(
+                                      color: Color(0xFFC58BF2),
+                                      fontSize: 8,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w500,
+                                      height: 0.19,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '6am - 8am',
+                                    style: TextStyle(
+                                      color: Color(0xFFACA3A5),
+                                      fontSize: 8,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0.19,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Text(
+                                    '600ml',
+                                    style: TextStyle(
+                                      color: Color(0xFFC58BF2),
+                                      fontSize: 8,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w500,
+                                      height: 0.19,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '6am - 8am',
+                                    style: TextStyle(
+                                      color: Color(0xFFACA3A5),
+                                      fontSize: 8,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0.19,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Text(
+                                    '600ml',
+                                    style: TextStyle(
+                                      color: Color(0xFFC58BF2),
+                                      fontSize: 8,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w500,
+                                      height: 0.19,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
       StaggeredGridTile.count(
@@ -71,6 +367,37 @@ class Home extends StatelessWidget {
               ),
             ],
           ),
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Sleep',
+                  style: TextStyle(
+                    color: Color(0xFF1C242A),
+                    fontSize: 12,
+                    height: 0.12,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                GradientText(
+                  text: "8h 20m",
+                  gradient: LinearGradient(
+                    begin: Alignment(-1.00, 0.08),
+                    end: Alignment(1, -0.08),
+                    colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
+                  ),
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
       StaggeredGridTile.count(
@@ -90,6 +417,37 @@ class Home extends StatelessWidget {
                 offset: Offset(0, 5),
               ),
             ],
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Calories',
+                  style: TextStyle(
+                    color: Color(0xFF1C242A),
+                    fontSize: 12,
+                    height: 0.12,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                GradientText(
+                  text: "760 kCal",
+                  gradient: LinearGradient(
+                    begin: Alignment(-1.00, 0.08),
+                    end: Alignment(1, -0.08),
+                    colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
+                  ),
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
