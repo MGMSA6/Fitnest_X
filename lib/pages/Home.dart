@@ -11,9 +11,14 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import '../utils/CircularGradientProgressBar.dart';
 import '../utils/TimelineItem.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   List<ChartData> getChartData() {
     final List<ChartData> chartData = [
       ChartData("", 80, Colors.white),
@@ -35,6 +40,15 @@ class Home extends StatelessWidget {
     ];
     return lineData;
   }
+
+  final List<LatestWorkOut> latestWorkOut = [
+    LatestWorkOut("assets/images/workout1.svg", "Fullbody Workout",
+        "180 Calories Burn | 20minutes", AppColor.buttonColors),
+    LatestWorkOut("assets/images/workout2.svg", "Lowerbody Workout",
+        "200 Calories Burn | 30minutes", AppColor.unitGradient),
+    LatestWorkOut("assets/images/workout3.svg", "Ab Workout",
+        "180 Calories Burn | 20minutes", AppColor.buttonColors)
+  ];
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
@@ -684,7 +698,6 @@ class Home extends StatelessWidget {
                             style: TextStyle(
                               color: Color(0xFF1D1517),
                               fontSize: 16,
-                              fontFamily: 'Poppins',
                               fontWeight: FontWeight.w600,
                               height: 0.09,
                             )),
@@ -705,7 +718,10 @@ class Home extends StatelessWidget {
                                     .white, // Set the arrow color to white
                               ),
                               onChanged: (String? newValue) {
-                                selectedValue = newValue!;
+                                setState(() {
+                                  // Update selected value and rebuild the widget
+                                  selectedValue = newValue!;
+                                });
                               },
                               items: [
                                 DropdownMenuItem(
@@ -777,20 +793,120 @@ class Home extends StatelessWidget {
                       height: 20,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Latest Workout',
                             style: TextStyle(
                               color: Color(0xFF1D1517),
                               fontSize: 16,
-                              fontFamily: 'Poppins',
                               fontWeight: FontWeight.w600,
-                              height: 0.09,
                             )),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        Text('See more',
+                            style: TextStyle(
+                              color: Color(0xFFACA3A5),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            )),
                       ],
-                    )
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: 3, // Number of items in the list
+                      itemBuilder: (BuildContext context, int index) {
+                        // Each item is a container with a box shadow
+                        LatestWorkOut workOut = latestWorkOut[index];
+                        return Container(
+                          height: 80,
+                          width: double.infinity,
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(16.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: const Color(0xffE8E8E8).withOpacity(0.5),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: const Offset(
+                                    0, 5), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(top: 5),
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: AppColor.cardsGradient,
+                                ),
+                                child: SvgPicture.asset(workOut.img),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    workOut.title,
+                                    style: TextStyle(
+                                      color: Color(0xFF1D1517),
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  Text(
+                                    workOut.description,
+                                    style: TextStyle(
+                                      color: Color(0xFFA3A8AC),
+                                      fontSize: 8,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 180,
+                                    height: 10,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Colors.blueAccent,
+                                          Colors.greenAccent,
+                                        ],
+                                        begin: Alignment.centerLeft,
+                                        end: Alignment.centerRight,
+                                      ),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: LinearProgressIndicator(
+                                        backgroundColor: Colors.grey[200],
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                                AppColor.secondaryColor),
+                                        value:
+                                            0.6, // Set the progress value here (0.0 to 1.0)
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SvgPicture.asset(
+                                "assets/images/workout_btn.svg",
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   ],
                 )
               ],
@@ -823,4 +939,13 @@ class WorkOutData {
   final int percentage;
 
   WorkOutData(this.weekDay, this.percentage);
+}
+
+class LatestWorkOut {
+  final String img;
+  final String title;
+  final String description;
+  final Gradient gradient;
+
+  LatestWorkOut(this.img, this.title, this.description, this.gradient);
 }
