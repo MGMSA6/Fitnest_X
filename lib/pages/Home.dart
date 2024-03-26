@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'dart:math';
+
 import 'package:fitnest_x/pages/Welcome.dart';
 import 'package:fitnest_x/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +8,8 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../utils/TimelineIndicator.dart';
+import '../utils/CircularGradientProgressBar.dart';
+import '../utils/TimelineItem.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -21,18 +24,43 @@ class Home extends StatelessWidget {
 
   List<LineData> getLineData() {
     final List<LineData> lineData = [
-      LineData(2010, 0, Color(0xff92A3FD)),
-      LineData(2011, 1000, Color(0xff92A3FD)),
-      LineData(2012, 500, Color(0xff92A3FD)),
-      LineData(2013, 1000, Color(0xff92A3FD)),
-      LineData(2014, 2000, Color(0xff92A3FD)),
-      LineData(2015, 5000, Color(0xff92A3FD)),
-      LineData(2016, 6000, Color(0xff92A3FD)),
-      LineData(2017, 1500, Color(0xff92A3FD)),
-      LineData(2018, 8000, Color(0xff92A3FD)),
+      LineData(2010, 0, const Color(0xff92A3FD)),
+      LineData(2011, 30, const Color(0xff92A3FD)),
+      LineData(2012, 40, const Color(0xff92A3FD)),
+      LineData(2013, 20, const Color(0xff92A3FD)),
+      LineData(2014, 100, const Color(0xff92A3FD)),
+      LineData(2015, 190, const Color(0xff92A3FD)),
+      LineData(2016, 200, const Color(0xff92A3FD)),
+      LineData(2017, 50, const Color(0xff92A3FD)),
     ];
     return lineData;
   }
+
+  List<DropdownMenuItem<String>> get dropdownItems {
+    List<DropdownMenuItem<String>> menuItems = [
+      DropdownMenuItem(child: Text("Daily"), value: "Daily"),
+      DropdownMenuItem(child: Text("Weekly"), value: "Weekly"),
+      DropdownMenuItem(child: Text("Monthly"), value: "Monthly"),
+      DropdownMenuItem(child: Text("Yearly"), value: "Yearly"),
+    ];
+    return menuItems;
+  }
+
+  List<WorkOutData> getWorkOutData() {
+    final List<WorkOutData> workOutData = [
+      WorkOutData("Sun", 30),
+      WorkOutData("Mon", 50),
+      WorkOutData("Tue", 70),
+      WorkOutData("Wen", 60),
+      WorkOutData("Thu", 80),
+      WorkOutData("Fri", 90),
+      WorkOutData("Sat", 85),
+    ];
+
+    return workOutData;
+  }
+
+  static late String selectedValue = "Daily";
 
   List<StaggeredGridTile> getItems() {
     List<StaggeredGridTile> items = [
@@ -40,308 +68,126 @@ class Home extends StatelessWidget {
         crossAxisCellCount: 2,
         mainAxisCellCount: 4,
         child: Container(
-          height: 100,
-          width: 50,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(15),
             boxShadow: [
               BoxShadow(
-                color: Color(0xffE8E8E8).withOpacity(0.5),
+                color: const Color(0xffE8E8E8).withOpacity(0.5),
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: Offset(0, 5),
+                offset: const Offset(0, 5),
               ),
             ],
           ),
           child: Padding(
-            padding: EdgeInsets.only(top: 20, right: 15, bottom: 20, left: 15),
+            padding:
+                const EdgeInsets.only(top: 20, bottom: 20, left: 20, right: 5),
             child: Padding(
-              padding: EdgeInsets.all(0),
+              padding: const EdgeInsets.all(0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    child: Container(
+                  Transform.rotate(
+                    angle: 180 * (pi / 180), // Convert degrees to radians
+                    child: SizedBox(
                       height: double.infinity,
                       width: 25,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(99),
-                        gradient: LinearGradient(
-                          colors: [Color(0xFFC58BF2), Color(0xFFB3BFFD)],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          tileMode: TileMode.clamp,
-                        ),
+                      child: Stack(
+                        children: [
+                          // Unfilled portion
+                          Container(
+                            height: double.infinity,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(99),
+                              color: const Color(
+                                  0xFFF7F8F8), // Change this to the color of your choice for the unfilled portion
+                            ),
+                          ),
+                          // Filled portion
+                          FractionallySizedBox(
+                            heightFactor: 0.6,
+                            // Set the progress value here (0.0 to 1.0)
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(99),
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFFC58BF2),
+                                    Color(0xFFB3BFFD)
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  tileMode: TileMode.clamp,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Water Intake',
-                          style: TextStyle(
-                            color: Color(0xFF1C242A),
-                            fontSize: 12,
-                            height: 0.12,
-                          ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Water Intake',
+                        style: TextStyle(
+                          color: Color(0xFF1C242A),
+                          height: 1.5,
+                          fontSize: 12,
                         ),
-                        SizedBox(
-                          height: 10,
+                      ),
+                      GradientText(
+                        text: "4 Liters",
+                        gradient: LinearGradient(
+                          begin: Alignment(-1.00, 0.08),
+                          end: Alignment(1, -0.08),
+                          colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
                         ),
-                        GradientText(
-                          text: "4 Liters",
-                          gradient: LinearGradient(
-                            begin: Alignment(-1.00, 0.08),
-                            end: Alignment(1, -0.08),
-                            colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
-                          ),
-                          style: TextStyle(
+                        style: TextStyle(
                             fontSize: 14.0,
                             fontWeight: FontWeight.w600,
+                            height: 2),
+                      ),
+                      Text(
+                        'Real time updates',
+                        style: TextStyle(
+                          color: Color(0xFF7B6F72),
+                          fontSize: 10,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 20),
+                        child: Flexible(
+                          child: LayoutBuilder(
+                            builder: (context, constraints) {
+                              return CustomPaint(
+                                size: const Size(1, 90),
+                                painter: TimelineItem(
+                                  numberOfIndicators: 5,
+                                  indicatorRadius: 1,
+                                  indicatorSpacing: 40,
+                                  indicatorData: [
+                                    IndicatorData(
+                                        text1: '6am - 8am', text2: '600ml'),
+                                    IndicatorData(
+                                        text1: '9am - 11am', text2: '500ml'),
+                                    IndicatorData(
+                                        text1: '11am - 2pm', text2: '1000ml'),
+                                    IndicatorData(
+                                        text1: '2pm - 4pm', text2: '700ml'),
+                                    IndicatorData(
+                                        text1: '4pm - now', text2: '900ml'),
+                                  ],
+                                ),
+                              );
+                            },
                           ),
                         ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          'Real time updates',
-                          style: TextStyle(
-                            color: Color(0xFF7B6F72),
-                            fontSize: 10,
-                            height: 0.15,
-                          ),
-                        ),
-                        Flexible(
-                          child: TimelineIndicator(
-                            lineGap: 10,
-                            itemGap: 30,
-                            indicators: <Widget>[
-                              Container(
-                                width: 1,
-                                height: 1,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  gradient: LinearGradient(
-                                    begin: Alignment(-1.00, 0.08),
-                                    end: Alignment(1, -0.08),
-                                    colors: [
-                                      Color(0xFFC58BF2),
-                                      Color(0xFFEEA4CE)
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 6,
-                                height: 6,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  gradient: LinearGradient(
-                                    begin: Alignment(-1.00, 0.08),
-                                    end: Alignment(1, -0.08),
-                                    colors: [
-                                      Color(0xFFC58BF2),
-                                      Color(0xFFEEA4CE)
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 6,
-                                height: 6,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  gradient: LinearGradient(
-                                    begin: Alignment(-1.00, 0.08),
-                                    end: Alignment(1, -0.08),
-                                    colors: [
-                                      Color(0xFFC58BF2),
-                                      Color(0xFFEEA4CE)
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 6,
-                                height: 6,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  gradient: LinearGradient(
-                                    begin: Alignment(-1.00, 0.08),
-                                    end: Alignment(1, -0.08),
-                                    colors: [
-                                      Color(0xFFC58BF2),
-                                      Color(0xFFEEA4CE)
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 6,
-                                height: 6,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  gradient: LinearGradient(
-                                    begin: Alignment(-1.00, 0.08),
-                                    end: Alignment(1, -0.08),
-                                    colors: [
-                                      Color(0xFFC58BF2),
-                                      Color(0xFFEEA4CE)
-                                    ],
-                                  ),
-                                ),
-                              )
-                            ],
-                            children: const <Widget>[
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '6am - 8am',
-                                    style: TextStyle(
-                                      color: Color(0xFFACA3A5),
-                                      fontSize: 8,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0.19,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    '600ml',
-                                    style: TextStyle(
-                                      color: Color(0xFFC58BF2),
-                                      fontSize: 8,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
-                                      height: 0.19,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '6am - 8am',
-                                    style: TextStyle(
-                                      color: Color(0xFFACA3A5),
-                                      fontSize: 8,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0.19,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Text(
-                                    '600ml',
-                                    style: TextStyle(
-                                      color: Color(0xFFC58BF2),
-                                      fontSize: 8,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
-                                      height: 0.19,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '6am - 8am',
-                                    style: TextStyle(
-                                      color: Color(0xFFACA3A5),
-                                      fontSize: 8,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0.19,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Text(
-                                    '600ml',
-                                    style: TextStyle(
-                                      color: Color(0xFFC58BF2),
-                                      fontSize: 8,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
-                                      height: 0.19,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '6am - 8am',
-                                    style: TextStyle(
-                                      color: Color(0xFFACA3A5),
-                                      fontSize: 8,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0.19,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Text(
-                                    '600ml',
-                                    style: TextStyle(
-                                      color: Color(0xFFC58BF2),
-                                      fontSize: 8,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
-                                      height: 0.19,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '6am - 8am',
-                                    style: TextStyle(
-                                      color: Color(0xFFACA3A5),
-                                      fontSize: 8,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0.19,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Text(
-                                    '600ml',
-                                    style: TextStyle(
-                                      color: Color(0xFFC58BF2),
-                                      fontSize: 8,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
-                                      height: 0.19,
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -360,19 +206,19 @@ class Home extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             boxShadow: [
               BoxShadow(
-                color: Color(0xffE8E8E8).withOpacity(0.5),
+                color: const Color(0xffE8E8E8).withOpacity(0.5),
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: Offset(0, 5),
+                offset: const Offset(0, 5),
               ),
             ],
           ),
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Sleep',
                   style: TextStyle(
                     color: Color(0xFF1C242A),
@@ -380,10 +226,10 @@ class Home extends StatelessWidget {
                     height: 0.12,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                GradientText(
+                const GradientText(
                   text: "8h 20m",
                   gradient: LinearGradient(
                     begin: Alignment(-1.00, 0.08),
@@ -395,6 +241,11 @@ class Home extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
+                Flexible(
+                  child: SvgPicture.asset(
+                    "assets/images/sleepgraph.svg",
+                  ),
+                )
               ],
             ),
           ),
@@ -411,19 +262,19 @@ class Home extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             boxShadow: [
               BoxShadow(
-                color: Color(0xffE8E8E8).withOpacity(0.5),
+                color: const Color(0xffE8E8E8).withOpacity(0.5),
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: Offset(0, 5),
+                offset: const Offset(0, 5),
               ),
             ],
           ),
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Calories',
                   style: TextStyle(
                     color: Color(0xFF1C242A),
@@ -431,10 +282,10 @@ class Home extends StatelessWidget {
                     height: 0.12,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                GradientText(
+                const GradientText(
                   text: "760 kCal",
                   gradient: LinearGradient(
                     begin: Alignment(-1.00, 0.08),
@@ -446,6 +297,62 @@ class Home extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
+                Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 90.0,
+                      child: Stack(
+                        children: <Widget>[
+                          Center(
+                            child: Container(
+                              width: 70,
+                              height: 70,
+                              child: CircularGradientProgressBar(
+                                strokeWidth: 8,
+                                value: 0.7,
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFFC58BF2),
+                                    Color(0xFFB3BFFD)
+                                  ],
+                                ),
+                                unfilledColor: const Color(0xFFF7F8F8),
+                                radius: 35,
+                                child: SizedBox(),
+                              ),
+                            ),
+                          ),
+                          Center(
+                            child: Container(
+                              height: 48, // Adjust size as needed
+                              width: 48, // Adjust size as needed
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(99),
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFF92A3FD),
+                                    Color(0xFF9DCEFF)
+                                  ],
+                                ),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  '230kCal\nleft',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 8,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
@@ -545,7 +452,7 @@ class Home extends StatelessWidget {
                                       color: Colors.white,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8,
                                 ),
                                 const Text(
@@ -553,7 +460,7 @@ class Home extends StatelessWidget {
                                   style: TextStyle(
                                       fontSize: 14, color: Colors.white),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15,
                                 ),
                                 Container(
@@ -567,7 +474,7 @@ class Home extends StatelessWidget {
                                       child: InkWell(
                                         borderRadius: BorderRadius.circular(99),
                                         onTap: () {},
-                                        child: Center(
+                                        child: const Center(
                                           child: Text(
                                             "View More",
                                             style: TextStyle(
@@ -603,7 +510,7 @@ class Home extends StatelessWidget {
                 const SizedBox(
                   height: 25,
                 ),
-                Container(
+                SizedBox(
                   width: double.infinity,
                   height: 57,
                   child: Stack(
@@ -614,7 +521,7 @@ class Home extends StatelessWidget {
                           width: double.infinity,
                           height: 57,
                           decoration: ShapeDecoration(
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               begin: Alignment(-1.00, 0.08),
                               end: Alignment(1, -0.08),
                               colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
@@ -626,11 +533,11 @@ class Home extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Center(
+                            const Center(
                               child: Text(
                                 'Today Target',
                                 style: TextStyle(
@@ -645,7 +552,7 @@ class Home extends StatelessWidget {
                               width: 68,
                               height: 28,
                               decoration: ShapeDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   begin: Alignment(-1.00, 0.08),
                                   end: Alignment(1, -0.08),
                                   colors: [
@@ -662,7 +569,7 @@ class Home extends StatelessWidget {
                                 child: InkWell(
                                   borderRadius: BorderRadius.circular(55),
                                   onTap: () {},
-                                  child: Center(
+                                  child: const Center(
                                     child: Text(
                                       'Check',
                                       style: TextStyle(
@@ -682,10 +589,10 @@ class Home extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 35,
                 ),
-                Text(
+                const Text(
                   'Activity Status',
                   style: TextStyle(
                     color: Color(0xFF1D1517),
@@ -694,7 +601,7 @@ class Home extends StatelessWidget {
                     height: 0.09,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Container(
@@ -702,11 +609,11 @@ class Home extends StatelessWidget {
                   height: 150,
                   decoration: ShapeDecoration(
                     gradient: LinearGradient(
-                      begin: Alignment(-1.00, 0.08),
-                      end: Alignment(1, -0.08),
+                      begin: const Alignment(-1.00, 0.08),
+                      end: const Alignment(1, -0.08),
                       colors: [
-                        Color(0xFF92A3FD).withOpacity(0.20),
-                        Color(0xFF9DCEFF).withOpacity(0.20)
+                        const Color(0xFF92A3FD).withOpacity(0.20),
+                        const Color(0xFF9DCEFF).withOpacity(0.20)
                       ],
                     ),
                     shape: RoundedRectangleBorder(
@@ -744,16 +651,15 @@ class Home extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Container(
-                          child: Flexible(
-                              child: SfCartesianChart(series: <CartesianSeries>[
+                      Flexible(
+                          child: SfCartesianChart(series: <CartesianSeries>[
                         // Renders line chart
                         LineSeries<LineData, int>(
                             dataSource: getLineData(),
                             pointColorMapper: (LineData data, _) => data.color,
                             xValueMapper: (LineData data, _) => data.x,
                             yValueMapper: (LineData data, _) => data.y)
-                      ])))
+                      ]))
                     ],
                   ),
                 ),
@@ -772,6 +678,7 @@ class Home extends StatelessWidget {
                 Column(
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Workout Progress',
                             style: TextStyle(
@@ -780,12 +687,110 @@ class Home extends StatelessWidget {
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w600,
                               height: 0.09,
-                            ))
+                            )),
+                        Container(
+                          height: 35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(99.0),
+                            // Adjust the radius as needed
+                            gradient: AppColor.buttonColors,
+                          ),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              value: selectedValue,
+                              icon: Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                                color: Colors
+                                    .white, // Set the arrow color to white
+                              ),
+                              onChanged: (String? newValue) {
+                                selectedValue = newValue!;
+                              },
+                              items: [
+                                DropdownMenuItem(
+                                  value: 'Daily',
+                                  child: Text(
+                                    'Daily',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      // Adjust the font size as needed
+                                      color: Colors
+                                          .white, // Change the color of the text
+                                    ),
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'Weekly',
+                                  child: Text(
+                                    'Weekly',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      // Adjust the font size as needed
+                                      color: Colors
+                                          .white, // Change the color of the text
+                                    ),
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'Monthly',
+                                  child: Text(
+                                    'Monthly',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      // Adjust the font size as needed
+                                      color: Colors
+                                          .white, // Change the color of the text
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              dropdownColor: Colors
+                                  .black, // Ensure dropdown menu background is transparent
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 20,
                     ),
+                    Container(
+                      child: SfCartesianChart(
+                        primaryXAxis: CategoryAxis(),
+                        primaryYAxis: NumericAxis(
+                          // Set the format of labels to include a '%' symbol at the end.
+                          labelFormat: '{value}%',
+                        ),
+                        series: <CartesianSeries>[
+                          SplineSeries<WorkOutData, String>(
+                            dataSource: getWorkOutData(),
+                            xValueMapper: (WorkOutData sales, _) =>
+                                sales.weekDay,
+                            yValueMapper: (WorkOutData sales, _) =>
+                                sales.percentage,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        Text('Latest Workout',
+                            style: TextStyle(
+                              color: Color(0xFF1D1517),
+                              fontSize: 16,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w600,
+                              height: 0.09,
+                            )),
+                        SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    )
                   ],
                 )
               ],
@@ -811,4 +816,11 @@ class LineData {
   final int x;
   final double y;
   final Color? color;
+}
+
+class WorkOutData {
+  final String weekDay;
+  final int percentage;
+
+  WorkOutData(this.weekDay, this.percentage);
 }

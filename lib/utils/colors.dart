@@ -53,7 +53,8 @@ class AppColor {
   );
 
   static const Gradient unitGradient = LinearGradient(
-    colors: [Color(0xffC58BF2), Color(0xffeea4ce)],
+    colors: [Color(0xffC58BF2),
+      Color(0xffeea4ce)],
     // Replace with your gradient colors
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
