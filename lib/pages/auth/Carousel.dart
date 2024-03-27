@@ -1,10 +1,10 @@
-import 'package:fitnest_x/pages/SignUp.dart';
-import 'package:fitnest_x/pages/Signup1.dart';
+import 'package:fitnest_x/pages/auth/SignUp.dart';
+import 'package:fitnest_x/pages/auth/Signup1.dart';
 import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../utils/colors.dart';
+import '../../utils/colors.dart';
 
 class Carousel extends StatefulWidget {
   const Carousel({Key? key}) : super(key: key);

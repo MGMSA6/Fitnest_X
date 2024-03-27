@@ -1,5 +1,5 @@
-import 'package:fitnest_x/pages/Finalized.dart';
-import 'package:fitnest_x/pages/SignUp.dart';
+import 'package:fitnest_x/pages/auth/Finalized.dart';
+import 'package:fitnest_x/pages/auth/SignUp.dart';
 import 'package:fitnest_x/utils/colors.dart';
 import 'package:fitnest_x/utils/strings.dart';
 import 'package:fitnest_x/utils/validator.dart';

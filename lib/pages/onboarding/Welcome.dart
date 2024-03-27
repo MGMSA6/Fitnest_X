@@ -1,8 +1,8 @@
-import 'package:fitnest_x/pages/Onboarding.dart';
+import 'package:fitnest_x/pages/onboarding/Onboarding.dart';
 import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/colors.dart';
+import '../../utils/colors.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});

@@ -11,6 +11,12 @@ class AppColor {
   static const Color borderColor = Color(0xffF7F8F8);
   static const Color secondaryColor = Color(0xffC58BF2);
   static const Color secondaryColor1 = Color(0xffeea4ce);
+  static Color blueBg1 = const Color(0xFF92A3FD).withOpacity(0.20);
+  static Color blueBg2 = const Color(0xFF9DCEFF).withOpacity(0.20);
+
+  static Color pinkBg1 = const Color(0xFFC58BF2).withOpacity(0.20);
+  static Color pinkBg2 = const Color(0xFFEEA4CE).withOpacity(0.20);
+
   static const List<Color> gradientColors = [
     Color(0xff92A3FD),
     Color(0xff9DCEFF)
@@ -53,8 +59,7 @@ class AppColor {
   );
 
   static const Gradient unitGradient = LinearGradient(
-    colors: [Color(0xffC58BF2),
-      Color(0xffeea4ce)],
+    colors: [Color(0xffC58BF2), Color(0xffeea4ce)],
     // Replace with your gradient colors
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
@@ -73,5 +78,17 @@ class AppColor {
       Color(0xffF8F8F8),
       Colors.white,
     ],
+  );
+
+  static Gradient blueBg = LinearGradient(
+    begin: Alignment(-1.00, 0.08),
+    end: Alignment(1, -0.08),
+    colors: [blueBg1, blueBg2],
+  );
+
+  static Gradient pinkBg = LinearGradient(
+    begin: Alignment(-1.00, 0.08),
+    end: Alignment(1, -0.08),
+    colors: [pinkBg1, pinkBg2],
   );
 }

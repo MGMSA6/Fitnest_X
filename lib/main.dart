@@ -1,14 +1,14 @@
-import 'package:fitnest_x/pages/Carousel.dart';
-import 'package:fitnest_x/pages/Finalized.dart';
-import 'package:fitnest_x/pages/Home.dart';
-import 'package:fitnest_x/pages/Login.dart';
-import 'package:fitnest_x/pages/Onboarding.dart';
-import 'package:fitnest_x/pages/Responsive.dart';
-import 'package:fitnest_x/pages/SignUp.dart';
-import 'package:fitnest_x/pages/Signup1.dart';
+import 'package:fitnest_x/pages/auth/Carousel.dart';
+import 'package:fitnest_x/pages/auth/Finalized.dart';
+import 'package:fitnest_x/pages/dashboard/Home.dart';
+import 'package:fitnest_x/pages/auth/Login.dart';
+import 'package:fitnest_x/pages/onboarding/Notifications.dart';
+import 'package:fitnest_x/pages/onboarding/Onboarding.dart';
+import 'package:fitnest_x/pages/auth/SignUp.dart';
+import 'package:fitnest_x/pages/auth/Signup1.dart';
 
-import 'package:fitnest_x/pages/Welcome.dart';
-import 'package:fitnest_x/pages/Welcome1.dart';
+import 'package:fitnest_x/pages/onboarding/Welcome.dart';
+import 'package:fitnest_x/pages/onboarding/Welcome1.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -35,8 +35,8 @@ class FitnestX extends StatelessWidget {
         "/Login": (context) => const Login(),
         "/Finalized": (context) => const Finalized(),
         "/Carousel": (context) => const Carousel(),
-        "/Responsive": (context) => Responsive(),
-        "/Home": (context) => const Home()
+        "/Home": (context) => const Home(),
+        "/Notification": (context) => const Notifications(),
       },
     );
   }

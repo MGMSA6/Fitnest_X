@@ -1,15 +1,16 @@
 import 'dart:developer';
 import 'dart:math';
 
-import 'package:fitnest_x/pages/Welcome.dart';
+import 'package:fitnest_x/pages/onboarding/Notifications.dart';
+import 'package:fitnest_x/pages/onboarding/Welcome.dart';
 import 'package:fitnest_x/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../utils/CircularGradientProgressBar.dart';
-import '../utils/TimelineItem.dart';
+import '../../utils/CircularGradientProgressBar.dart';
+import '../../utils/TimelineItem.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -43,11 +44,11 @@ class _HomeState extends State<Home> {
 
   final List<LatestWorkOut> latestWorkOut = [
     LatestWorkOut("assets/images/workout1.svg", "Fullbody Workout",
-        "180 Calories Burn | 20minutes", AppColor.buttonColors),
+        "180 Calories Burn | 20minutes", AppColor.blueBg),
     LatestWorkOut("assets/images/workout2.svg", "Lowerbody Workout",
-        "200 Calories Burn | 30minutes", AppColor.unitGradient),
+        "200 Calories Burn | 30minutes", AppColor.pinkBg),
     LatestWorkOut("assets/images/workout3.svg", "Ab Workout",
-        "180 Calories Burn | 20minutes", AppColor.buttonColors)
+        "180 Calories Burn | 20minutes", AppColor.blueBg)
   ];
 
   List<DropdownMenuItem<String>> get dropdownItems {
@@ -415,7 +416,12 @@ class _HomeState extends State<Home> {
                       type: MaterialType.transparency, // Add this line
                       child: InkWell(
                         borderRadius: BorderRadius.circular(15),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Notifications()));
+                        },
                         child: Container(
                           height: 50,
                           width: 50,
@@ -529,20 +535,13 @@ class _HomeState extends State<Home> {
                   height: 57,
                   child: Stack(
                     children: [
-                      Opacity(
-                        opacity: 0.20,
-                        child: Container(
-                          width: double.infinity,
-                          height: 57,
-                          decoration: ShapeDecoration(
-                            gradient: const LinearGradient(
-                              begin: Alignment(-1.00, 0.08),
-                              end: Alignment(1, -0.08),
-                              colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
+                      Container(
+                        width: double.infinity,
+                        height: 57,
+                        decoration: ShapeDecoration(
+                          gradient: AppColor.blueBg,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
                           ),
                         ),
                       ),
@@ -622,14 +621,7 @@ class _HomeState extends State<Home> {
                   width: double.maxFinite,
                   height: 150,
                   decoration: ShapeDecoration(
-                    gradient: LinearGradient(
-                      begin: const Alignment(-1.00, 0.08),
-                      end: const Alignment(1, -0.08),
-                      colors: [
-                        const Color(0xFF92A3FD).withOpacity(0.20),
-                        const Color(0xFF9DCEFF).withOpacity(0.20)
-                      ],
-                    ),
+                    gradient: AppColor.blueBg,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -822,7 +814,7 @@ class _HomeState extends State<Home> {
                           height: 80,
                           width: double.infinity,
                           margin: EdgeInsets.symmetric(vertical: 10),
-                          padding: EdgeInsets.all(15),
+                          padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(16.0),
@@ -846,7 +838,7 @@ class _HomeState extends State<Home> {
                                 width: 50,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  gradient: AppColor.cardsGradient,
+                                  gradient: workOut.gradient,
                                 ),
                                 child: SvgPicture.asset(workOut.img),
                               ),
@@ -857,7 +849,7 @@ class _HomeState extends State<Home> {
                                 children: [
                                   Text(
                                     workOut.title,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Color(0xFF1D1517),
                                       fontSize: 10,
                                       fontWeight: FontWeight.w500,
@@ -865,7 +857,7 @@ class _HomeState extends State<Home> {
                                   ),
                                   Text(
                                     workOut.description,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Color(0xFFA3A8AC),
                                       fontSize: 8,
                                       fontWeight: FontWeight.w400,

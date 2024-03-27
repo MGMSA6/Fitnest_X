@@ -1,4 +1,4 @@
-import 'package:fitnest_x/pages/Carousel.dart';
+import 'package:fitnest_x/pages/auth/Carousel.dart';
 import 'package:fitnest_x/utils/colors.dart';
 import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/material.dart';

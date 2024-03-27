@@ -1,4 +1,4 @@
-import 'package:fitnest_x/pages/Login.dart';
+import 'package:fitnest_x/pages/auth/Login.dart';
 import 'package:fitnest_x/utils/colors.dart';
 import 'package:fitnest_x/utils/strings.dart';
 import 'package:fitnest_x/utils/validator.dart';
