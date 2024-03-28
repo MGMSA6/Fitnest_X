@@ -41,7 +41,6 @@ class _NotificationsState extends State<Notifications> {
         "200 Calories Burn | 30minutes", AppColor.pinkBg),
     LatestWorkOut("assets/images/cake1.svg", "Lowerbody Workout",
         "200 Calories Burn | 30minutes", AppColor.pinkBg)
-
   ];
 
   @override
@@ -57,19 +56,20 @@ class _NotificationsState extends State<Notifications> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Material(
-                    color: Colors.transparent,
-                    child: InkWell(
+                  Container(
+                    height: 35,
+                    width: 35,
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                        height: 35,
-                        width: 35,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Color(0xFFF7F8F8)),
+                      color: Color(0xFFF7F8F8),
+                    ),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(8),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
                         child: Icon(
                           Icons.arrow_back_ios_rounded,
                           size: 18,
@@ -91,9 +91,17 @@ class _NotificationsState extends State<Notifications> {
                     height: 35,
                     width: 35,
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Color(0xFFF7F8F8),
+                    ),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
                         borderRadius: BorderRadius.circular(8),
-                        color: Color(0xFFF7F8F8)),
-                    child: Icon(Icons.more_horiz),
+                        onTap: () {},
+                        child: Icon(Icons.more_horiz),
+                      ),
+                    ),
                   ),
                 ],
               ),

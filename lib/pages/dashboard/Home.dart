@@ -412,23 +412,23 @@ class _HomeState extends State<Home> {
                         ),
                       ],
                     ),
-                    Material(
-                      type: MaterialType.transparency, // Add this line
-                      child: InkWell(
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Notifications()));
-                        },
-                        child: Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            gradient: AppColor.notification,
-                          ),
+                        gradient: AppColor.notification,
+                      ),
+                      child: Material(
+                        color: Colors.transparent, // Add this line
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(15),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Notifications()));
+                          },
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: SvgPicture.asset(
