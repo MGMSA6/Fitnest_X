@@ -1,5 +1,8 @@
 import 'package:fitnest_x/pages/auth/Carousel.dart';
 import 'package:fitnest_x/pages/auth/Finalized.dart';
+import 'package:fitnest_x/pages/dashboard/Activity.dart';
+import 'package:fitnest_x/pages/dashboard/Camera.dart';
+import 'package:fitnest_x/pages/dashboard/Dashboard.dart';
 import 'package:fitnest_x/pages/dashboard/Home.dart';
 import 'package:fitnest_x/pages/auth/Login.dart';
 import 'package:fitnest_x/pages/dashboard/Profile.dart';
@@ -26,7 +29,7 @@ class FitnestX extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       darkTheme: ThemeData(brightness: Brightness.dark),
-      initialRoute: "/Home",
+      initialRoute: "/Dashboard",
       routes: {
         "/Welcome": (context) => const Welcome(),
         "/Welcome1": (context) => const Welcome1(),
@@ -39,6 +42,9 @@ class FitnestX extends StatelessWidget {
         "/Home": (context) => const Home(),
         "/Notification": (context) => const Notifications(),
         "/Profile": (context) => const Profile(),
+        "/Activity": (context) => Activity(),
+        "/Camera": (context) => Camera(),
+        "/Dashboard": (context) => Dashboard()
       },
     );
   }

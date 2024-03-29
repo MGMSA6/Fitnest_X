@@ -88,10 +88,10 @@ class _HomeState extends State<Home> {
             borderRadius: BorderRadius.circular(15),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xffE8E8E8).withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: const Offset(0, 5),
+                color: Color(0x0C1D242A),
+                blurRadius: 40,
+                offset: Offset(0, 10),
+                spreadRadius: 0,
               ),
             ],
           ),
@@ -221,10 +221,10 @@ class _HomeState extends State<Home> {
             borderRadius: BorderRadius.circular(15),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xffE8E8E8).withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: const Offset(0, 5),
+                color: Color(0x0C1D242A),
+                blurRadius: 40,
+                offset: Offset(0, 10),
+                spreadRadius: 0,
               ),
             ],
           ),
@@ -277,10 +277,10 @@ class _HomeState extends State<Home> {
             borderRadius: BorderRadius.circular(15),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xffE8E8E8).withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: const Offset(0, 5),
+                color: Color(0x0C1D242A),
+                blurRadius: 40,
+                offset: Offset(0, 10),
+                spreadRadius: 0,
               ),
             ],
           ),
@@ -818,13 +818,12 @@ class _HomeState extends State<Home> {
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(16.0),
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
-                                color: const Color(0xffE8E8E8).withOpacity(0.5),
-                                spreadRadius: 5,
-                                blurRadius: 7,
-                                offset: const Offset(
-                                    0, 5), // changes position of shadow
+                                color: Color(0x0C1D242A),
+                                blurRadius: 40,
+                                offset: Offset(0, 10),
+                                spreadRadius: 0, // changes position of shadow
                               ),
                             ],
                           ),
