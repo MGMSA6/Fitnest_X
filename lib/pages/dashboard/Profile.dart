@@ -1,4 +1,3 @@
-import 'package:fitnest_x/pages/dashboard/Home.dart';
 import 'package:fitnest_x/pages/onboarding/Welcome.dart';
 import 'package:fitnest_x/utils/GradientSwitch.dart';
 import 'package:fitnest_x/utils/colors.dart';
@@ -13,8 +12,6 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  bool _switchValue = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -424,17 +421,17 @@ class _ProfileState extends State<Profile> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               width: double.infinity,
               height: 100,
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Color(0x111D1617),
                       blurRadius: 40,
@@ -446,7 +443,7 @@ class _ProfileState extends State<Profile> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Notification',
                     style: TextStyle(
                       color: Color(0xFF1D1517),
@@ -464,7 +461,7 @@ class _ProfileState extends State<Profile> {
                           const SizedBox(
                             width: 8,
                           ),
-                          Text(
+                          const Text(
                             'Pop-up Notification',
                             style: TextStyle(
                               color: Color(0xFF7B6F72),
@@ -475,7 +472,17 @@ class _ProfileState extends State<Profile> {
                         ],
                       ),
                       GradientSwitch(
-
+                        onChanged: (value) {
+                          setState(() {
+                            if (value) {
+                              CustomToast.showCustomToast(
+                                  context, "ON", 10, 20);
+                            } else {
+                              CustomToast.showCustomToast(
+                                  context, "OFF", 10, 20);
+                            }
+                          });
+                        },
                       ),
                     ],
                   ),
@@ -486,7 +493,7 @@ class _ProfileState extends State<Profile> {
               height: 20,
             ),
             Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               width: double.infinity,
               height: 180,
               decoration: BoxDecoration(
@@ -592,6 +599,48 @@ class _ProfileState extends State<Profile> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  showToast(bool value) {
+    Widget toast = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: Colors.greenAccent,
+      ),
+      child: Text("A Custom Toast by Ninja Coder !!"),
+    );
+  }
+}
+
+class CustomToast {
+  static void showCustomToast(
+      BuildContext context, String message, double width, double height) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: Container(
+          width: width,
+          height: height,
+          alignment: Alignment.center,
+          child: Text(
+            message,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        backgroundColor: Colors.black87,
+        duration: Duration(seconds: 2),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25.0),
+        ),
+        margin: EdgeInsets.symmetric(horizontal: 100),
       ),
     );
   }
