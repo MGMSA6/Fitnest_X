@@ -1,6 +1,6 @@
 import 'package:fitnest_x/pages/dashboard/Home.dart';
 import 'package:fitnest_x/pages/onboarding/Welcome.dart';
-import 'package:fitnest_x/utils/SwitchButton.dart';
+import 'package:fitnest_x/utils/GradientSwitch.dart';
 import 'package:fitnest_x/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -37,9 +37,7 @@ class _ProfileState extends State<Profile> {
                     color: Colors.transparent,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(8),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
+                      onTap: () {},
                       child: Icon(
                         Icons.arrow_back_ios_rounded,
                         size: 18,
@@ -463,7 +461,7 @@ class _ProfileState extends State<Profile> {
                       Row(
                         children: [
                           SvgPicture.asset("assets/images/icon_notif.svg"),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
                           Text(
@@ -476,17 +474,8 @@ class _ProfileState extends State<Profile> {
                           ),
                         ],
                       ),
-                      Transform.scale(
-                        scale: 0.7,
-                        // Adjust the scale factor as per your requirement
-                        child: Switch(
-                          value: _switchValue,
-                          onChanged: (newValue) {
-                            setState(() {
-                              _switchValue = newValue;
-                            });
-                          },
-                        ),
+                      GradientSwitch(
+
                       ),
                     ],
                   ),
