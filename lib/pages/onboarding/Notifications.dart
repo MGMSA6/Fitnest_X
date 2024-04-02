@@ -1,3 +1,4 @@
+import 'package:fitnest_x/model/LatestWorkOut.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,36 +13,7 @@ class Notifications extends StatefulWidget {
 }
 
 class _NotificationsState extends State<Notifications> {
-  final List<LatestWorkOut> latestWorkOut = [
-    LatestWorkOut("assets/images/pancake.svg", "Fullbody Workout",
-        "180 Calories Burn | 20minutes", AppColor.blueBg),
-    LatestWorkOut("assets/images/workout2.svg", "Lowerbody Workout",
-        "200 Calories Burn | 30minutes", AppColor.pinkBg),
-    LatestWorkOut("assets/images/workout3.svg", "Ab Workout",
-        "180 Calories Burn | 20minutes", AppColor.blueBg),
-    LatestWorkOut("assets/images/cake1.svg", "Lowerbody Workout",
-        "200 Calories Burn | 30minutes", AppColor.pinkBg),
-    LatestWorkOut("assets/images/workout2.svg", "Lowerbody Workout",
-        "200 Calories Burn | 30minutes", AppColor.blueBg),
-    LatestWorkOut("assets/images/cake1.svg", "Lowerbody Workout",
-        "200 Calories Burn | 30minutes", AppColor.pinkBg),
-    LatestWorkOut("assets/images/workout3.svg", "Lowerbody Workout",
-        "200 Calories Burn | 30minutes", AppColor.pinkBg),
-    LatestWorkOut("assets/images/cake1.svg", "Lowerbody Workout",
-        "200 Calories Burn | 30minutes", AppColor.pinkBg),
-    LatestWorkOut("assets/images/workout2.svg", "Lowerbody Workout",
-        "200 Calories Burn | 30minutes", AppColor.pinkBg),
-    LatestWorkOut("assets/images/cake1.svg", "Lowerbody Workout",
-        "200 Calories Burn | 30minutes", AppColor.pinkBg),
-    LatestWorkOut("assets/images/cake2.svg", "Lowerbody Workout",
-        "200 Calories Burn | 30minutes", AppColor.pinkBg),
-    LatestWorkOut("assets/images/cake1.svg", "Lowerbody Workout",
-        "200 Calories Burn | 30minutes", AppColor.pinkBg),
-    LatestWorkOut("assets/images/cake2.svg", "Lowerbody Workout",
-        "200 Calories Burn | 30minutes", AppColor.pinkBg),
-    LatestWorkOut("assets/images/cake1.svg", "Lowerbody Workout",
-        "200 Calories Burn | 30minutes", AppColor.pinkBg)
-  ];
+  final List<LatestWorkOut> latestWorkOut = LatestWorkOut.getDummyData();
 
   @override
   Widget build(BuildContext context) {
@@ -184,13 +156,4 @@ class _NotificationsState extends State<Notifications> {
       ),
     );
   }
-}
-
-class LatestWorkOut {
-  final String img;
-  final String title;
-  final String description;
-  final Gradient gradient;
-
-  LatestWorkOut(this.img, this.title, this.description, this.gradient);
 }

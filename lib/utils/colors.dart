@@ -80,13 +80,13 @@ class AppColor {
     ],
   );
 
-  static Gradient blueBg = LinearGradient(
+  static LinearGradient blueBg = LinearGradient(
     begin: Alignment(-1.00, 0.08),
     end: Alignment(1, -0.08),
     colors: [blueBg1, blueBg2],
   );
 
-  static Gradient pinkBg = LinearGradient(
+  static LinearGradient pinkBg = LinearGradient(
     begin: Alignment(-1.00, 0.08),
     end: Alignment(1, -0.08),
     colors: [pinkBg1, pinkBg2],

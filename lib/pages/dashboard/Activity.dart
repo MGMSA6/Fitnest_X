@@ -3,6 +3,10 @@ import 'package:fitnest_x/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../model/DayInfo.dart';
+import '../../model/LatestWorkOut.dart';
+import '../../utils/VerticalProgressBar.dart';
+
 class Activity extends StatefulWidget {
   const Activity({super.key});
 
@@ -11,6 +15,10 @@ class Activity extends StatefulWidget {
 }
 
 class _ActivityState extends State<Activity> {
+  late final List<DayInfo> daysInfo = generateDayInfo();
+
+  final List<LatestWorkOut> latestWorkOut = LatestWorkOut.getDummyData();
+
   List<WorkOutData> getWorkOutData() {
     final List<WorkOutData> workOutData = [
       WorkOutData("Sun", 30),
@@ -33,7 +41,7 @@ class _ActivityState extends State<Activity> {
       backgroundColor: Colors.white,
       body: SafeArea(
           child: ListView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,21 +51,21 @@ class _ActivityState extends State<Activity> {
                 width: 35,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: Color(0xFFF7F8F8),
+                  color: const Color(0xFFF7F8F8),
                 ),
                 child: Material(
                   color: Colors.transparent,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(8),
                     onTap: () {},
-                    child: Icon(
+                    child: const Icon(
                       Icons.arrow_back_ios_rounded,
                       size: 18,
                     ),
                   ),
                 ),
               ),
-              Text(
+              const Text(
                 'Activity Tracker',
                 style: TextStyle(
                   color: Color(0xFF1D1517),
@@ -72,24 +80,24 @@ class _ActivityState extends State<Activity> {
                 width: 35,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: Color(0xFFF7F8F8),
+                  color: const Color(0xFFF7F8F8),
                 ),
                 child: Material(
                   color: Colors.transparent,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(8),
                     onTap: () {},
-                    child: Icon(Icons.more_horiz),
+                    child: const Icon(Icons.more_horiz),
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             width: double.infinity,
             height: 140,
             decoration: BoxDecoration(
@@ -102,7 +110,7 @@ class _ActivityState extends State<Activity> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'Today Target',
                       style: TextStyle(
                         color: Color(0xFF1D1517),
@@ -123,7 +131,7 @@ class _ActivityState extends State<Activity> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(8),
                           onTap: () {},
-                          child: Icon(
+                          child: const Icon(
                             Icons.add_rounded,
                             color: Colors.white,
                           ),
@@ -136,7 +144,7 @@ class _ActivityState extends State<Activity> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       width: 130,
                       height: 60,
                       decoration: BoxDecoration(
@@ -147,7 +155,7 @@ class _ActivityState extends State<Activity> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SvgPicture.asset("assets/images/glass.svg"),
-                          Column(
+                          const Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -180,7 +188,7 @@ class _ActivityState extends State<Activity> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       width: 130,
                       height: 60,
                       decoration: BoxDecoration(
@@ -191,7 +199,7 @@ class _ActivityState extends State<Activity> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SvgPicture.asset("assets/images/boots.svg"),
-                          Column(
+                          const Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -228,13 +236,13 @@ class _ActivityState extends State<Activity> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Activity Progress',
+              const Text('Activity Progress',
                   style: TextStyle(
                     color: Color(0xFF1D1517),
                     fontSize: 16,
@@ -252,7 +260,7 @@ class _ActivityState extends State<Activity> {
                   child: DropdownButton(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     value: selectedValue,
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.keyboard_arrow_down_rounded,
                       color: Colors.white, // Set the arrow color to white
                     ),
@@ -262,7 +270,7 @@ class _ActivityState extends State<Activity> {
                         selectedValue = newValue!;
                       });
                     },
-                    items: [
+                    items: const [
                       DropdownMenuItem(
                         value: 'Daily',
                         child: Text(
@@ -304,9 +312,197 @@ class _ActivityState extends State<Activity> {
               ),
             ],
           ),
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            width: double.infinity,
+            height: 200,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x111D1617),
+                    blurRadius: 40,
+                    offset: Offset(0, 10),
+                    spreadRadius: 0,
+                  )
+                ]),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: daysInfo
+                  .map((day) => Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 135,
+                            width: 22,
+                            child: VerticalProgressBar(
+                              progress: day.progress,
+                              // Set your progress value here
+                              startColor: day.startColor,
+                              endColor: day.endColor,
+                            ),
+                          ),
+                          Text(
+                            day.text,
+                            style: const TextStyle(
+                              color: Color(0xFF7B6F72),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ))
+                  .toList(),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Latest Activity',
+                  style: TextStyle(
+                    color: Color(0xFF1D1517),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  )),
+              Text('See more',
+                  style: TextStyle(
+                    color: Color(0xFFACA3A5),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  )),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: 3, // Number of items in the list
+            itemBuilder: (BuildContext context, int index) {
+              // Each item is a container with a box shadow
+              LatestWorkOut workOut = latestWorkOut[index];
+              return Container(
+                height: 80,
+                width: double.infinity,
+                margin: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16.0),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color(0x0C1D242A),
+                      blurRadius: 40,
+                      offset: Offset(0, 10),
+                      spreadRadius: 0, // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.only(top: 10),
+                          height: 50,
+                          width: 50,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            gradient: workOut.gradient,
+                          ),
+                          child: SvgPicture.asset(workOut.img),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              workOut.title,
+                              style: const TextStyle(
+                                color: Color(0xFF1D1517),
+                                fontSize: 10,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            Text(
+                              workOut.description,
+                              style: const TextStyle(
+                                color: Color(0xFFA3A8AC),
+                                fontSize: 8,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const Icon(
+                      Icons.more_vert,
+                      size: 18,
+                      color: Colors.grey,
+                    )
+                  ],
+                ),
+              );
+            },
+          ),
         ],
       )),
     );
+  }
+
+  List<DayInfo> generateDayInfo() {
+    return [
+      DayInfo(
+          text: 'Sun',
+          startColor: Color(0xFF92A3FD),
+          endColor: Color(0xFF9DCEFF),
+          progress: 0.3),
+      DayInfo(
+          text: 'Mon',
+          startColor: Color(0xFFC58BF2),
+          endColor: Color(0xFFB3BFFD),
+          progress: 0.7),
+      DayInfo(
+          text: 'Tue',
+          startColor: Color(0xFF92A3FD),
+          endColor: Color(0xFF9DCEFF),
+          progress: 0.4),
+      DayInfo(
+          text: 'Wed',
+          startColor: Color(0xFFC58BF2),
+          endColor: Color(0xFFB3BFFD),
+          progress: 0.5),
+      DayInfo(
+          text: 'Thu',
+          startColor: Color(0xFF92A3FD),
+          endColor: Color(0xFF9DCEFF),
+          progress: 0.4),
+      DayInfo(
+          text: 'Fri',
+          startColor: Color(0xFFC58BF2),
+          endColor: Color(0xFFB3BFFD),
+          progress: 0.3),
+      DayInfo(
+          text: 'Sat',
+          startColor: Color(0xFF92A3FD),
+          endColor: Color(0xFF9DCEFF),
+          progress: 0.4),
+    ];
   }
 }
 

@@ -9,8 +9,10 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+import '../../model/LatestWorkOut.dart';
 import '../../utils/CircularGradientProgressBar.dart';
 import '../../utils/TimelineItem.dart';
+import '../../utils/VerticalProgressBar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -42,14 +44,7 @@ class _HomeState extends State<Home> {
     return lineData;
   }
 
-  final List<LatestWorkOut> latestWorkOut = [
-    LatestWorkOut("assets/images/workout1.svg", "Fullbody Workout",
-        "180 Calories Burn | 20minutes", AppColor.blueBg),
-    LatestWorkOut("assets/images/workout2.svg", "Lowerbody Workout",
-        "200 Calories Burn | 30minutes", AppColor.pinkBg),
-    LatestWorkOut("assets/images/workout3.svg", "Ab Workout",
-        "180 Calories Burn | 20minutes", AppColor.blueBg)
-  ];
+  final List<LatestWorkOut> latestWorkOut = LatestWorkOut.getDummyData();
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
@@ -103,50 +98,15 @@ class _HomeState extends State<Home> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Transform.rotate(
-                    angle: 180 * (pi / 180), // Convert degrees to radians
-                    child: SizedBox(
-                      height: double.infinity,
-                      width: 25,
-                      child: Stack(
-                        children: [
-                          // Unfilled portion
-                          Container(
-                            height: double.infinity,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(99),
-                              color: const Color(
-                                  0xFFF7F8F8), // Change this to the color of your choice for the unfilled portion
-                            ),
-                          ),
-                          // Filled portion
-                          FractionallySizedBox(
-                            heightFactor: 0.6,
-                            // Set the progress value here (0.0 to 1.0)
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(99),
-                                gradient: const LinearGradient(
-                                  colors: [
-                                    Color(0xFFC58BF2),
-                                    Color(0xFFB3BFFD)
-                                  ],
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  tileMode: TileMode.clamp,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  VerticalProgressBar(
+                    progress: 0.6,
+                    startColor: Color(0xFFC58BF2),
+                    endColor: Color(0xFFB3BFFD),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Water Intake',
                         style: TextStyle(
                           color: Color(0xFF1C242A),
@@ -154,7 +114,7 @@ class _HomeState extends State<Home> {
                           fontSize: 12,
                         ),
                       ),
-                      GradientText(
+                      const GradientText(
                         text: "4 Liters",
                         gradient: LinearGradient(
                           begin: Alignment(-1.00, 0.08),
@@ -166,7 +126,7 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.w600,
                             height: 2),
                       ),
-                      Text(
+                      const Text(
                         'Real time updates',
                         style: TextStyle(
                           color: Color(0xFF7B6F72),
@@ -930,13 +890,4 @@ class WorkOutData {
   final int percentage;
 
   WorkOutData(this.weekDay, this.percentage);
-}
-
-class LatestWorkOut {
-  final String img;
-  final String title;
-  final String description;
-  final Gradient gradient;
-
-  LatestWorkOut(this.img, this.title, this.description, this.gradient);
 }
