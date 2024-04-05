@@ -1,4 +1,5 @@
 import 'package:fitnest_x/pages/auth/Login.dart';
+import 'package:fitnest_x/utils/auth.dart';
 import 'package:fitnest_x/utils/colors.dart';
 import 'package:fitnest_x/utils/strings.dart';
 import 'package:fitnest_x/utils/validator.dart';
@@ -279,7 +280,7 @@ class _SignupState extends State<Signup1> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Login()));
+                                          builder: (context) => const Login()));
                                 } else {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(const SnackBar(
@@ -350,7 +351,9 @@ class _SignupState extends State<Signup1> {
                             color: Colors.transparent,
                             child: InkWell(
                               borderRadius: BorderRadius.circular(15),
-                              onTap: () {},
+                              onTap: () {
+                                AuthMethods().signInWithGoogle(context);
+                              },
                               child: Container(
                                 height: 50,
                                 width: 50,
@@ -370,7 +373,9 @@ class _SignupState extends State<Signup1> {
                           Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                AuthMethods().signInWithGoogle(context);
+                              },
                               borderRadius: BorderRadius.circular(15),
                               child: Container(
                                 height: 50,
@@ -380,9 +385,9 @@ class _SignupState extends State<Signup1> {
                                     border:
                                         Border.all(color: AppColor.grayColor3)),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(12),
+                                  padding: const EdgeInsets.all(10),
                                   child: SvgPicture.asset(
-                                    "assets/images/facebook.svg",
+                                    "assets/images/apple.svg",
                                   ),
                                 ),
                               ),

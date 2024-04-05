@@ -66,7 +66,7 @@ class _SplashScreenPageState extends State<Welcome> {
                   height: 60,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    gradient: AppColor.brandColors,
+                    gradient: AppColor.buttonColors,
                     borderRadius: BorderRadius.circular(50),
                   ),
                   child: Material(

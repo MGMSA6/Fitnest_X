@@ -15,8 +15,11 @@ import 'package:fitnest_x/pages/auth/Signup1.dart';
 import 'package:fitnest_x/pages/onboarding/Welcome.dart';
 import 'package:fitnest_x/pages/onboarding/Welcome1.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const FitnestX());
 }
 
@@ -30,7 +33,7 @@ class FitnestX extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       darkTheme: ThemeData(brightness: Brightness.dark),
-      initialRoute: "/WorkoutFinished",
+      initialRoute: "/SignUp1",
       routes: {
         "/Welcome": (context) => const Welcome(),
         "/Welcome1": (context) => const Welcome1(),
@@ -43,10 +46,10 @@ class FitnestX extends StatelessWidget {
         "/Home": (context) => const Home(),
         "/Notification": (context) => const Notifications(),
         "/Profile": (context) => const Profile(),
-        "/Activity": (context) => Activity(),
-        "/Camera": (context) => Camera(),
-        "/Dashboard": (context) => Dashboard(),
-        "/WorkoutFinished": (context) => WorkoutFinished()
+        "/Activity": (context) => const Activity(),
+        "/Camera": (context) => const Camera(),
+        "/Dashboard": (context) => const Dashboard(),
+        "/WorkoutFinished": (context) => const WorkoutFinished()
       },
     );
   }

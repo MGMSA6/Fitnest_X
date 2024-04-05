@@ -13,6 +13,13 @@ class WorkoutFinished extends StatefulWidget {
 }
 
 class _WorkoutFinishedState extends State<WorkoutFinished> {
+
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +49,6 @@ class _WorkoutFinishedState extends State<WorkoutFinished> {
                   ),
                 ),
                 Padding(
-                  
                   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
                   child: Text(
                     'Exercises is king and nutrition is queen. Combine the two and you will have a kingdom',

@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "865348103479",
+    "project_id": "fitnestx-e10de",
+    "storage_bucket": "fitnestx-e10de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865348103479:android:4696eb478fe1657016feb2",
+        "android_client_info": {
+          "package_name": "com.fitnestx.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865348103479-3lr6sr3c3ua8svjmdhahpbmcn7kj2vpk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fitnestx.app",
+            "certificate_hash": "efb852e3c5779adb7f26f2e8b73e79b309d77acb"
+          }
+        },
+        {
+          "client_id": "865348103479-seo7sm2599n760o0df1r4dsl333allj6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoypHZaCjjvzBbkefxRP_lsvCmHOha_yA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "865348103479-4t3bh2m9tm0b2u4ri7g2gv2jng8b23h8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "865348103479-3hp8eh77f9f6252g4digba4vs3l90hol.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.fitnestx.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
