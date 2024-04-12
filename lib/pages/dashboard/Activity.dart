@@ -19,19 +19,7 @@ class _ActivityState extends State<Activity> {
 
   final List<LatestWorkOut> latestWorkOut = LatestWorkOut.getDummyData();
 
-  List<WorkOutData> getWorkOutData() {
-    final List<WorkOutData> workOutData = [
-      WorkOutData("Sun", 30),
-      WorkOutData("Mon", 50),
-      WorkOutData("Tue", 70),
-      WorkOutData("Wen", 60),
-      WorkOutData("Thu", 80),
-      WorkOutData("Fri", 90),
-      WorkOutData("Sat", 85),
-    ];
 
-    return workOutData;
-  }
 
   static late String selectedValue = "Daily";
 
@@ -155,20 +143,13 @@ class _ActivityState extends State<Activity> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SvgPicture.asset("assets/images/glass.svg"),
-                          const Column(
+                           Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               GradientText(
                                 text: "8L",
-                                gradient: LinearGradient(
-                                  begin: Alignment(-1.00, 0.08),
-                                  end: Alignment(1, -0.08),
-                                  colors: [
-                                    Color(0xFF92A3FD),
-                                    Color(0xFF9DCEFF)
-                                  ],
-                                ),
+                                gradient: AppColor.bluetextGradient,
                                 style: TextStyle(
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.w600,
@@ -199,20 +180,13 @@ class _ActivityState extends State<Activity> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SvgPicture.asset("assets/images/boots.svg"),
-                          const Column(
+                           Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               GradientText(
                                 text: "2400",
-                                gradient: LinearGradient(
-                                  begin: Alignment(-1.00, 0.08),
-                                  end: Alignment(1, -0.08),
-                                  colors: [
-                                    Color(0xFF92A3FD),
-                                    Color(0xFF9DCEFF)
-                                  ],
-                                ),
+                                gradient: AppColor.bluetextGradient,
                                 style: TextStyle(
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.w600,
@@ -506,9 +480,3 @@ class _ActivityState extends State<Activity> {
   }
 }
 
-class WorkOutData {
-  final String weekDay;
-  final int percentage;
-
-  WorkOutData(this.weekDay, this.percentage);
-}

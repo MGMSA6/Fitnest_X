@@ -10,6 +10,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../model/LatestWorkOut.dart';
+import '../../model/WorkOutData.dart';
 import '../../utils/CircularGradientProgressBar.dart';
 import '../../utils/TimelineItem.dart';
 import '../../utils/VerticalProgressBar.dart';
@@ -56,20 +57,6 @@ class _HomeState extends State<Home> {
     return menuItems;
   }
 
-  List<WorkOutData> getWorkOutData() {
-    final List<WorkOutData> workOutData = [
-      WorkOutData("Sun", 30),
-      WorkOutData("Mon", 50),
-      WorkOutData("Tue", 70),
-      WorkOutData("Wen", 60),
-      WorkOutData("Thu", 80),
-      WorkOutData("Fri", 90),
-      WorkOutData("Sat", 85),
-    ];
-
-    return workOutData;
-  }
-
   static late String selectedValue = "Daily";
 
   List<StaggeredGridTile> getItems() {
@@ -114,13 +101,9 @@ class _HomeState extends State<Home> {
                           fontSize: 12,
                         ),
                       ),
-                      const GradientText(
+                       GradientText(
                         text: "4 Liters",
-                        gradient: LinearGradient(
-                          begin: Alignment(-1.00, 0.08),
-                          end: Alignment(1, -0.08),
-                          colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
-                        ),
+                        gradient: AppColor.bluetextGradient,
                         style: TextStyle(
                             fontSize: 14.0,
                             fontWeight: FontWeight.w600,
@@ -204,13 +187,9 @@ class _HomeState extends State<Home> {
                 const SizedBox(
                   height: 20,
                 ),
-                const GradientText(
+                 GradientText(
                   text: "8h 20m",
-                  gradient: LinearGradient(
-                    begin: Alignment(-1.00, 0.08),
-                    end: Alignment(1, -0.08),
-                    colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
-                  ),
+                  gradient: AppColor.bluetextGradient,
                   style: TextStyle(
                     fontSize: 14.0,
                     fontWeight: FontWeight.w600,
@@ -260,13 +239,9 @@ class _HomeState extends State<Home> {
                 const SizedBox(
                   height: 20,
                 ),
-                const GradientText(
+                 GradientText(
                   text: "760 kCal",
-                  gradient: LinearGradient(
-                    begin: Alignment(-1.00, 0.08),
-                    end: Alignment(1, -0.08),
-                    colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
-                  ),
+                  gradient: AppColor.bluetextGradient,
                   style: TextStyle(
                     fontSize: 14.0,
                     fontWeight: FontWeight.w600,
@@ -732,7 +707,7 @@ class _HomeState extends State<Home> {
                         ),
                         series: <CartesianSeries>[
                           SplineSeries<WorkOutData, String>(
-                            dataSource: getWorkOutData(),
+                            dataSource: WorkOutData.getWorkOutData(),
                             xValueMapper: (WorkOutData sales, _) =>
                                 sales.weekDay,
                             yValueMapper: (WorkOutData sales, _) =>
@@ -885,9 +860,4 @@ class LineData {
   final Color? color;
 }
 
-class WorkOutData {
-  final String weekDay;
-  final int percentage;
 
-  WorkOutData(this.weekDay, this.percentage);
-}

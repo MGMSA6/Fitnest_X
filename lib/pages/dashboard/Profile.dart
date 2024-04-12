@@ -182,11 +182,7 @@ class _ProfileState extends State<Profile> {
                     children: [
                       GradientText(
                         text: "180cm",
-                        gradient: LinearGradient(
-                          begin: Alignment(-1.00, 0.08),
-                          end: Alignment(1, -0.08),
-                          colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
-                        ),
+                        gradient: AppColor.bluetextGradient,
                         style: TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w600,
@@ -223,11 +219,7 @@ class _ProfileState extends State<Profile> {
                     children: [
                       GradientText(
                         text: "65kg",
-                        gradient: LinearGradient(
-                          begin: Alignment(-1.00, 0.08),
-                          end: Alignment(1, -0.08),
-                          colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
-                        ),
+                        gradient: AppColor.bluetextGradient,
                         style: TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w600,
@@ -264,11 +256,7 @@ class _ProfileState extends State<Profile> {
                     children: [
                       GradientText(
                         text: "22yr",
-                        gradient: LinearGradient(
-                          begin: Alignment(-1.00, 0.08),
-                          end: Alignment(1, -0.08),
-                          colors: [Color(0xFF92A3FD), Color(0xFF9DCEFF)],
-                        ),
+                        gradient: AppColor.bluetextGradient,
                         style: TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w600,

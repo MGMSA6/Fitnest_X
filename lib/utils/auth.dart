@@ -42,7 +42,6 @@ class AuthMethods {
         "id": userDetails.uid,
       };
       DatabaseMethods().addUser(userDetails.uid, userInfoMap).then((value) {
-
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const Dashboard()));
       });
@@ -55,14 +54,14 @@ class AuthMethods {
 
     switch (result.status) {
       case AuthorizationStatus.authorized:
-        final AppleIdCredential = result.credential!;
+        final appleIdCredential = result.credential!;
         final oAuthProvider = OAuthProvider('apple.com');
         final credential = oAuthProvider.credential(
-            idToken: String.fromCharCodes(AppleIdCredential.identityToken!));
-        final UserCredential = await auth.signInWithCredential(credential);
-        final firebaseUser = UserCredential.user!;
+            idToken: String.fromCharCodes(appleIdCredential.identityToken!));
+        final userCredential = await auth.signInWithCredential(credential);
+        final firebaseUser = userCredential.user!;
         if (scopes.contains(Scope.fullName)) {
-          final fullName = AppleIdCredential.fullName;
+          final fullName = appleIdCredential.fullName;
           if (fullName != null &&
               fullName.givenName != null &&
               fullName.familyName != null) {
