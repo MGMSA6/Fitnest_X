@@ -19,6 +19,11 @@ class AppColor {
   static Color whiteBg = const Color(0xFFFFFFFF).withOpacity(0.50);
 
 
+
+
+
+
+
   static const List<Color> gradientColors = [
     Color(0xff92A3FD),
     Color(0xff9DCEFF)

@@ -94,16 +94,18 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                         plotAreaBorderColor: Colors.transparent,
                         // Color of chart plot area border
                         primaryXAxis: CategoryAxis(
-                          labelStyle: TextStyle(color: Colors.white),
-                          majorGridLines:
-                              MajorGridLines(color: Colors.transparent),
-                        ),
-                        primaryYAxis: NumericAxis(
                             labelStyle: TextStyle(color: Colors.white),
-                            // Set the format of labels to include a '%' symbol at the end.
-                            labelFormat: '{value}%',
                             majorGridLines:
-                                MajorGridLines(color: Colors.white)),
+                                MajorGridLines(color: Colors.transparent),
+                            axisLine: AxisLine(width: 0)),
+                        primaryYAxis: NumericAxis(
+                          labelStyle: TextStyle(color: Colors.white),
+                          // Set the format of labels to include a '%' symbol at the end.
+                          labelFormat: '{value}%',
+                          majorGridLines:
+                              MajorGridLines(color: AppColor.whiteBg),
+                          axisLine: AxisLine(width: 0),
+                        ),
                         series: <CartesianSeries>[
                           SplineSeries<WorkOutData, String>(
                             dataSource: WorkOutData.getWorkOutData(),
@@ -111,6 +113,12 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                                 sales.weekDay,
                             yValueMapper: (WorkOutData sales, _) =>
                                 sales.percentage,
+                            color: Colors.white,
+                            //
+                            dataLabelSettings: DataLabelSettings(
+                                isVisible: true,
+                                textStyle: TextStyle(color: Colors.white),
+                                borderColor: Colors.white),
                           ),
                         ],
                       ),
