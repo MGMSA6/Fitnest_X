@@ -93,18 +93,18 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                       child: SfCartesianChart(
                         plotAreaBorderColor: Colors.transparent,
                         // Color of chart plot area border
-                        primaryXAxis: CategoryAxis(
+                        primaryXAxis: const CategoryAxis(
                             labelStyle: TextStyle(color: Colors.white),
                             majorGridLines:
                                 MajorGridLines(color: Colors.transparent),
                             axisLine: AxisLine(width: 0)),
                         primaryYAxis: NumericAxis(
-                          labelStyle: TextStyle(color: Colors.white),
+                          labelStyle: const TextStyle(color: Colors.white),
                           // Set the format of labels to include a '%' symbol at the end.
                           labelFormat: '{value}%',
                           majorGridLines:
                               MajorGridLines(color: AppColor.whiteBg),
-                          axisLine: AxisLine(width: 0),
+                          axisLine: const AxisLine(width: 0),
                         ),
                         series: <CartesianSeries>[
                           SplineSeries<WorkOutData, String>(
@@ -115,7 +115,7 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                                 sales.percentage,
                             color: Colors.white,
                             //
-                            dataLabelSettings: DataLabelSettings(
+                            dataLabelSettings: const DataLabelSettings(
                                 isVisible: true,
                                 textStyle: TextStyle(color: Colors.white),
                                 borderColor: Colors.white),
@@ -128,12 +128,11 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
               ),
             ),
             DraggableScrollableSheet(
-              initialChildSize: 1, // Adjust as needed
-              maxChildSize: 1,
-              minChildSize: 0.6,
+              initialChildSize: 0.9, // Adjust as needed
+              maxChildSize: 0.9,
+              minChildSize: 0.55,
               builder: (context, scrollController) {
                 return Container(
-                  margin: EdgeInsets.only(top: 30),
                   decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -148,7 +147,8 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                         )
                       ]),
                   child: ListView(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 20),
                     controller: scrollController,
                     children: [
                       Column(
@@ -156,7 +156,6 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                         children: [
                           Center(
                             child: Container(
-                              margin: const EdgeInsets.only(top: 15),
                               height: 5,
                               width: 50,
                               decoration: BoxDecoration(
