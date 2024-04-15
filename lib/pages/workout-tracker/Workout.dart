@@ -10,14 +10,22 @@ import '../../utils/GradientSwitch.dart';
 import '../../utils/colors.dart';
 import '../onboarding/Welcome.dart';
 
-class WorkoutTracker extends StatefulWidget {
-  const WorkoutTracker({super.key});
+class Workout extends StatefulWidget {
+  const Workout({super.key});
 
   @override
-  State<WorkoutTracker> createState() => _WorkoutTrackerState();
+  State<Workout> createState() => _WorkoutState();
 }
 
-class _WorkoutTrackerState extends State<WorkoutTracker> {
+class _WorkoutState extends State<Workout> {
+  bool isHeartFilled = false;
+
+  void toggleHeart() {
+    setState(() {
+      isHeartFilled = !isHeartFilled;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,15 +68,6 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                             ),
                           ),
                         ),
-                        const Text(
-                          'Workout Tracker',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontFamily: 'Poppins',
-                            height: 0.09,
-                          ),
-                        ),
                         Container(
                           height: 35,
                           width: 35,
@@ -91,38 +90,13 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                       height: 20,
                     ),
                     Container(
-                      height: 250,
-                      child: SfCartesianChart(
-                        plotAreaBorderColor: Colors.transparent,
-                        // Color of chart plot area border
-                        primaryXAxis: const CategoryAxis(
-                            labelStyle: TextStyle(color: Colors.white),
-                            majorGridLines:
-                                MajorGridLines(color: Colors.transparent),
-                            axisLine: AxisLine(width: 0)),
-                        primaryYAxis: NumericAxis(
-                          labelStyle: const TextStyle(color: Colors.white),
-                          // Set the format of labels to include a '%' symbol at the end.
-                          labelFormat: '{value}%',
-                          majorGridLines:
-                              MajorGridLines(color: AppColor.whiteBg),
-                          axisLine: const AxisLine(width: 0),
-                        ),
-                        series: <CartesianSeries>[
-                          SplineSeries<WorkOutData, String>(
-                            dataSource: WorkOutData.getWorkOutData(),
-                            xValueMapper: (WorkOutData sales, _) =>
-                                sales.weekDay,
-                            yValueMapper: (WorkOutData sales, _) =>
-                                sales.percentage,
-                            color: Colors.white,
-                            //
-                            dataLabelSettings: const DataLabelSettings(
-                                isVisible: true,
-                                textStyle: TextStyle(color: Colors.white),
-                                borderColor: Colors.white),
-                          ),
-                        ],
+                      height: 300,
+                      width: 300,
+                      decoration: BoxDecoration(
+                          color: AppColor.workBg,
+                          borderRadius: BorderRadius.circular(150)),
+                      child: SvgPicture.asset(
+                        "assets/images/onboard_2.svg",
                       ),
                     )
                   ],
@@ -132,7 +106,7 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
             DraggableScrollableSheet(
               initialChildSize: 0.87, // Adjust as needed
               maxChildSize: 0.87,
-              minChildSize: 0.52,
+              minChildSize: 0.45,
               builder: (context, scrollController) {
                 return Container(
                   decoration: const BoxDecoration(
@@ -168,47 +142,64 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                           ),
                           Container(
                             margin: const EdgeInsets.only(top: 15),
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
                             width: double.infinity,
                             height: 57,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                gradient: AppColor.blueBg),
                             child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text(
-                                  'Daily Workout Schedule',
-                                  style: TextStyle(
-                                    color: Color(0xFF1D1517),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    height: 0,
-                                  ),
+                                const Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      'Fullbody Workout',
+                                      style: TextStyle(
+                                        color: Color(0xFF1D1517),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        height: 0,
+                                      ),
+                                    ),
+                                    Text(
+                                      '11 Exercises | 32mins | 320 Calories Burn',
+                                      style: TextStyle(
+                                        color: AppColor.grayColor1,
+                                        fontSize: 12,
+                                        height: 0.12,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 Container(
-                                  width: 68,
-                                  height: 28,
-                                  decoration: ShapeDecoration(
-                                    gradient: AppColor.buttonColors,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                  ),
+                                  width: 32,
+                                  height: 32,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Color(0x111D1617),
+                                          blurRadius: 40,
+                                          offset: Offset(0, 10),
+                                          spreadRadius: 0,
+                                        )
+                                      ]),
                                   child: Material(
                                     color: Colors.transparent,
                                     child: InkWell(
-                                      borderRadius: BorderRadius.circular(55),
-                                      onTap: () {},
-                                      child: const Center(
-                                        child: Text(
-                                          'Check',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                            height: 0,
-                                          ),
+                                      borderRadius: BorderRadius.circular(8),
+                                      onTap: () {
+                                        toggleHeart();
+                                      },
+                                      child: Center(
+                                        child: SvgPicture.asset(
+                                          isHeartFilled
+                                              ? "assets/images/fav.svg"
+                                              : "assets/images/heart.svg",
+                                          height: 20,
+                                          width: 20,
                                         ),
                                       ),
                                     ),
@@ -220,22 +211,166 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                           SizedBox(
                             height: 20,
                           ),
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Upcoming Workout',
-                                  style: TextStyle(
-                                    color: Color(0xFF1D1517),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  )),
-                              Text('See more',
-                                  style: TextStyle(
-                                    color: Color(0xFFACA3A5),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                  )),
-                            ],
+                          Container(
+                            width: double.infinity,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                gradient: AppColor.blueBg,
+                                borderRadius: BorderRadius.circular(16),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color(0x111D1617),
+                                    blurRadius: 40,
+                                    offset: Offset(0, 10),
+                                    spreadRadius: 0,
+                                  )
+                                ]),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(16),
+                                onTap: () {},
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        SvgPicture.asset(
+                                          "assets/images/calendar.svg",
+                                          width: 22,
+                                          height: 22,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          'Schedule Workout',
+                                          style: TextStyle(
+                                            color: Color(0xFF7B6F72),
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(
+                                          '5/27, 09:00 AM',
+                                          textAlign: TextAlign.right,
+                                          style: TextStyle(
+                                            color: Color(0xFF7B6F72),
+                                            fontSize: 10,
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                            height: 0.15,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        SvgPicture.asset(
+                                          "assets/images/forward.svg",
+                                          height: 16,
+                                          width: 16,
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            width: double.infinity,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                gradient: AppColor.pinkBg,
+                                borderRadius: BorderRadius.circular(16),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color(0x111D1617),
+                                    blurRadius: 40,
+                                    offset: Offset(0, 10),
+                                    spreadRadius: 0,
+                                  )
+                                ]),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(16),
+                                onTap: () {},
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        SvgPicture.asset(
+                                          "assets/images/swap.svg",
+                                          width: 22,
+                                          height: 22,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          'Difficulity',
+                                          style: TextStyle(
+                                            color: Color(0xFF7B6F72),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          'Beginner',
+                                          textAlign: TextAlign.right,
+                                          style: TextStyle(
+                                            color: Color(0xFF7B6F72),
+                                            fontSize: 10,
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        SvgPicture.asset(
+                                          "assets/images/forward.svg",
+                                          height: 16,
+                                          width: 16,
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
                           SizedBox(
                             height: 20,
