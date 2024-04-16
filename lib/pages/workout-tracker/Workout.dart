@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+import '../../model/ExercisesSet.dart';
+import '../../model/FitnessGear.dart';
 import '../../model/LatestWorkOut.dart';
 import '../../model/TrainingTarget.dart';
 import '../../model/WorkOutData.dart';
@@ -123,8 +125,7 @@ class _WorkoutState extends State<Workout> {
                         )
                       ]),
                   child: ListView(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 20),
                     controller: scrollController,
                     children: [
                       Column(
@@ -141,7 +142,8 @@ class _WorkoutState extends State<Workout> {
                             ),
                           ),
                           Container(
-                            margin: const EdgeInsets.only(top: 15),
+                            margin: const EdgeInsets.only(
+                                top: 15, left: 20, right: 20),
                             width: double.infinity,
                             height: 57,
                             child: Row(
@@ -212,6 +214,7 @@ class _WorkoutState extends State<Workout> {
                             height: 20,
                           ),
                           Container(
+                            margin: EdgeInsets.symmetric(horizontal: 20),
                             width: double.infinity,
                             height: 50,
                             decoration: BoxDecoration(
@@ -262,7 +265,7 @@ class _WorkoutState extends State<Workout> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
                                       children: [
-                                        Text(
+                                        const Text(
                                           '5/27, 09:00 AM',
                                           textAlign: TextAlign.right,
                                           style: TextStyle(
@@ -273,7 +276,7 @@ class _WorkoutState extends State<Workout> {
                                             height: 0.15,
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
                                         SvgPicture.asset(
@@ -281,7 +284,7 @@ class _WorkoutState extends State<Workout> {
                                           height: 16,
                                           width: 16,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 20,
                                         ),
                                       ],
@@ -291,16 +294,17 @@ class _WorkoutState extends State<Workout> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Container(
+                            margin: EdgeInsets.symmetric(horizontal: 20),
                             width: double.infinity,
                             height: 50,
                             decoration: BoxDecoration(
                                 gradient: AppColor.pinkBg,
                                 borderRadius: BorderRadius.circular(16),
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     color: Color(0x111D1617),
                                     blurRadius: 40,
@@ -319,7 +323,7 @@ class _WorkoutState extends State<Workout> {
                                   children: [
                                     Row(
                                       children: [
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 20,
                                         ),
                                         SvgPicture.asset(
@@ -327,10 +331,10 @@ class _WorkoutState extends State<Workout> {
                                           width: 22,
                                           height: 22,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
-                                        Text(
+                                        const Text(
                                           'Difficulity',
                                           style: TextStyle(
                                             color: Color(0xFF7B6F72),
@@ -344,7 +348,7 @@ class _WorkoutState extends State<Workout> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Text(
+                                        const Text(
                                           'Beginner',
                                           textAlign: TextAlign.right,
                                           style: TextStyle(
@@ -373,223 +377,162 @@ class _WorkoutState extends State<Workout> {
                             ),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 30,
                           ),
-                          ListView.separated(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: 2,
-                            // Num
-                            separatorBuilder:
-                                (BuildContext context, int index) {
-                              return SizedBox(
-                                  height: 20); // Add space between items
-                            },
-                            // ber of items in the list
-                            itemBuilder: (BuildContext context, int index) {
-                              // Each item is a container with a box shadow
-                              LatestWorkOut workOut =
-                                  LatestWorkOut.getDummyData()[index];
-                              return Container(
-                                height: 80,
-                                width: double.infinity,
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(16.0),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: Color(0x0C1D242A),
-                                      blurRadius: 40,
-                                      offset: Offset(0, 10),
-                                      spreadRadius:
-                                          0, // changes position of shadow
-                                    ),
-                                  ],
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'You’ll Need',
+                                  style: TextStyle(
+                                    color: Color(0xFF1D1517),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          padding:
-                                              const EdgeInsets.only(top: 10),
-                                          height: 50,
-                                          width: 50,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            gradient: workOut.gradient,
-                                          ),
-                                          child: SvgPicture.asset(workOut.img),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Text(
-                                              workOut.title,
-                                              style: const TextStyle(
-                                                color: Color(0xFF1D1517),
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                            Text(
-                                              workOut.description,
-                                              style: const TextStyle(
-                                                color: Color(0xFFA3A8AC),
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    GradientSwitch(
-                                      height: 20,
-                                      width: 38,
-                                      paddingFactor: 0.2,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          // if (value) {
-                                          //   CustomToast.showCustomToast(
-                                          //       context, "ON", 10, 20);
-                                          // } else {
-                                          //   CustomToast.showCustomToast(
-                                          //       context, "OFF", 10, 20);
-                                          // }
-                                        });
-                                      },
-                                    ),
-                                  ],
+                                Text(
+                                  '5 Items',
+                                  style: TextStyle(
+                                    color: Color(0xFFACA3A5),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                              );
-                            },
-                          ),
-                          const SizedBox(height: 40), //
-                          const Text(
-                            'What Do You Want to Train',
-                            style: TextStyle(
-                              color: Color(0xFF1D1517),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              height: 0.09,
+                              ],
                             ),
                           ),
-                          const SizedBox(height: 40),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: 150,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount:
+                                  FitnessGear.getFitnessGearData().length,
+                              // ber of items in the list
+                              itemBuilder: (BuildContext context, int index) {
+                                // Each item is a container with a box shadow
+                                FitnessGear fitnessGearOut =
+                                    FitnessGear.getFitnessGearData()[index];
+
+                                // Apply padding based on index to control spacing between items
+                                EdgeInsets itemPadding = EdgeInsets.only(
+                                  left: index == 0 ? 20 : 10,
+                                  // Start padding for first item, 10 for others
+                                  right: index ==
+                                          FitnessGear.getFitnessGearData()
+                                                  .length -
+                                              1
+                                      ? 20
+                                      : 10, // End padding for last item, 10 for others
+                                );
+                                return Container(
+                                  padding: itemPadding,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        height: 130,
+                                        width: 130,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFFF7F8F8),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: Center(
+                                            child: SvgPicture.asset(
+                                                fitnessGearOut.imgPath)),
+                                      ),
+                                      Text(
+                                        fitnessGearOut.name,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          const SizedBox(height: 30), //
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'Exercises',
+                                  style: TextStyle(
+                                    color: Color(0xFF1D1517),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Text(
+                                  '3 Sets',
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    color: Color(0xFFACA3A5),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
 
                           /// Add spacing
-                          ListView.separated(
+                          ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: 3,
-                            // Num
-                            separatorBuilder:
-                                (BuildContext context, int index) {
-                              return SizedBox(
-                                  height: 20); // Add space between items
-                            },
+                            itemCount: 1,
                             // ber of items in the list
                             itemBuilder: (BuildContext context, int index) {
                               // Each item is a container with a box shadow
-                              TrainingTarget trainData =
-                                  TrainingTarget.getDummyData()[index];
-                              return Container(
-                                padding: const EdgeInsets.all(20),
-                                height: 132,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    gradient: AppColor.blueBg),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                              ExercisesSet sets =
+                                  ExercisesSet.getSetData()[index];
+                              return Padding(
+                                padding: const EdgeInsets.only(left: 20.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              trainData.title,
-                                              style: TextStyle(
-                                                color: Color(0xFF1D1517),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                            Text(
-                                              trainData.description,
-                                              style: TextStyle(
-                                                color: Color(0xFF7B6F72),
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Container(
-                                          height: 35,
-                                          width: 95,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
-                                              color: Colors.white),
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            child: InkWell(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
-                                              onTap: () {},
-                                              child: Center(
-                                                child: GradientText(
-                                                  text: "View more",
-                                                  gradient:
-                                                      AppColor.bluetextGradient,
-                                                  style: TextStyle(
-                                                    fontSize: 12.0,
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
+                                    Text(
+                                      'Set 1',
+                                      style: TextStyle(
+                                        color: Color(0xFF1D1517),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
-                                    Container(
-                                      width: 92,
-                                      height: 92,
-                                      decoration: BoxDecoration(
-                                          color: AppColor.whiteBg,
-                                          borderRadius:
-                                              BorderRadius.circular(50)),
-                                      child:
-                                          SvgPicture.asset(trainData.imagePath),
-                                    ),
+                                    ListView.builder(
+                                        shrinkWrap: true,
+                                        physics: ClampingScrollPhysics(),
+                                        itemCount: sets.exercises.length,
+                                        itemBuilder: (BuildContext context,
+                                            int index) {
+                                          return Row(
+                                            children: [
+                                              ClipRRect(
+                                                  borderRadius: BorderRadius.circular(12.0),
+                                                  child: SvgPicture.asset(sets.exercises[index].imgPath)
+                                              )
+                                            ],
+                                          );
+                                        })
                                   ],
                                 ),
                               );
                             },
                           ),
-                          const SizedBox(height: 20),
                         ],
                       ),
                     ],
