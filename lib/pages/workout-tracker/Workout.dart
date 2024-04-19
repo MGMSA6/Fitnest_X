@@ -10,6 +10,8 @@ import '../../model/TrainingTarget.dart';
 import '../../model/WorkOutData.dart';
 import '../../utils/GradientSwitch.dart';
 import '../../utils/colors.dart';
+import '../../utils/strings.dart';
+import '../auth/Login.dart';
 import '../onboarding/Welcome.dart';
 
 class Workout extends StatefulWidget {
@@ -494,40 +496,99 @@ class _WorkoutState extends State<Workout> {
                           ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: 1,
+                            itemCount: ExercisesSet.getSetData().length,
                             // ber of items in the list
                             itemBuilder: (BuildContext context, int index) {
                               // Each item is a container with a box shadow
                               ExercisesSet sets =
                                   ExercisesSet.getSetData()[index];
                               return Padding(
-                                padding: const EdgeInsets.only(left: 20.0),
+                                padding: const EdgeInsets.only(
+                                    left: 20.0, right: 20),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    SizedBox(
+                                      height: 20,
+                                    ),
                                     Text(
-                                      'Set 1',
+                                      'Set ' +
+                                          ExercisesSet.getSetData()[index].num,
                                       style: TextStyle(
                                         color: Color(0xFF1D1517),
                                         fontSize: 12,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    ListView.builder(
-                                        shrinkWrap: true,
-                                        physics: ClampingScrollPhysics(),
-                                        itemCount: sets.exercises.length,
-                                        itemBuilder: (BuildContext context,
-                                            int index) {
-                                          return Row(
-                                            children: [
-                                              ClipRRect(
-                                                  borderRadius: BorderRadius.circular(12.0),
-                                                  child: SvgPicture.asset(sets.exercises[index].imgPath)
-                                              )
-                                            ],
-                                          );
-                                        })
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    ListView.separated(
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: sets.exercises.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                new Image.asset(
+                                                  sets.exercises[index].imgPath,
+                                                  width: 60.0,
+                                                  height: 60.0,
+                                                  fit: BoxFit.cover,
+                                                  errorBuilder: (context, error,
+                                                      stackTrace) {
+                                                    print(
+                                                        'Error loading image: $error');
+                                                    return Text(
+                                                        'Error loading image');
+                                                  },
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Column(
+                                                  children: [
+                                                    Text(
+                                                      'Warm Up',
+                                                      style: TextStyle(
+                                                        color:
+                                                            Color(0xFF1D1517),
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      '05:00',
+                                                      style: TextStyle(
+                                                        color:
+                                                            Color(0xFF7B6F72),
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                            SvgPicture.asset(
+                                                "assets/images/icon_next.svg")
+                                          ],
+                                        );
+                                      },
+                                      separatorBuilder:
+                                          (BuildContext context, int index) {
+                                        return SizedBox(
+                                          height: 10,
+                                        );
+                                      },
+                                    )
                                   ],
                                 ),
                               );
@@ -535,10 +596,55 @@ class _WorkoutState extends State<Workout> {
                           ),
                         ],
                       ),
+                      SizedBox(height: 80,),
                     ],
                   ),
                 );
               },
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 20,
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(99),
+                  gradient: AppColor.buttonColors,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 0,
+                      blurRadius: 8,
+                      offset: const Offset(
+                          0, 4), // changes the position of the shadow
+                    ),
+                  ],
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(99),
+                    onTap: () {},
+                    child: const SizedBox(
+                      height: 60,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Start Workout",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'Poppins',
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             )
           ],
         ),
