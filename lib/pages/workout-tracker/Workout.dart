@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../model/ExercisesSet.dart';
 import '../../model/FitnessGear.dart';
-import '../../model/LatestWorkOut.dart';
 import '../../model/TrainingTarget.dart';
-import '../../model/WorkOutData.dart';
-import '../../utils/GradientSwitch.dart';
 import '../../utils/colors.dart';
-import '../../utils/strings.dart';
-import '../auth/Login.dart';
-import '../onboarding/Welcome.dart';
 
 class Workout extends StatefulWidget {
-  const Workout({super.key});
+  final TrainingTarget trainingTarget;
+
+  Workout({super.key, required this.trainingTarget});
 
   @override
   State<Workout> createState() => _WorkoutState();
@@ -64,7 +59,9 @@ class _WorkoutState extends State<Workout> {
                             color: Colors.transparent,
                             child: InkWell(
                               borderRadius: BorderRadius.circular(8),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
                               child: const Icon(
                                 Icons.arrow_back_ios_rounded,
                                 size: 18,
@@ -94,13 +91,14 @@ class _WorkoutState extends State<Workout> {
                       height: 20,
                     ),
                     Container(
+                      padding: EdgeInsets.all(30),
                       height: 300,
                       width: 300,
                       decoration: BoxDecoration(
                           color: AppColor.workBg,
                           borderRadius: BorderRadius.circular(150)),
                       child: SvgPicture.asset(
-                        "assets/images/onboard_2.svg",
+                        widget.trainingTarget.imagePath,
                       ),
                     )
                   ],
@@ -152,13 +150,13 @@ class _WorkoutState extends State<Workout> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Column(
+                                Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Text(
-                                      'Fullbody Workout',
+                                      widget.trainingTarget.title,
                                       style: TextStyle(
                                         color: Color(0xFF1D1517),
                                         fontSize: 16,
@@ -167,7 +165,7 @@ class _WorkoutState extends State<Workout> {
                                       ),
                                     ),
                                     Text(
-                                      '11 Exercises | 32mins | 320 Calories Burn',
+                                      widget.trainingTarget.description,
                                       style: TextStyle(
                                         color: AppColor.grayColor1,
                                         fontSize: 12,
@@ -552,9 +550,14 @@ class _WorkoutState extends State<Workout> {
                                                   width: 10,
                                                 ),
                                                 Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      'Warm Up',
+                                                      sets.exercises[index]
+                                                          .name,
                                                       style: TextStyle(
                                                         color:
                                                             Color(0xFF1D1517),
@@ -564,7 +567,8 @@ class _WorkoutState extends State<Workout> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      '05:00',
+                                                      sets.exercises[index]
+                                                          .duration,
                                                       style: TextStyle(
                                                         color:
                                                             Color(0xFF7B6F72),
@@ -596,7 +600,9 @@ class _WorkoutState extends State<Workout> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 80,),
+                      SizedBox(
+                        height: 80,
+                      ),
                     ],
                   ),
                 );

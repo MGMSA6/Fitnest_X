@@ -105,4 +105,19 @@ class AppString {
   static const String goHome = "Go To Home";
 
 /*------  Final End ------*/
+
+/*------  WorkoutTracker ------*/
+
+  static const String viewMore = "View More";
+
+/*------  WorkoutTracker End ------*/
+
+/*------  WorkoutDetails ------*/
+
+  static const String initialText =
+      "A jumping jack, also known as a star jump and called a side-straddle hop in the US military, is a physical jumping exercise performed by jumping to a position with the legs spread wide";
+  static const String remainingText =
+      "The arms are then stretched out and brought back together above the head while jumping. The jumping jack is a cardiovascular exercise that can help increase heart rate and burn calories.";
+
+/*------  WorkoutDetails End ------*/
 }

@@ -15,6 +15,7 @@ import 'package:fitnest_x/pages/auth/Signup1.dart';
 import 'package:fitnest_x/pages/onboarding/Welcome.dart';
 import 'package:fitnest_x/pages/onboarding/Welcome1.dart';
 import 'package:fitnest_x/pages/workout-tracker/Workout.dart';
+import 'package:fitnest_x/pages/workout-tracker/WorkoutDetails.dart';
 import 'package:fitnest_x/pages/workout-tracker/WorkoutTracker.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -37,7 +38,7 @@ class FitnestX extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       darkTheme: ThemeData(brightness: Brightness.dark),
-      initialRoute: "/Workout",
+      initialRoute: "/WorkoutDetails",
       routes: {
         "/Welcome": (context) => const Welcome(),
         "/Welcome1": (context) => const Welcome1(),
@@ -55,7 +56,8 @@ class FitnestX extends StatelessWidget {
         "/Dashboard": (context) => const Dashboard(),
         "/WorkoutFinished": (context) => const WorkoutFinished(),
         "/WorkoutTracker": (context) => const WorkoutTracker(),
-        "/Workout": (context) => const Workout()
+        "/WorkoutDetails": (context) => const WorkoutDetails(),
+        // "/Workout": (context) => const Workout()
       },
     );
   }

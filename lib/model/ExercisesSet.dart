@@ -33,6 +33,7 @@ class ExercisesSet {
       Exercises("assets/images/push_ups.png", "Push-Ups", "12x"),
       Exercises("assets/images/skipping.png", "Skipping", "15x"),
       Exercises("assets/images/cobra_stretch.png", "Cobra Stretch", "20x"),
+      Exercises("assets/images/rest_drink.png", "Rest and Drink", "02:00")
     ];
     return exercises;
   }

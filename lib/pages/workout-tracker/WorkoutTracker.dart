@@ -1,3 +1,5 @@
+import 'package:fitnest_x/pages/workout-tracker/Workout.dart';
+import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -237,9 +239,6 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                                   )),
                             ],
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
                           ListView.separated(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
@@ -353,7 +352,6 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                               height: 0.09,
                             ),
                           ),
-                          const SizedBox(height: 40),
 
                           /// Add spacing
                           ListView.separated(
@@ -422,10 +420,19 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                                             child: InkWell(
                                               borderRadius:
                                                   BorderRadius.circular(50),
-                                              onTap: () {},
+                                              onTap: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            Workout(
+                                                              trainingTarget:
+                                                                  trainData,
+                                                            )));
+                                              },
                                               child: Center(
                                                 child: GradientText(
-                                                  text: "View more",
+                                                  text: AppString.viewMore,
                                                   gradient:
                                                       AppColor.bluetextGradient,
                                                   style: TextStyle(
