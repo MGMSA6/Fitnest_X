@@ -20,6 +20,7 @@ class TimelineItem extends CustomPainter {
   final int numberOfIndicators;
   final double indicatorSpacing;
   final double indicatorRadius;
+  final double outerIndicatorRadius;
   final double dashSpace;
   final List<IndicatorData> indicatorData;
   final double textPaddingStart;
@@ -29,10 +30,11 @@ class TimelineItem extends CustomPainter {
     required this.numberOfIndicators,
     this.indicatorSpacing = 20.0,
     this.indicatorRadius = 5.0,
-    this.dashSpace = 8.0,
+    this.outerIndicatorRadius = 8.0,
+    this.dashSpace = 6.0,
     required this.indicatorData,
-    this.textPaddingStart = 5.0,
-    this.countIndicatorSpacing = 8.0,
+    this.textPaddingStart = 15.0,
+    this.countIndicatorSpacing = 12.0,
   });
 
   @override
@@ -45,6 +47,33 @@ class TimelineItem extends CustomPainter {
 
     for (int i = 0; i < numberOfIndicators; i++) {
       final startY = (indicatorRadius * 2 + indicatorSpacing) * i;
+
+      // Calculate positions
+      final indicatorCenterX =
+          centerX - countIndicatorSpacing - indicatorRadius;
+      final countTextOffset = Offset(
+          indicatorCenterX - indicatorRadius * 4, startY + indicatorRadius - 8);
+
+      // Draw outer circle (border)
+      final outerCirclePaint = Paint()
+        ..color = const Color(0xFFC58BF2)
+        ..strokeWidth = 1.0
+        ..style = PaintingStyle.stroke;
+      canvas.drawCircle(
+        Offset(centerX, startY + indicatorRadius),
+        outerIndicatorRadius,
+        outerCirclePaint,
+      );
+
+      // Draw inner circle indicator
+      final innerCirclePaint = Paint()
+        ..color = const Color(0xFFC58BF2)
+        ..strokeWidth = size.width;
+      canvas.drawCircle(
+        Offset(centerX, startY + indicatorRadius),
+        indicatorRadius,
+        innerCirclePaint,
+      );
 
       // Draw count text with gradient color
       final countGradient = AppColor.unitGradient.createShader(Rect.fromLTWH(
@@ -137,12 +166,18 @@ class TimelineItem extends CustomPainter {
 
       // Draw connecting dashed lines
       if (i < numberOfIndicators - 1) {
+        final nextStartY = (indicatorRadius * 2 + indicatorSpacing) * (i + 1);
+        final lineYStart = startY + indicatorRadius + outerIndicatorRadius;
+        final lineYEnd = nextStartY + indicatorRadius - outerIndicatorRadius;
+
         double lineY = startY + indicatorRadius * 2;
+
         final linePaint = Paint()
           ..color = Color(0xFFC58BF2)
-          ..strokeWidth = 1;
-        while (lineY + dashHeight <
-            (indicatorRadius * 2 + indicatorSpacing) * (i + 1)) {
+          ..strokeWidth = 1
+          ..style = PaintingStyle.stroke;
+
+        while (lineY + dashHeight < lineYEnd) {
           canvas.drawLine(
             Offset(centerX, lineY),
             Offset(centerX, lineY + dashHeight),
