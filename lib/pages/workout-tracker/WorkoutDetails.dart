@@ -220,7 +220,8 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                           ],
                         ),
                       ),
-                      Center(
+                      Container(
+                        height: 100,
                         child: CustomPickerItem(),
                       ),
                       SizedBox(

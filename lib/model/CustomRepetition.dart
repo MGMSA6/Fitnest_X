@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomRepetition {
@@ -12,11 +13,15 @@ class CustomRepetition {
   static List<CustomRepetition> getCustomRepetition() {
     final List<CustomRepetition> customRepetition = [
       CustomRepetition(
-          "assets/images/calories.svg", "450 Calories Burn", "29", "times"),
-      CustomRepetition(
           "assets/images/calories.svg", "450 Calories Burn", "30", "times"),
       CustomRepetition(
-          "assets/images/calories.svg", "450 Calories Burn", "40", "times")
+          "assets/images/calories.svg", "550 Calories Burn", "35", "times"),
+      CustomRepetition(
+          "assets/images/calories.svg", "650 Calories Burn", "40", "times"),
+      CustomRepetition(
+          "assets/images/calories.svg", "750 Calories Burn", "45", "times"),
+      CustomRepetition(
+          "assets/images/calories.svg", "850 Calories Burn", "50", "times")
     ];
     return customRepetition;
   }

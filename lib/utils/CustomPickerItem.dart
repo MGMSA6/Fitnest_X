@@ -23,6 +23,7 @@ class _CustomPickerItemState extends State<CustomPickerItem> {
       backgroundColor: Colors.white,
       child: Center(
         child: CupertinoPicker(
+          backgroundColor: Colors.transparent,
           itemExtent: 40, // Adjust item height as needed
           children: customRepetitions.map((repetition) {
             return CustomPickerItemWidget(repetition: repetition);
