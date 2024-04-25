@@ -1,3 +1,4 @@
+import 'package:fitnest_x/pages/workout-tracker/WorkoutDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -631,7 +632,12 @@ class _WorkoutState extends State<Workout> {
                   color: Colors.transparent,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(99),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => WorkoutDetails()));
+                    },
                     child: const SizedBox(
                       height: 60,
                       child: Row(

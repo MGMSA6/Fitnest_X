@@ -14,12 +14,12 @@ import 'package:fitnest_x/pages/auth/Signup1.dart';
 
 import 'package:fitnest_x/pages/onboarding/Welcome.dart';
 import 'package:fitnest_x/pages/onboarding/Welcome1.dart';
-import 'package:fitnest_x/pages/workout-tracker/Workout.dart';
+import 'package:fitnest_x/pages/workout-tracker/AddSchedule.dart';
 import 'package:fitnest_x/pages/workout-tracker/WorkoutDetails.dart';
+import 'package:fitnest_x/pages/workout-tracker/WorkoutSchedule.dart';
 import 'package:fitnest_x/pages/workout-tracker/WorkoutTracker.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +38,7 @@ class FitnestX extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       darkTheme: ThemeData(brightness: Brightness.dark),
-      initialRoute: "/WorkoutDetails",
+      initialRoute: "/WorkoutSchedule",
       routes: {
         "/Welcome": (context) => const Welcome(),
         "/Welcome1": (context) => const Welcome1(),
@@ -57,6 +57,8 @@ class FitnestX extends StatelessWidget {
         "/WorkoutFinished": (context) => const WorkoutFinished(),
         "/WorkoutTracker": (context) => const WorkoutTracker(),
         "/WorkoutDetails": (context) => const WorkoutDetails(),
+        "/WorkoutSchedule": (context) => WorkoutSchedule(),
+        "/AddSchedule": (context) => AddSchedule(),
         // "/Workout": (context) => const Workout()
       },
     );

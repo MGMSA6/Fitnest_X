@@ -45,7 +45,9 @@ class _ActivityState extends State<Activity> {
                   color: Colors.transparent,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(8),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
                     child: const Icon(
                       Icons.arrow_back_ios_rounded,
                       size: 18,

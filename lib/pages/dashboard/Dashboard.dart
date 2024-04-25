@@ -1,5 +1,6 @@
 import 'package:fitnest_x/pages/dashboard/Home.dart';
 import 'package:fitnest_x/pages/dashboard/Profile.dart';
+import 'package:fitnest_x/pages/workout-tracker/WorkoutTracker.dart';
 import 'package:fitnest_x/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -19,7 +20,7 @@ class _DashboardState extends State<Dashboard> {
 
   final List<Widget> _screens = [
     const Home(),
-    const Activity(),
+    const WorkoutTracker(),
     const Camera(),
     const Profile(),
   ];

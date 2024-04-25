@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:fitnest_x/pages/dashboard/Activity.dart';
 import 'package:fitnest_x/pages/onboarding/Notifications.dart';
 import 'package:fitnest_x/pages/onboarding/Welcome.dart';
 import 'package:fitnest_x/utils/colors.dart';
@@ -101,7 +102,7 @@ class _HomeState extends State<Home> {
                           fontSize: 12,
                         ),
                       ),
-                       GradientText(
+                      GradientText(
                         text: "4 Liters",
                         gradient: AppColor.bluetextGradient,
                         style: TextStyle(
@@ -187,7 +188,7 @@ class _HomeState extends State<Home> {
                 const SizedBox(
                   height: 20,
                 ),
-                 GradientText(
+                GradientText(
                   text: "8h 20m",
                   gradient: AppColor.bluetextGradient,
                   style: TextStyle(
@@ -239,7 +240,7 @@ class _HomeState extends State<Home> {
                 const SizedBox(
                   height: 20,
                 ),
-                 GradientText(
+                GradientText(
                   text: "760 kCal",
                   gradient: AppColor.bluetextGradient,
                   style: TextStyle(
@@ -516,7 +517,12 @@ class _HomeState extends State<Home> {
                                 color: Colors.transparent,
                                 child: InkWell(
                                   borderRadius: BorderRadius.circular(55),
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Activity()));
+                                  },
                                   child: const Center(
                                     child: Text(
                                       'Check',
@@ -859,5 +865,3 @@ class LineData {
   final double y;
   final Color? color;
 }
-
-

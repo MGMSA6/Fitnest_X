@@ -134,7 +134,7 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
             DraggableScrollableSheet(
               initialChildSize: 0.87, // Adjust as needed
               maxChildSize: 0.87,
-              minChildSize: 0.52,
+              minChildSize: 0.50,
               builder: (context, scrollController) {
                 return Container(
                   decoration: const BoxDecoration(
