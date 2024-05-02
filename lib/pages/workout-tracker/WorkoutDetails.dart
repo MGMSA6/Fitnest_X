@@ -1,3 +1,4 @@
+import 'package:fitnest_x/pages/workout-tracker/WorkoutSchedule.dart';
 import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -256,7 +257,12 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                     color: Colors.transparent,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(99),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => WorkoutSchedule()));
+                      },
                       child: const SizedBox(
                         height: 60,
                         child: Row(
