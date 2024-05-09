@@ -1,28 +1,20 @@
-import 'package:fitnest_x/pages/workout-tracker/WorkoutDetails.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../model/ExercisesSet.dart';
-import '../../model/FitnessGear.dart';
-import '../../model/TrainingTarget.dart';
+import '../../utils/DateUtil.dart';
 import '../../utils/TimePicker.dart';
 import '../../utils/colors.dart';
-import '../../utils/strings.dart';
 
 class AddSchedule extends StatefulWidget {
+  const AddSchedule({super.key});
+
   @override
   State<AddSchedule> createState() => _AddScheduleState();
 }
 
 class _AddScheduleState extends State<AddSchedule> {
-  bool isHeartFilled = false;
-
-  void toggleHeart() {
-    setState(() {
-      isHeartFilled = !isHeartFilled;
-    });
-  }
+  DateTime selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -94,17 +86,27 @@ class _AddScheduleState extends State<AddSchedule> {
                   ),
                   Row(
                     children: [
-                      SvgPicture.asset("assets/images/calendar.svg"),
+                      GestureDetector(
+                        child: SvgPicture.asset("assets/images/calendar.svg"),
+                        onTap: () {
+                          showDatePickerModal(context);
+                        },
+                      ),
                       SizedBox(
                         width: 10,
                       ),
-                      Text(
-                        'Thu, 27 May 2021',
-                        style: TextStyle(
-                          color: Color(0xFF7B6F72),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                      GestureDetector(
+                        child: Text(
+                          DateUtil.formattedDate(selectedDate),
+                          style: TextStyle(
+                            color: Color(0xFF7B6F72),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
+                        onTap: () {
+                          showDatePickerModal(context);
+                        },
                       ),
                     ],
                   ),
@@ -390,6 +392,31 @@ class _AddScheduleState extends State<AddSchedule> {
           ],
         ),
       ),
+    );
+  }
+
+  void showDatePickerModal(BuildContext context) {
+    showCupertinoModalPopup(
+      context: context,
+      builder: (BuildContext builderContext) {
+        return Container(
+          height: 300.0,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(40), topRight: Radius.circular(40)),
+            color: Colors.white,
+          ),
+          child: CupertinoDatePicker(
+            mode: CupertinoDatePickerMode.date,
+            initialDateTime: selectedDate,
+            onDateTimeChanged: (DateTime newDateTime) {
+              setState(() {
+                selectedDate = newDateTime;
+              });
+            },
+          ),
+        );
+      },
     );
   }
 }

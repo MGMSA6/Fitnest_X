@@ -9,6 +9,7 @@ import '../../utils/CustomPickerItem.dart';
 import '../../utils/ReadMoreWidget.dart';
 import '../../utils/TimelineItem1.dart';
 import '../../utils/colors.dart';
+import '../../utils/routes/route_names.dart';
 
 class WorkoutDetails extends StatefulWidget {
   const WorkoutDetails({super.key});
@@ -258,10 +259,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(99),
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => WorkoutSchedule()));
+                        Navigator.pushNamed(context, RouteNames.workoutSchedule);
                       },
                       child: const SizedBox(
                         height: 60,

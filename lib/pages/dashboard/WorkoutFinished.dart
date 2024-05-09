@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../utils/colors.dart';
+import '../../utils/routes/route_names.dart';
 import '../../utils/strings.dart';
 
 class WorkoutFinished extends StatefulWidget {
@@ -13,8 +14,6 @@ class WorkoutFinished extends StatefulWidget {
 }
 
 class _WorkoutFinishedState extends State<WorkoutFinished> {
-
-
   @override
   void initState() {
     super.initState();
@@ -92,10 +91,10 @@ class _WorkoutFinishedState extends State<WorkoutFinished> {
                 child: InkWell(
                   borderRadius: BorderRadius.circular(99),
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Dashboard()));
+                    Navigator.pushNamed(
+                      context,
+                      RouteNames.dashboard,
+                    );
                   },
                   child: const SizedBox(
                     height: 60,

@@ -15,6 +15,7 @@ import '../../model/WorkOutData.dart';
 import '../../utils/CircularGradientProgressBar.dart';
 import '../../utils/TimelineItem.dart';
 import '../../utils/VerticalProgressBar.dart';
+import '../../utils/routes/route_names.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -360,10 +361,10 @@ class _HomeState extends State<Home> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(15),
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Notifications()));
+                            Navigator.pushNamed(
+                              context,
+                              RouteNames.notification,
+                            );
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -518,10 +519,10 @@ class _HomeState extends State<Home> {
                                 child: InkWell(
                                   borderRadius: BorderRadius.circular(55),
                                   onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Activity()));
+                                    Navigator.pushNamed(
+                                      context,
+                                      RouteNames.activity,
+                                    );
                                   },
                                   child: const Center(
                                     child: Text(

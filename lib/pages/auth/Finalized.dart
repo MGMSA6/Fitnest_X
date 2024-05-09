@@ -4,6 +4,8 @@ import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../utils/routes/route_names.dart';
+
 class Finalized extends StatefulWidget {
   const Finalized({Key? key}) : super(key: key);
 
@@ -65,8 +67,10 @@ class _FinalizedState extends State<Finalized> {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(99),
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Home()));
+                        Navigator.pushNamed(
+                          context,
+                          RouteNames.home,
+                        );
                       },
                       child: const SizedBox(
                         height: 60,

@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../utils/colors.dart';
+import '../../utils/routes/route_names.dart';
 
 class Carousel extends StatefulWidget {
-  const Carousel({Key? key}) : super(key: key);
+  const Carousel({Key? key});
 
   @override
   _CarouselState createState() => _CarouselState();
@@ -79,10 +80,15 @@ class _CarouselState extends State<Carousel> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(99),
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const SignUp()));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => const SignUp()));
+
+                            Navigator.pushNamed(
+                              context,
+                              RouteNames.signUp,
+                            );
                           },
                           child: const SizedBox(
                             height: 60,

@@ -6,10 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../utils/colors.dart';
+import '../../utils/routes/route_names.dart';
 import 'Signup1.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+  const SignUp({super.key});
 
   @override
   _SignUpState createState() => _SignUpState();
@@ -326,10 +327,10 @@ class _SignUpState extends State<SignUp> {
                             borderRadius: BorderRadius.circular(99),
                             onTap: () {
                               if (_formKey.currentState!.validate()) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Signup1()));
+                                Navigator.pushNamed(
+                                  context,
+                                  RouteNames.signUp1,
+                                );
                               }
                             },
                             child: const SizedBox(

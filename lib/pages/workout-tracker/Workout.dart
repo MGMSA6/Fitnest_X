@@ -1,4 +1,5 @@
 import 'package:fitnest_x/pages/workout-tracker/WorkoutDetails.dart';
+import 'package:fitnest_x/utils/routes/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -633,10 +634,7 @@ class _WorkoutState extends State<Workout> {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(99),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => WorkoutDetails()));
+                      Navigator.pushNamed(context, RouteNames.workoutDetails);
                     },
                     child: const SizedBox(
                       height: 60,

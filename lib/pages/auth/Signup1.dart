@@ -6,6 +6,7 @@ import 'package:fitnest_x/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../utils/routes/route_names.dart';
 import 'SignUp.dart';
 
 class Signup1 extends StatefulWidget {
@@ -277,10 +278,10 @@ class _SignupState extends State<Signup1> {
                             onTap: () {
                               if (_formKey.currentState!.validate()) {
                                 if (isChecked) {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => const Login()));
+                                  Navigator.pushNamed(
+                                    context,
+                                    RouteNames.login,
+                                  );
                                 } else {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(const SnackBar(
@@ -411,10 +412,10 @@ class _SignupState extends State<Signup1> {
                           Material(
                             child: InkWell(
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Login()));
+                                Navigator.pushNamed(
+                                  context,
+                                  RouteNames.login,
+                                );
                               },
                               borderRadius: BorderRadius.circular(8),
                               child: const Text(AppString.login,

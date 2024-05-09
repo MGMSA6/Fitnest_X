@@ -6,6 +6,8 @@ import 'package:fitnest_x/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../utils/routes/route_names.dart';
+
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -146,10 +148,10 @@ class _LoginState extends State<Login> {
                         borderRadius: BorderRadius.circular(99),
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Finalized()));
+                            Navigator.pushNamed(
+                              context,
+                              RouteNames.finalized,
+                            );
                           }
                         },
                         child: SizedBox(
@@ -262,10 +264,10 @@ class _LoginState extends State<Login> {
                       Material(
                         child: InkWell(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const SignUp()));
+                            Navigator.pushNamed(
+                              context,
+                              RouteNames.signUp,
+                            );
                           },
                           borderRadius: BorderRadius.circular(8),
                           child: const Text(

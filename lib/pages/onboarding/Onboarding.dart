@@ -4,8 +4,10 @@ import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../utils/routes/route_names.dart';
+
 class Onboarding extends StatelessWidget {
-  const Onboarding({super.key});
+  const Onboarding({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -81,15 +83,21 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                   FloatingActionButton(
                     onPressed: () {
                       if (_pageController.page == 3) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Carousel()));
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => const Carousel()));
+
+                        Navigator.pushNamed(
+                          context,
+                          RouteNames.carousel,
+                        );
+                      } else {
+                        _pageController.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeInOut,
+                        );
                       }
-                      _pageController.nextPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeInOut,
-                      );
                     },
                     backgroundColor: Colors.transparent,
                     elevation: 0,

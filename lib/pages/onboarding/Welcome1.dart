@@ -3,6 +3,8 @@ import 'package:fitnest_x/utils/colors.dart';
 import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/routes/route_names.dart';
+
 class Welcome1 extends StatefulWidget {
   const Welcome1({super.key});
 
@@ -86,10 +88,10 @@ class _SplashScreenPageState extends State<Welcome1> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Onboarding()));
+                      Navigator.pushNamed(
+                        context,
+                        RouteNames.onboarding,
+                      );
                     },
                   ),
                 ),

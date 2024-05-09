@@ -1,4 +1,5 @@
 import 'package:fitnest_x/pages/onboarding/Onboarding.dart';
+import 'package:fitnest_x/utils/routes/route_names.dart';
 import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/material.dart';
 
@@ -74,10 +75,9 @@ class _SplashScreenPageState extends State<Welcome> {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(99),
                       onTap: () {
-                        Navigator.push(
+                        Navigator.pushNamed(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const Onboarding()),
+                          RouteNames.onboarding,
                         );
                       },
                       child: const Center(
