@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 
-import '../utils/colors.dart';
+import '../res/colors.dart';
 
 class LatestWorkOut {
   final String img;

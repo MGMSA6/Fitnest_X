@@ -1,26 +1,27 @@
-import 'package:fitnest_x/pages/auth/Carousel.dart';
-import 'package:fitnest_x/pages/auth/Finalized.dart';
-import 'package:fitnest_x/pages/auth/Login.dart';
-import 'package:fitnest_x/pages/auth/SignUp.dart';
-import 'package:fitnest_x/pages/auth/Signup1.dart';
-import 'package:fitnest_x/pages/dashboard/Activity.dart';
-import 'package:fitnest_x/pages/dashboard/Camera.dart';
-import 'package:fitnest_x/pages/dashboard/Dashboard.dart';
-import 'package:fitnest_x/pages/dashboard/Profile.dart';
-import 'package:fitnest_x/pages/dashboard/WorkoutFinished.dart';
-import 'package:fitnest_x/pages/onboarding/Notifications.dart';
-import 'package:fitnest_x/pages/onboarding/Welcome.dart';
-import 'package:fitnest_x/pages/workout-tracker/AddSchedule.dart';
-import 'package:fitnest_x/pages/workout-tracker/Cal.dart';
-import 'package:fitnest_x/pages/workout-tracker/WorkoutDetails.dart';
-import 'package:fitnest_x/pages/workout-tracker/WorkoutSchedule.dart';
-import 'package:fitnest_x/pages/workout-tracker/WorkoutTracker.dart';
+import 'package:fitnest_x/view/auth/Carousel.dart';
+import 'package:fitnest_x/view/auth/Finalized.dart';
+import 'package:fitnest_x/view/auth/Login.dart';
+import 'package:fitnest_x/view/auth/SignUp.dart';
+import 'package:fitnest_x/view/auth/Signup1.dart';
+import 'package:fitnest_x/view/dashboard/Activity.dart';
+import 'package:fitnest_x/view/dashboard/Camera.dart';
+import 'package:fitnest_x/view/dashboard/Dashboard.dart';
+import 'package:fitnest_x/view/dashboard/Profile.dart';
+import 'package:fitnest_x/view/dashboard/WorkoutFinished.dart';
+import 'package:fitnest_x/view/meal-planner/meal_planner.dart';
+import 'package:fitnest_x/view/onboarding/Notifications.dart';
+import 'package:fitnest_x/view/onboarding/Welcome.dart';
+import 'package:fitnest_x/view/workout-tracker/AddSchedule.dart';
+import 'package:fitnest_x/view/workout-tracker/Cal.dart';
+import 'package:fitnest_x/view/workout-tracker/WorkoutDetails.dart';
+import 'package:fitnest_x/view/workout-tracker/WorkoutSchedule.dart';
+import 'package:fitnest_x/view/workout-tracker/WorkoutTracker.dart';
 import 'package:fitnest_x/utils/routes/route_names.dart';
 import 'package:flutter/material.dart';
 
-import '../../pages/dashboard/Home.dart';
-import '../../pages/onboarding/Onboarding.dart';
-import '../../pages/onboarding/Welcome1.dart';
+import '../../view/dashboard/Home.dart';
+import '../../view/onboarding/Onboarding.dart';
+import '../../view/onboarding/Welcome1.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -82,6 +83,8 @@ class Routes {
       case RouteNames.addSchedule:
         return MaterialPageRoute(
             builder: (BuildContext context) => const AddSchedule());
+      case RouteNames.mealPlanner:
+        return MaterialPageRoute(builder: (BuildContext context) => const MealPlanner());
       case RouteNames.cal:
         return MaterialPageRoute(builder: (BuildContext context) => Cal());
       default:
