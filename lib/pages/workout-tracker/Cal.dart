@@ -1,50 +1,69 @@
-import 'dart:ui';
-
-import 'package:calendar_view/calendar_view.dart';
-import 'package:fitnest_x/pages/workout-tracker/DayViewWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:calendar_view/calendar_view.dart';
+import '../../utils/colors.dart'; // Import your color constants here
 
 class Cal extends StatelessWidget {
-  Cal({super.key});
+  Cal({Key? key}) : super(key: key);
 
-  List<CalendarEventData> _events = [
+  final List<CalendarEventData> _events = [
+    // Add today's 8 PM event
     CalendarEventData(
       date: DateTime.now(),
-      title: "Project meeting",
-      description: "Today is project meeting.",
-      startTime: DateTime(DateTime.now().year, DateTime.now().month,
-          DateTime.now().day, 18, 30),
-      endTime: DateTime(
-          DateTime.now().year, DateTime.now().month, DateTime.now().day, 22),
-    ),
-    CalendarEventData(
-      date: DateTime.now().add(Duration(days: 1)),
+      title: "New Event",
+      // Replace with your desired title
+      description: "This is a new event for today.",
       startTime: DateTime(
-          DateTime.now().year, DateTime.now().month, DateTime.now().day, 18),
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        20, // Set hour to 8 PM
+        0, // Set minute to 0
+      ),
       endTime: DateTime(
-          DateTime.now().year, DateTime.now().month, DateTime.now().day, 19),
-      title: "Wedding anniversary",
-      description: "Attend uncle's wedding anniversary.",
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        22, // Set end time if needed (optional)
+        0, // Set minute to 0 (optional)
+      ),
     ),
+    // ... your existing events (optional)
   ];
+
+
 
   @override
   Widget build(BuildContext context) {
     return CalendarControllerProvider(
       controller: EventController()..addAll(_events),
-      child: MaterialApp(
-        title: 'Flutter Calendar Page Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData.light(),
-        scrollBehavior: ScrollBehavior().copyWith(
-          dragDevices: {
-            PointerDeviceKind.trackpad,
-            PointerDeviceKind.mouse,
-            PointerDeviceKind.touch,
-          },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child: SizedBox(
+            height: double.maxFinite,
+            child: Material(
+              child: DayView(
+
+              ),
+            ),
+          ),
         ),
-        home: DayViewWidget(),
       ),
+    );
+  }
+
+  Widget _buildEventTile(CalendarEventData event) {
+    // Customize the event tile based on your needs
+    return Container(
+      alignment: Alignment.center,
+      margin: const EdgeInsets.symmetric(horizontal: 5.0),
+      padding: const EdgeInsets.all(2.0),
+      decoration: BoxDecoration(
+        color: Colors.blue[200],
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+      child: Text(event.title),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:fitnest_x/pages/auth/Carousel.dart';
+import 'package:fitnest_x/pages/auth/SignUp.dart';
 import 'package:fitnest_x/utils/colors.dart';
 import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/material.dart';
@@ -88,10 +89,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                         //     MaterialPageRoute(
                         //         builder: (context) => const Carousel()));
 
-                        Navigator.pushNamed(
-                          context,
-                          RouteNames.carousel,
-                        );
+                        // Navigator.pushNamed(
+                        //   context,
+                        //   RouteNames.carousel,
+                        // );
+                        Navigator.of(context).pushNamed(RouteNames.carousel);
                       } else {
                         _pageController.nextPage(
                           duration: const Duration(milliseconds: 500),

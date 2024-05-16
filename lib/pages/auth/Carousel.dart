@@ -1,14 +1,14 @@
 import 'package:fitnest_x/pages/auth/SignUp.dart';
 import 'package:fitnest_x/pages/auth/Signup1.dart';
+import 'package:fitnest_x/utils/routes/route_names.dart';
 import 'package:fitnest_x/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../utils/colors.dart';
-import '../../utils/routes/route_names.dart';
 
 class Carousel extends StatefulWidget {
-  const Carousel({Key? key});
+  const Carousel({Key? key}) : super(key: key);
 
   @override
   _CarouselState createState() => _CarouselState();
@@ -27,92 +27,88 @@ class _CarouselState extends State<Carousel> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: SafeArea(
-            child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Expanded(
-                      flex: 1,
-                      child: Column(children: [
-                        Text(
-                          AppString.goalText,
-                          style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: AppColor.blackColor),
-                        ),
-                        Text(
-                          AppString.programDescription,
-                          style: TextStyle(
-                              fontSize: 12, color: AppColor.grayColor1),
-                          textAlign: TextAlign.center,
-                        ),
-                      ]),
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Expanded(
+                  flex: 1,
+                  child: Column(children: [
+                    Text(
+                      AppString.goalText,
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: AppColor.blackColor),
                     ),
-                    Expanded(flex: 4, child: buildCardCarousel()),
-                    const SizedBox(
-                      height: 40,
+                    Text(
+                      AppString.programDescription,
+                      style:
+                          TextStyle(fontSize: 12, color: AppColor.grayColor1),
+                      textAlign: TextAlign.center,
                     ),
-                    Container(
-                      height: 60,
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(99),
-                        gradient: AppColor.buttonColors,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 0,
-                            blurRadius: 8,
-                            offset: const Offset(
-                                0, 4), // changes the position of the shadow
-                          ),
-                        ],
+                  ]),
+                ),
+                Expanded(flex: 4, child: buildCardCarousel()),
+                const SizedBox(
+                  height: 40,
+                ),
+                Container(
+                  height: 60,
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(99),
+                    gradient: AppColor.buttonColors,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 0,
+                        blurRadius: 8,
+                        offset: const Offset(
+                            0, 4), // changes the position of the shadow
                       ),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(99),
-                          onTap: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => const SignUp()));
+                    ],
+                  ),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(99),
+                      onTap: () {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => const SignUp()));
 
-                            Navigator.pushNamed(
-                              context,
-                              RouteNames.signUp,
-                            );
-                          },
-                          child: const SizedBox(
-                            height: 60,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  AppString.confirmText,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: 'Poppins',
-                                      color: Colors.white),
-                                ),
-                              ],
+                        Navigator.of(context).pushNamed(RouteNames.signUp);
+                        //Navigator.pushNamed(context, RouteNames.signUp);
+                      },
+                      child: const SizedBox(
+                        height: 60,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              AppString.confirmText,
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white),
                             ),
-                          ),
+                          ],
                         ),
                       ),
                     ),
-                  ],
-                )),
-          ),
-        ));
+                  ),
+                ),
+              ],
+            )),
+      ),
+    );
   }
 
   Widget buildCardCarousel() {

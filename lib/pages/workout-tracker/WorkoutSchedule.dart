@@ -1,5 +1,4 @@
 import 'package:calendar_view/calendar_view.dart';
-import 'package:fitnest_x/pages/workout-tracker/AddSchedule.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../utils/CustomDatePickerTimeline.dart';
@@ -17,25 +16,29 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
   bool isHeartFilled = false;
   final DateTime _selectedDate = DateTime.now();
 
-  List<CalendarEventData> _events = [
+  final List<CalendarEventData> _events = [
+    // Add today's 8 PM event
     CalendarEventData(
       date: DateTime.now(),
-      title: "Project meeting",
-      description: "Today is project meeting.",
-      startTime: DateTime(DateTime.now().year, DateTime.now().month,
-          DateTime.now().day, 18, 30),
-      endTime: DateTime(
-          DateTime.now().year, DateTime.now().month, DateTime.now().day, 22),
-    ),
-    CalendarEventData(
-      date: DateTime.now().add(Duration(days: 1)),
+      title: "New Event",
+      // Replace with your desired title
+      description: "This is a new event for today.",
       startTime: DateTime(
-          DateTime.now().year, DateTime.now().month, DateTime.now().day, 18),
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        10, // Set hour to 8 PM
+        0, // Set minute to 0
+      ),
       endTime: DateTime(
-          DateTime.now().year, DateTime.now().month, DateTime.now().day, 19),
-      title: "Wedding anniversary",
-      description: "Attend uncle's wedding anniversary.",
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        11, // Set end time if needed (optional)
+        0, // Set minute to 0 (optional)
+      ),
     ),
+    // ... your existing events (optional)
   ];
 
   @override
@@ -69,8 +72,7 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
                               child: InkWell(
                                 borderRadius: BorderRadius.circular(8),
                                 onTap: () {
-                                  _showPopupModal(context);
-                                  //Navigator.pop(context);
+                                  Navigator.pop(context);
                                 },
                                 child: const Icon(
                                   Icons.arrow_back_ios_rounded,
@@ -139,46 +141,40 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
                   ],
                 ),
                 SingleChildScrollView(
-                  physics: ClampingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   child: SizedBox(
                     height: 500,
                     child: CalendarControllerProvider(
                       controller: EventController()..addAll(_events),
-                      child: DayView(
-                          eventTileBuilder:
-                              (date, events, boundry, start, end) {
-                            // Return your widget to display as event tile.
-                            return Text("Workout");
-                          },
-                          fullDayEventBuilder: (events, date) {
-                            // Return your widget to display full day event view.
-                            return Container(
-                              height: 35,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  color: AppColor.pinkBg1,
-                                  borderRadius: BorderRadius.circular(50)),
-                              child: Text("Workout"),
-                            );
-                          },
-                          showVerticalLine: true,
-                          // To display live time line in day view.
-                          showLiveTimeLineInAllDays: true,
-                          // To display live time line in all pages in day view.
-                          minDay: DateTime(1990),
-                          maxDay: DateTime(2050),
-                          initialDay: DateTime(2021),
-                          heightPerMinute: 1,
-                          // height occupied by 1 minute time span.
-                          eventArranger: SideEventArranger(),
-                          // To define how simultaneous events will be arranged.
-                          onEventTap: (events, date) => print(events),
-                          onDateLongPress: (date) => print(date),
-                          startHour: 5,
-                          // To set the first hour displayed (ex: 05:00)
-                          dayTitleBuilder:
-                              DayHeader.hidden // To Hide day header
-                          ),
+                      child: Material(
+                          child: DayView(
+                        eventTileBuilder: (date, events, boundry, start, end) {
+                          return Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              gradient: AppColor.unitGradient,
+                            ),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(50),
+                                onTap: () {
+                                  _showPopupModal(context);
+                                },
+                                child: Center(
+                                  child: Text(
+                                    "Upper Workout, 9am",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                        onEventTap: (events, date) => print(events),
+                        dayTitleBuilder: DayHeader.hidden,
+                        showVerticalLine: false,
+                      )),
                     ),
                   ),
                 ),
@@ -206,7 +202,7 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
                   color: Colors.transparent,
                   child: InkWell(
                       onTap: () {
-                       Navigator.pushNamed(context, RouteNames.addSchedule);
+                        Navigator.pushNamed(context, RouteNames.addSchedule);
                       },
                       borderRadius: BorderRadius.circular(30),
                       child: Icon(Icons.add_rounded, color: Colors.white)),
@@ -264,7 +260,7 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Lowerbody Workout',
+                      'Upperbody workout',
                       style: TextStyle(
                         color: Color(0xFF1D1517),
                         fontSize: 14,
@@ -281,7 +277,7 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
                           width: 10,
                         ),
                         Text(
-                          'Today | 03:00PM',
+                          'Today | 09:00PM',
                           style: TextStyle(
                             color: Color(0xFF7B6F72),
                             fontSize: 12,

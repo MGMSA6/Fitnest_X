@@ -1,4 +1,3 @@
-import 'package:fitnest_x/pages/auth/Login.dart';
 import 'package:fitnest_x/utils/auth.dart';
 import 'package:fitnest_x/utils/colors.dart';
 import 'package:fitnest_x/utils/strings.dart';
@@ -7,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../utils/routes/route_names.dart';
-import 'SignUp.dart';
 
 class Signup1 extends StatefulWidget {
   const Signup1({super.key});
