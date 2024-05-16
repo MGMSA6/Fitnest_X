@@ -1,9 +1,10 @@
+import 'package:fitnest_x/model/today_meals.dart';
+import 'package:fitnest_x/utils/routes/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../model/FitnessGear.dart';
-import '../../model/LatestWorkOut.dart';
 import '../../model/Meals.dart';
 import '../../model/WorkOutData.dart';
 import '../../res/colors.dart';
@@ -20,7 +21,7 @@ class _MealPlannerState extends State<MealPlanner> {
   static late String selectedValue = "Daily";
   static late String selectedValue1 = "Breakfast";
 
-  final List<LatestWorkOut> latestWorkOut = LatestWorkOut.getDummyData();
+  final List<TodayMeals> todayMealsData = TodayMeals.getTodayMealsData();
 
   @override
   Widget build(BuildContext context) {
@@ -232,14 +233,14 @@ class _MealPlannerState extends State<MealPlanner> {
                   ],
                 ),
               ),
-              Padding(
+              Container(
+                height: 200,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: ListView.builder(
-                  shrinkWrap: true,
                   itemCount: 2, // Number of items in the list
                   itemBuilder: (BuildContext context, int index) {
                     // Each item is a container with a box shadow
-                    LatestWorkOut workOut = latestWorkOut[index];
+                    TodayMeals todayMeals = todayMealsData[index];
                     return Container(
                       height: 80,
                       width: double.infinity,
@@ -264,8 +265,7 @@ class _MealPlannerState extends State<MealPlanner> {
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              SvgPicture.asset(
-                                  "assets/images/glass_of_milk.svg"),
+                              SvgPicture.asset(todayMeals.imgPath),
                               SizedBox(
                                 width: 10,
                               ),
@@ -274,7 +274,7 @@ class _MealPlannerState extends State<MealPlanner> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "Salmon Nigiri",
+                                    todayMeals.name,
                                     style: const TextStyle(
                                       color: Color(0xFF1D1517),
                                       fontSize: 14,
@@ -285,7 +285,7 @@ class _MealPlannerState extends State<MealPlanner> {
                                     height: 5,
                                   ),
                                   Text(
-                                    "Today | 7am",
+                                    todayMeals.details,
                                     style: const TextStyle(
                                       color: Color(0xFF7B6F72),
                                       fontSize: 12,
@@ -296,15 +296,27 @@ class _MealPlannerState extends State<MealPlanner> {
                               ),
                             ],
                           ),
-                          SvgPicture.asset("assets/images/un_reminder.svg")
+                          Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                                borderRadius: BorderRadius.circular(8),
+                                onTap: () {
+                                  setState(() {
+                                    todayMeals.isNotify = !todayMeals.isNotify;
+                                  });
+                                },
+                                child: SvgPicture.asset(todayMeals.isNotify
+                                    ? 'assets/images/un_reminder.svg'
+                                    : 'assets/images/reminders.svg')),
+                          )
                         ],
                       ),
                     );
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, top: 20),
+              const Padding(
+                padding: EdgeInsets.only(left: 20, top: 20),
                 child: Text(
                   'Find Something to Eat',
                   style: TextStyle(
@@ -342,7 +354,8 @@ class _MealPlannerState extends State<MealPlanner> {
                         width: 200,
                         height: 200,
                         decoration: BoxDecoration(
-                          gradient: AppColor.blueBg,
+                          gradient:
+                              index.isOdd ? AppColor.pinkBg : AppColor.blueBg,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(22),
                             topRight: Radius.circular(100),
@@ -380,7 +393,7 @@ class _MealPlannerState extends State<MealPlanner> {
                                       height: 10,
                                     ),
                                     Text(
-                                      mealsData.deatils,
+                                      mealsData.details,
                                       style: TextStyle(
                                         color: Color(0xFF7B6F72),
                                         fontSize: 12,
@@ -395,7 +408,9 @@ class _MealPlannerState extends State<MealPlanner> {
                                       width: 98,
                                       height: 30,
                                       decoration: ShapeDecoration(
-                                        gradient: AppColor.buttonColors,
+                                        gradient: index.isOdd
+                                            ? AppColor.unitGradient
+                                            : AppColor.buttonColors,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(50),
@@ -406,7 +421,10 @@ class _MealPlannerState extends State<MealPlanner> {
                                         child: InkWell(
                                           borderRadius:
                                               BorderRadius.circular(55),
-                                          onTap: () {},
+                                          onTap: () {
+                                            Navigator.pushNamed(
+                                                context, RouteNames.mealType);
+                                          },
                                           child: const Center(
                                             child: Text(
                                               'Select',

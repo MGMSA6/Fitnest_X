@@ -19,6 +19,7 @@ class RouteNames {
   static const String workoutSchedule = "WorkoutSchedule";
   static const String addSchedule = "AddSchedule";
   static const String mealPlanner = "MealPlanner";
+  static const String mealType = "MealType";
   static const String cal = "Cal";
   static const String workout = "Workout";
 }
