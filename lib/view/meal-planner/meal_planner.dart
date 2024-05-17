@@ -344,7 +344,7 @@ class _MealPlannerState extends State<MealPlanner> {
                       left: index == 0 ? 20 : 10,
                       // Start padding for first item, 10 for others
                       right:
-                          index == FitnessGear.getFitnessGearData().length - 1
+                      index == Meals.getMealsData().length - 1
                               ? 20
                               : 10, // End padding for last item, 10 for others
                     );
