@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../model/FitnessGear.dart';
+import '../../model/LatestWorkOut.dart';
 import '../../model/Meals.dart';
 import '../../model/WorkOutData.dart';
 import '../../res/colors.dart';
@@ -22,6 +23,8 @@ class _MealPlannerState extends State<MealPlanner> {
   static late String selectedValue1 = "Breakfast";
 
   final List<TodayMeals> todayMealsData = TodayMeals.getTodayMealsData();
+
+
 
   @override
   Widget build(BuildContext context) {

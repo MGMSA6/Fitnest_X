@@ -1,7 +1,9 @@
+import 'package:fitnest_x/view/onboarding/Welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../model/FitnessGear.dart';
+import '../../model/LatestWorkOut.dart';
 import '../../model/Meals.dart';
 import '../../res/colors.dart';
 import '../../utils/routes/route_names.dart';
@@ -231,7 +233,7 @@ class _MealTypeState extends State<MealType> {
                     height: 20,
                   ),
                   SizedBox(
-                    height: 240,
+                    height: 270,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: Meals.getMealsData2().length,
@@ -272,27 +274,156 @@ class _MealTypeState extends State<MealType> {
                                       width: 116,
                                       height: 80,
                                     ),
-                                    Text(
-                                      'Honey Pancake',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Color(0xFF1D1517),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          meals.name,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Color(0xFF1D1517),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        Text(
+                                          meals.details,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Color(0xFF7B6F72),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      'Easy | 30mins | 180kCal',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Color(0xFF7B6F72),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
+                                    index.isEven
+                                        ? Container(
+                                            width: 110,
+                                            height: 38,
+                                            decoration: ShapeDecoration(
+                                              gradient: AppColor.buttonColors,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                              ),
+                                            ),
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              child: InkWell(
+                                                borderRadius:
+                                                    BorderRadius.circular(55),
+                                                onTap: () {},
+                                                child: const Center(
+                                                  child: Text(
+                                                    'View',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        : Container(
+                                            width: 110,
+                                            height: 38,
+                                            child: Center(
+                                              child: GradientText(
+                                                text: "View",
+                                                gradient: AppColor.unitGradient,
+                                                style: TextStyle(
+                                                  fontSize: 14.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                   ],
                                 )),
                               ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      'Popular',
+                      style: TextStyle(
+                        color: Color(0xFF1D1517),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: 2, // Number of items in the list
+                      itemBuilder: (BuildContext context, int index) {
+                        // Each item is a container with a box shadow
+                        Meals meals = Meals.getPopularMealsData()[index];
+                        return Container(
+                          height: 80,
+                          width: double.infinity,
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                          padding: EdgeInsets.all(10),
+                          decoration: index.isEven
+                              ? BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16.0),
+                                  boxShadow: const [
+                                      BoxShadow(
+                                        color: Color(0x111D1617),
+                                        blurRadius: 40,
+                                        offset: Offset(0, 10),
+                                        spreadRadius: 0,
+                                      ),
+                                    ])
+                              : BoxDecoration(
+                                  color: Colors.transparent,
+                                ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              SvgPicture.asset(
+                                meals.imgPath,
+                                width: 46,
+                                height: 45,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    meals.name,
+                                    style: const TextStyle(
+                                      color: Color(0xFF1D1517),
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  Text(
+                                    meals.details,
+                                    style: const TextStyle(
+                                      color: Color(0xFFA3A8AC),
+                                      fontSize: 8,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                               SvgPicture.asset(
+                                    "assets/images/workout_btn.svg",
+                                  ),
+
                             ],
                           ),
                         );

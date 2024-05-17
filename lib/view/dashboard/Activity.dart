@@ -19,8 +19,6 @@ class _ActivityState extends State<Activity> {
 
   final List<LatestWorkOut> latestWorkOut = LatestWorkOut.getDummyData();
 
-
-
   static late String selectedValue = "Daily";
 
   @override
@@ -145,7 +143,7 @@ class _ActivityState extends State<Activity> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SvgPicture.asset("assets/images/glass.svg"),
-                           Column(
+                          Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -182,7 +180,7 @@ class _ActivityState extends State<Activity> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SvgPicture.asset("assets/images/boots.svg"),
-                           Column(
+                          Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -369,18 +367,21 @@ class _ActivityState extends State<Activity> {
                 width: double.infinity,
                 margin: EdgeInsets.symmetric(vertical: 10),
                 padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16.0),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0x0C1D242A),
-                      blurRadius: 40,
-                      offset: Offset(0, 10),
-                      spreadRadius: 0, // changes position of shadow
-                    ),
-                  ],
-                ),
+                decoration: index.isEven
+                    ? BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16.0),
+                        boxShadow: const [
+                            BoxShadow(
+                              color: Color(0x0C1D242A),
+                              blurRadius: 40,
+                              offset: Offset(0, 10),
+                              spreadRadius: 0, // changes position of shadow
+                            ),
+                          ])
+                    : BoxDecoration(
+                        color: Colors.transparent,
+                      ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -481,4 +482,3 @@ class _ActivityState extends State<Activity> {
     ];
   }
 }
-

@@ -20,12 +20,6 @@ class AppColor {
   static Color pinkBg2 = const Color(0xFFEEA4CE).withOpacity(0.20);
   static Color whiteBg = const Color(0xFFFFFFFF).withOpacity(0.50);
 
-
-
-
-
-
-
   static const List<Color> gradientColors = [
     Color(0xff92A3FD),
     Color(0xff9DCEFF)
@@ -67,7 +61,7 @@ class AppColor {
     colors: [Color(0xffCC8FED), Color(0xff9DCEFF)],
   );
 
-  static const Gradient unitGradient = LinearGradient(
+  static const LinearGradient unitGradient = LinearGradient(
     colors: [Color(0xffC58BF2), Color(0xffeea4ce)],
     // Replace with your gradient colors
     begin: Alignment.centerLeft,
@@ -101,12 +95,8 @@ class AppColor {
     colors: [pinkBg1, pinkBg2],
   );
 
-
   static LinearGradient bluetextGradient = LinearGradient(
-    begin: Alignment(-1.00, 0.08),
-    end: Alignment(1, -0.08),
-    colors: gradientColors
-  );
-
-
+      begin: Alignment(-1.00, 0.08),
+      end: Alignment(1, -0.08),
+      colors: gradientColors);
 }

@@ -26,10 +26,21 @@ class Meals {
 
   static List<Meals> getMealsData2() {
     final List<Meals> meals = [
-      Meals("assets/images/pancake.svg", "Honey Pancake", ""),
-      Meals("assets/images/bread.svg", "Canai Bread", ""),
+      Meals("assets/images/pancake.svg", "Honey Pancake",
+          "Easy | 30mins | 180kCal"),
+      Meals(
+          "assets/images/bread.svg", "Canai Bread", "Easy | 20mins | 230kCal"),
     ];
     return meals;
   }
 
+  static List<Meals> getPopularMealsData() {
+    final List<Meals> meals = [
+      Meals("assets/images/pancake2.svg", "Blueberry Pancake",
+          "Medium | 30mins | 230kCal"),
+      Meals("assets/images/nigiri.svg", "Salmon Nigiri",
+          "Medium | 20mins | 120kCal"),
+    ];
+    return meals;
+  }
 }
