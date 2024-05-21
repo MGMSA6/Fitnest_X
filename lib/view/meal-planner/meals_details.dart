@@ -9,6 +9,7 @@ import '../../model/ExercisesSet.dart';
 import '../../model/FitnessGear.dart';
 import '../../res/colors.dart';
 import '../../res/components/ReadMoreWidget.dart';
+import '../../res/components/TimelineItem1.dart';
 import '../../res/strings.dart';
 
 class MealDetails extends StatefulWidget {
@@ -231,7 +232,6 @@ class _MealDetailsState extends State<MealDetails> {
                               ],
                             ),
                           ),
-
                           SizedBox(
                             height: 30,
                           ),
@@ -246,7 +246,6 @@ class _MealDetailsState extends State<MealDetails> {
                               ),
                             ),
                           ),
-
                           SizedBox(
                             height: 10,
                           ),
@@ -260,9 +259,14 @@ class _MealDetailsState extends State<MealDetails> {
                                 // Each item is a container with a box shadow
                                 Meals meals = Meals.getNutrition()[index];
                                 return Container(
-                                  padding: index == 0
-                                      ? EdgeInsets.only(left: 20)
-                                      : EdgeInsets.only(left: 15),
+                                  padding: EdgeInsets.only(
+                                    left: index == 0 ? 20 : 0,
+                                    // Left padding for first item is 20, others 10
+                                    right: index ==
+                                            Meals.getIngredients().length - 1
+                                        ? 20
+                                        : 10, // Right padding for last item is 20, others 10
+                                  ),
                                   child: Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -376,7 +380,7 @@ class _MealDetailsState extends State<MealDetails> {
                                 Meals meals = Meals.getIngredients()[index];
                                 return Padding(
                                   padding: EdgeInsets.only(
-                                    left: index == 0 ? 20 : 10,
+                                    left: index == 0 ? 20 : 0,
                                     // Left padding for first item is 20, others 10
                                     right: index ==
                                             Meals.getIngredients().length - 1
@@ -384,7 +388,8 @@ class _MealDetailsState extends State<MealDetails> {
                                         : 10, // Right padding for last item is 20, others 10
                                   ),
                                   child: Container(
-                                    padding: EdgeInsets.symmetric(horizontal: 5),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5),
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -433,114 +438,76 @@ class _MealDetailsState extends State<MealDetails> {
                               },
                             ),
                           ),
-
-                          /// Add spacing
-                          ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: ExercisesSet.getSetData().length,
-                            // ber of items in the list
-                            itemBuilder: (BuildContext context, int index) {
-                              // Each item is a container with a box shadow
-                              ExercisesSet sets =
-                                  ExercisesSet.getSetData()[index];
-                              return Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 20.0, right: 20),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Text(
-                                      'Set ' +
-                                          ExercisesSet.getSetData()[index].num,
-                                      style: TextStyle(
-                                        color: Color(0xFF1D1517),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    ListView.separated(
-                                      shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      itemCount: sets.exercises.length,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        return Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                new Image.asset(
-                                                  sets.exercises[index].imgPath,
-                                                  width: 60.0,
-                                                  height: 60.0,
-                                                  fit: BoxFit.cover,
-                                                  errorBuilder: (context, error,
-                                                      stackTrace) {
-                                                    print(
-                                                        'Error loading image: $error');
-                                                    return Text(
-                                                        'Error loading image');
-                                                  },
-                                                ),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      sets.exercises[index]
-                                                          .name,
-                                                      style: TextStyle(
-                                                        color:
-                                                            Color(0xFF1D1517),
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      sets.exercises[index]
-                                                          .duration,
-                                                      style: TextStyle(
-                                                        color:
-                                                            Color(0xFF7B6F72),
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                            SvgPicture.asset(
-                                                "assets/images/icon_next.svg")
-                                          ],
-                                        );
-                                      },
-                                      separatorBuilder:
-                                          (BuildContext context, int index) {
-                                        return SizedBox(
-                                          height: 10,
-                                        );
-                                      },
-                                    )
-                                  ],
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'Step by Step',
+                                  style: TextStyle(
+                                    color: Color(0xFF1D1517),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
-                              );
-                            },
+                                Text(
+                                  '8 Steps',
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    color: Color(0xFFACA3A5),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 40, top: 20, right: 20, bottom: 50),
+                            child: LayoutBuilder(
+                              builder: (context, constraints) {
+                                return CustomPaint(
+                                  size: Size(0, 300),
+                                  painter: TimelineItem(
+                                    numberOfIndicators: 5,
+                                    indicatorRadius: 1,
+                                    indicatorSpacing: 80,
+                                    indicatorData: [
+                                      IndicatorData(
+                                          text1: 'Step 1',
+                                          text2:
+                                              'Prepare all of the ingredients that needed',
+                                          count: 1),
+                                      IndicatorData(
+                                          text1: 'Step 2',
+                                          text2:
+                                              'Mix flour, sugar, salt, and baking powder',
+                                          count: 2),
+                                      IndicatorData(
+                                          text1: 'Step 3',
+                                          text2:
+                                              'In a seperate place, mix the eggs and liquid milk until blended',
+                                          count: 3),
+                                      IndicatorData(
+                                          text1: 'Step 4',
+                                          text2:
+                                              'Put the egg and milk mixture into the dry\ningredients, Stir untul smooth and smooth',
+                                          count: 4),
+                                      IndicatorData(
+                                          text1: 'Step 5',
+                                          text2:
+                                              'Prepare all of the ingredients that needed',
+                                          count: 5),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                         ],
                       ),
@@ -575,9 +542,7 @@ class _MealDetailsState extends State<MealDetails> {
                   color: Colors.transparent,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(99),
-                    onTap: () {
-                      Navigator.pushNamed(context, RouteNames.workoutDetails);
-                    },
+                    onTap: () {},
                     child: const SizedBox(
                       height: 60,
                       child: Row(
