@@ -1,3 +1,4 @@
+import 'package:fitnest_x/view/meal-planner/meals_details.dart';
 import 'package:fitnest_x/view/onboarding/Welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -312,7 +313,16 @@ class _MealTypeState extends State<MealType> {
                                               child: InkWell(
                                                 borderRadius:
                                                     BorderRadius.circular(55),
-                                                onTap: () {},
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              MealDetails(
+                                                                  meals:
+                                                                      meals)));
+                                                },
                                                 child: const Center(
                                                   child: Text(
                                                     'View',
@@ -330,13 +340,31 @@ class _MealTypeState extends State<MealType> {
                                         : Container(
                                             width: 110,
                                             height: 38,
-                                            child: Center(
-                                              child: GradientText(
-                                                text: "View",
-                                                gradient: AppColor.unitGradient,
-                                                style: TextStyle(
-                                                  fontSize: 14.0,
-                                                  fontWeight: FontWeight.w600,
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              child: InkWell(
+                                                borderRadius: BorderRadius.circular(50),
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              MealDetails(
+                                                                  meals:
+                                                                      meals)));
+                                                },
+                                                child: Center(
+                                                  child: GradientText(
+                                                    text: "View",
+                                                    gradient:
+                                                        AppColor.unitGradient,
+                                                    style: TextStyle(
+                                                      fontSize: 14.0,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -420,10 +448,9 @@ class _MealTypeState extends State<MealType> {
                                   ),
                                 ],
                               ),
-                               SvgPicture.asset(
-                                    "assets/images/workout_btn.svg",
-                                  ),
-
+                              SvgPicture.asset(
+                                "assets/images/workout_btn.svg",
+                              ),
                             ],
                           ),
                         );

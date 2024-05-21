@@ -257,7 +257,8 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(99),
                       onTap: () {
-                        Navigator.pushNamed(context, RouteNames.workoutSchedule);
+                        Navigator.pushNamed(
+                            context, RouteNames.workoutSchedule);
                       },
                       child: const SizedBox(
                         height: 60,

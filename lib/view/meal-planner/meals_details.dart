@@ -1,22 +1,26 @@
+import 'package:fitnest_x/model/Meals.dart';
 import 'package:fitnest_x/utils/routes/route_names.dart';
+import 'package:fitnest_x/view/onboarding/Welcome.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../model/ExercisesSet.dart';
 import '../../model/FitnessGear.dart';
-import '../../model/TrainingTarget.dart';
 import '../../res/colors.dart';
+import '../../res/components/ReadMoreWidget.dart';
+import '../../res/strings.dart';
 
-class Workout extends StatefulWidget {
-  final TrainingTarget trainingTarget;
+class MealDetails extends StatefulWidget {
+  final Meals meals;
 
-  Workout({super.key, required this.trainingTarget});
+  MealDetails({super.key, required this.meals});
 
   @override
-  State<Workout> createState() => _WorkoutState();
+  State<MealDetails> createState() => _MealDetailsState();
 }
 
-class _WorkoutState extends State<Workout> {
+class _MealDetailsState extends State<MealDetails> {
   bool isHeartFilled = false;
 
   void toggleHeart() {
@@ -90,17 +94,22 @@ class _WorkoutState extends State<Workout> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      padding: EdgeInsets.all(30),
-                      height: 300,
-                      width: 300,
-                      decoration: BoxDecoration(
-                          color: AppColor.workBg,
-                          borderRadius: BorderRadius.circular(150)),
-                      child: SvgPicture.asset(
-                        widget.trainingTarget.imagePath,
+                    Stack(children: [
+                      Center(
+                        child: Container(
+                          height: 250,
+                          width: 250,
+                          decoration: BoxDecoration(
+                              color: AppColor.workBg,
+                              borderRadius: BorderRadius.circular(150)),
+                        ),
                       ),
-                    )
+                      SvgPicture.asset(
+                        widget.meals.imgPath,
+                        height: 250,
+                        width: 250,
+                      ),
+                    ])
                   ],
                 ),
               ),
@@ -108,7 +117,7 @@ class _WorkoutState extends State<Workout> {
             DraggableScrollableSheet(
               initialChildSize: 0.87, // Adjust as needed
               maxChildSize: 0.87,
-              minChildSize: 0.45,
+              minChildSize: 0.52,
               builder: (context, scrollController) {
                 return Container(
                   decoration: const BoxDecoration(
@@ -156,21 +165,33 @@ class _WorkoutState extends State<Workout> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Text(
-                                      widget.trainingTarget.title,
+                                      widget.meals.name,
                                       style: TextStyle(
                                         color: Color(0xFF1D1517),
                                         fontSize: 16,
                                         fontWeight: FontWeight.w700,
-                                        height: 0,
                                       ),
                                     ),
-                                    Text(
-                                      widget.trainingTarget.description,
-                                      style: TextStyle(
-                                        color: AppColor.grayColor1,
-                                        fontSize: 12,
-                                        height: 0.12,
-                                      ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "by",
+                                          style: TextStyle(
+                                            color: Color(0xFF7B6F72),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        GradientText(
+                                          text: " James Ruth",
+                                          gradient: AppColor.bluetextGradient,
+                                          style: TextStyle(
+                                            color: AppColor.grayColor1,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -180,7 +201,7 @@ class _WorkoutState extends State<Workout> {
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(8),
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           color: Color(0x111D1617),
                                           blurRadius: 40,
@@ -210,227 +231,38 @@ class _WorkoutState extends State<Workout> {
                               ],
                             ),
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: 20),
-                            width: double.infinity,
-                            height: 50,
-                            decoration: BoxDecoration(
-                                gradient: AppColor.blueBg,
-                                borderRadius: BorderRadius.circular(16),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0x111D1617),
-                                    blurRadius: 40,
-                                    offset: Offset(0, 10),
-                                    spreadRadius: 0,
-                                  )
-                                ]),
-                            child: Material(
-                              color: Colors.transparent,
-                              child: InkWell(
-                                borderRadius: BorderRadius.circular(16),
-                                onTap: () {},
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        SvgPicture.asset(
-                                          "assets/images/calendar.svg",
-                                          width: 22,
-                                          height: 22,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          'Schedule Workout',
-                                          style: TextStyle(
-                                            color: Color(0xFF7B6F72),
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        const Text(
-                                          '5/27, 09:00 AM',
-                                          textAlign: TextAlign.right,
-                                          style: TextStyle(
-                                            color: Color(0xFF7B6F72),
-                                            fontSize: 10,
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w400,
-                                            height: 0.15,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        SvgPicture.asset(
-                                          "assets/images/forward.svg",
-                                          height: 16,
-                                          width: 16,
-                                        ),
-                                        const SizedBox(
-                                          width: 20,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: 20),
-                            width: double.infinity,
-                            height: 50,
-                            decoration: BoxDecoration(
-                                gradient: AppColor.pinkBg,
-                                borderRadius: BorderRadius.circular(16),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Color(0x111D1617),
-                                    blurRadius: 40,
-                                    offset: Offset(0, 10),
-                                    spreadRadius: 0,
-                                  )
-                                ]),
-                            child: Material(
-                              color: Colors.transparent,
-                              child: InkWell(
-                                borderRadius: BorderRadius.circular(16),
-                                onTap: () {},
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const SizedBox(
-                                          width: 20,
-                                        ),
-                                        SvgPicture.asset(
-                                          "assets/images/swap.svg",
-                                          width: 22,
-                                          height: 22,
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        const Text(
-                                          'Difficulity',
-                                          style: TextStyle(
-                                            color: Color(0xFF7B6F72),
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        const Text(
-                                          'Beginner',
-                                          textAlign: TextAlign.right,
-                                          style: TextStyle(
-                                            color: Color(0xFF7B6F72),
-                                            fontSize: 10,
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        SvgPicture.asset(
-                                          "assets/images/forward.svg",
-                                          height: 16,
-                                          width: 16,
-                                        ),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
+
                           SizedBox(
                             height: 30,
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'You’ll Need',
-                                  style: TextStyle(
-                                    color: Color(0xFF1D1517),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Text(
-                                  '5 Items',
-                                  style: TextStyle(
-                                    color: Color(0xFFACA3A5),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
+                            child: const Text(
+                              'Nutrition',
+                              style: TextStyle(
+                                color: Color(0xFF1D1517),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
+
                           SizedBox(
                             height: 10,
                           ),
                           SizedBox(
-                            height: 150,
+                            height: 80,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              itemCount:
-                                  FitnessGear.getFitnessGearData().length,
+                              itemCount: Meals.getNutrition().length,
                               // ber of items in the list
                               itemBuilder: (BuildContext context, int index) {
                                 // Each item is a container with a box shadow
-                                FitnessGear fitnessGearOut =
-                                    FitnessGear.getFitnessGearData()[index];
-
-                                // Apply padding based on index to control spacing between items
-                                EdgeInsets itemPadding = EdgeInsets.only(
-                                  left: index == 0 ? 20 : 10,
-                                  // Start padding for first item, 10 for others
-                                  right: index ==
-                                          FitnessGear.getFitnessGearData()
-                                                  .length -
-                                              1
-                                      ? 20
-                                      : 10, // End padding for last item, 10 for others
-                                );
+                                Meals meals = Meals.getNutrition()[index];
                                 return Container(
-                                  padding: itemPadding,
+                                  padding: index == 0
+                                      ? EdgeInsets.only(left: 20)
+                                      : EdgeInsets.only(left: 15),
                                   child: Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -438,23 +270,37 @@ class _WorkoutState extends State<Workout> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Container(
-                                        height: 130,
-                                        width: 130,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        height: 38,
                                         decoration: BoxDecoration(
-                                          color: const Color(0xFFF7F8F8),
+                                          gradient: AppColor.blueBg,
                                           borderRadius:
                                               BorderRadius.circular(12),
                                         ),
-                                        child: Center(
-                                            child: SvgPicture.asset(
-                                                fitnessGearOut.imgPath)),
-                                      ),
-                                      Text(
-                                        fitnessGearOut.name,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400,
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            SvgPicture.asset(
+                                              meals.imgPath,
+                                              width: 18,
+                                              height: 18,
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              meals.details,
+                                              style: TextStyle(
+                                                color: Color(0xFF1D1517),
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ],
@@ -463,14 +309,41 @@ class _WorkoutState extends State<Workout> {
                               },
                             ),
                           ),
-                          const SizedBox(height: 30), //
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  'Descriptions',
+                                  style: TextStyle(
+                                    color: Color(0xFF1D1517),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    height: 0.09,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                ReadMoreWidget(
+                                  initialText: AppString.mealInitialText,
+                                  remainingText: AppString.mealRemainingText,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const Text(
-                                  'Exercises',
+                                  'Ingredients That You \nWill Need',
                                   style: TextStyle(
                                     color: Color(0xFF1D1517),
                                     fontSize: 16,
@@ -478,7 +351,7 @@ class _WorkoutState extends State<Workout> {
                                   ),
                                 ),
                                 Text(
-                                  '3 Sets',
+                                  '6 items',
                                   textAlign: TextAlign.right,
                                   style: TextStyle(
                                     color: Color(0xFFACA3A5),
@@ -487,6 +360,77 @@ class _WorkoutState extends State<Workout> {
                                   ),
                                 ),
                               ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          SizedBox(
+                            height: 125,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: Meals.getIngredients().length,
+                              // ber of items in the list
+                              itemBuilder: (BuildContext context, int index) {
+                                // Each item is a container with a box shadow
+                                Meals meals = Meals.getIngredients()[index];
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                    left: index == 0 ? 20 : 10,
+                                    // Left padding for first item is 20, others 10
+                                    right: index ==
+                                            Meals.getIngredients().length - 1
+                                        ? 20
+                                        : 10, // Right padding for last item is 20, others 10
+                                  ),
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 5),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          padding: EdgeInsets.all(20),
+                                          height: 80,
+                                          width: 80,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFFF7F8F8),
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                          ),
+                                          child: Center(
+                                              child: SvgPicture.asset(
+                                                  meals.imgPath)),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              meals.name,
+                                              style: TextStyle(
+                                                color: Color(0xFF1D1517),
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                            Text(
+                                              meals.details,
+                                              style: TextStyle(
+                                                color: Color(0xFF7B6F72),
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
                           ),
 
@@ -640,7 +584,7 @@ class _WorkoutState extends State<Workout> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Start Workout",
+                            "Add to Breakfast Meal",
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,

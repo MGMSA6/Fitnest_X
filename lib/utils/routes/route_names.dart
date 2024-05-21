@@ -22,4 +22,5 @@ class RouteNames {
   static const String mealType = "MealType";
   static const String cal = "Cal";
   static const String workout = "Workout";
+  static const String mealDetails = "MealDetails";
 }

@@ -120,4 +120,9 @@ class AppString {
       "The arms are then stretched out and brought back together above the head while jumping. The jumping jack is a cardiovascular exercise that can help increase heart rate and burn calories.";
 
 /*------  WorkoutDetails End ------*/
+
+  static const String mealInitialText =
+      "Pancakes are some people's favorite breakfast, who doesn't like pancakes? Especially with the real honey splash on top of the pancakes ";
+  static const String mealRemainingText =
+      "of course everyone loves that! besides being.";
 }
