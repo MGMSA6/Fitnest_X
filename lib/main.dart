@@ -20,7 +20,7 @@ class FitnestX extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       darkTheme: ThemeData(brightness: Brightness.dark),
-      initialRoute: RouteNames.mealType,
+      initialRoute: RouteNames.sleepTrack,
       onGenerateRoute: Routes.generateRoute,
     );
   }

@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../model/FitnessGear.dart';
-import '../../model/LatestWorkOut.dart';
 import '../../model/Meals.dart';
 import '../../model/WorkOutData.dart';
 import '../../res/colors.dart';

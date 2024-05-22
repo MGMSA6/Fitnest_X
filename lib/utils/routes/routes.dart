@@ -8,23 +8,24 @@ import 'package:fitnest_x/view/dashboard/Camera.dart';
 import 'package:fitnest_x/view/dashboard/Dashboard.dart';
 import 'package:fitnest_x/view/dashboard/Profile.dart';
 import 'package:fitnest_x/view/dashboard/WorkoutFinished.dart';
-import 'package:fitnest_x/view/meal-planner/meal_planner.dart';
-import 'package:fitnest_x/view/meal-planner/meal_schedule.dart';
-import 'package:fitnest_x/view/meal-planner/meal_type.dart';
-import 'package:fitnest_x/view/meal-planner/meals_details.dart';
 import 'package:fitnest_x/view/onboarding/Notifications.dart';
 import 'package:fitnest_x/view/onboarding/Welcome.dart';
-import 'package:fitnest_x/view/workout-tracker/AddSchedule.dart';
-import 'package:fitnest_x/view/workout-tracker/Cal.dart';
-import 'package:fitnest_x/view/workout-tracker/WorkoutDetails.dart';
-import 'package:fitnest_x/view/workout-tracker/WorkoutSchedule.dart';
-import 'package:fitnest_x/view/workout-tracker/WorkoutTracker.dart';
+
 import 'package:fitnest_x/utils/routes/route_names.dart';
+import 'package:fitnest_x/view/sleep_tracker/sleep_track.dart';
 import 'package:flutter/material.dart';
 
 import '../../view/dashboard/Home.dart';
+import '../../view/meal_planner/meal_planner.dart';
+import '../../view/meal_planner/meal_schedule.dart';
+import '../../view/meal_planner/meal_type.dart';
 import '../../view/onboarding/Onboarding.dart';
 import '../../view/onboarding/Welcome1.dart';
+import '../../view/workout_tracker/Cal.dart';
+import '../../view/workout_tracker/add_schedule.dart';
+import '../../view/workout_tracker/workout_details.dart';
+import '../../view/workout_tracker/workout_schedule.dart';
+import '../../view/workout_tracker/workout_tracker.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -95,6 +96,9 @@ class Routes {
       case RouteNames.mealSchedule:
         return MaterialPageRoute(
             builder: (BuildContext context) => const MealSchedule());
+      case RouteNames.sleepTrack:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const SleepTrack());
       // case RouteNames.mealDetails:
       //   return MaterialPageRoute(builder: (BuildContext context) => const MealDetails(trainingTarget: trainingTarget));
       case RouteNames.cal:

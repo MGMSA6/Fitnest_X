@@ -1,7 +1,5 @@
-import 'package:fitnest_x/view/workout-tracker/Workout.dart';
 import 'package:fitnest_x/res/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -11,6 +9,7 @@ import '../../model/WorkOutData.dart';
 import '../../res/components/GradientSwitch.dart';
 import '../../res/colors.dart';
 import '../onboarding/Welcome.dart';
+import 'Workout.dart';
 
 class WorkoutTracker extends StatefulWidget {
   const WorkoutTracker({super.key});
