@@ -1,15 +1,15 @@
 import 'Exercises.dart';
 
-class ExercisesSet {
+class ExerciseSet {
   final String num;
   final List<Exercises> exercises;
 
-  ExercisesSet(this.num, this.exercises);
+  ExerciseSet(this.num, this.exercises);
 
-  static List<ExercisesSet> getSetData() {
-    final List<ExercisesSet> exercises = [
-      ExercisesSet("1", getExercisesData1()),
-      ExercisesSet("2", getExercisesData2()),
+  static List<ExerciseSet> getSetData() {
+    final List<ExerciseSet> exercises = [
+      ExerciseSet("1", getExercisesData1()),
+      ExerciseSet("2", getExercisesData2()),
     ];
     return exercises;
   }

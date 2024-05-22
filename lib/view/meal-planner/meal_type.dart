@@ -3,11 +3,8 @@ import 'package:fitnest_x/view/onboarding/Welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../model/FitnessGear.dart';
-import '../../model/LatestWorkOut.dart';
 import '../../model/Meals.dart';
 import '../../res/colors.dart';
-import '../../utils/routes/route_names.dart';
 
 class MealType extends StatefulWidget {
   const MealType({super.key});

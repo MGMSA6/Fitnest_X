@@ -2,7 +2,7 @@ import 'package:fitnest_x/utils/routes/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../model/ExercisesSet.dart';
+import '../../model/ExerciseSet.dart';
 import '../../model/FitnessGear.dart';
 import '../../model/TrainingTarget.dart';
 import '../../res/colors.dart';
@@ -494,12 +494,12 @@ class _WorkoutState extends State<Workout> {
                           ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: ExercisesSet.getSetData().length,
+                            itemCount: ExerciseSet.getSetData().length,
                             // ber of items in the list
                             itemBuilder: (BuildContext context, int index) {
                               // Each item is a container with a box shadow
-                              ExercisesSet sets =
-                                  ExercisesSet.getSetData()[index];
+                              ExerciseSet sets =
+                                  ExerciseSet.getSetData()[index];
                               return Padding(
                                 padding: const EdgeInsets.only(
                                     left: 20.0, right: 20),
@@ -511,7 +511,7 @@ class _WorkoutState extends State<Workout> {
                                     ),
                                     Text(
                                       'Set ' +
-                                          ExercisesSet.getSetData()[index].num,
+                                          ExerciseSet.getSetData()[index].num,
                                       style: TextStyle(
                                         color: Color(0xFF1D1517),
                                         fontSize: 12,

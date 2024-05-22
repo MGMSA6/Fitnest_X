@@ -2,11 +2,8 @@ import 'package:fitnest_x/model/Meals.dart';
 import 'package:fitnest_x/utils/routes/route_names.dart';
 import 'package:fitnest_x/view/onboarding/Welcome.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../model/ExercisesSet.dart';
-import '../../model/FitnessGear.dart';
 import '../../res/colors.dart';
 import '../../res/components/ReadMoreWidget.dart';
 import '../../res/components/TimelineItem1.dart';
@@ -542,7 +539,9 @@ class _MealDetailsState extends State<MealDetails> {
                   color: Colors.transparent,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(99),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteNames.mealSchedule);
+                    },
                     child: const SizedBox(
                       height: 60,
                       child: Row(

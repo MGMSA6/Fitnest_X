@@ -30,7 +30,7 @@ class Meals {
           "Easy | 30mins | 180kCal"),
       Meals(
           "assets/images/bread.svg", "Canai Bread", "Easy | 20mins | 230kCal"),
-      Meals("assets/images/pancake2.svg", "Blueberry Pancake",
+      Meals("assets/images/pancake3.svg", "Blueberry Pancake",
           "Easy | 20mins | 230kCal"),
       Meals("assets/images/cake1.svg", "Blueberry Pancake",
           "Easy | 20mins | 230kCal"),

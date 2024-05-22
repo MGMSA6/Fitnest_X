@@ -9,6 +9,7 @@ import 'package:fitnest_x/view/dashboard/Dashboard.dart';
 import 'package:fitnest_x/view/dashboard/Profile.dart';
 import 'package:fitnest_x/view/dashboard/WorkoutFinished.dart';
 import 'package:fitnest_x/view/meal-planner/meal_planner.dart';
+import 'package:fitnest_x/view/meal-planner/meal_schedule.dart';
 import 'package:fitnest_x/view/meal-planner/meal_type.dart';
 import 'package:fitnest_x/view/meal-planner/meals_details.dart';
 import 'package:fitnest_x/view/onboarding/Notifications.dart';
@@ -86,9 +87,14 @@ class Routes {
         return MaterialPageRoute(
             builder: (BuildContext context) => const AddSchedule());
       case RouteNames.mealPlanner:
-        return MaterialPageRoute(builder: (BuildContext context) => const MealPlanner());
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const MealPlanner());
       case RouteNames.mealType:
-        return MaterialPageRoute(builder: (BuildContext context) => const MealType());
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const MealType());
+      case RouteNames.mealSchedule:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const MealSchedule());
       // case RouteNames.mealDetails:
       //   return MaterialPageRoute(builder: (BuildContext context) => const MealDetails(trainingTarget: trainingTarget));
       case RouteNames.cal:
