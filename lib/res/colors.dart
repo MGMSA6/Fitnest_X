@@ -55,6 +55,12 @@ class AppColor {
     ],
   );
 
+  static const Gradient loaderBg = LinearGradient(
+    begin: Alignment(-1.00, 0.05),
+    end: Alignment(1, -0.05),
+    colors: [Color(0xFF92A3FD), Color(0xFFC58BF2)],
+  );
+
   static const LinearGradient textGradient = LinearGradient(
     begin: Alignment(-0.83, 0.0),
     end: Alignment(0.86, 0.0),

@@ -67,4 +67,14 @@ class Meals {
     ];
     return meals;
   }
+
+  static List<Meals> getTodayMeal() {
+    final List<Meals> meals = [
+      Meals("assets/images/calories.svg", "Calories", "320 kCal"),
+      Meals("assets/images/protein.svg", "Proteins", "300g"),
+      Meals("assets/images/eggs.svg", "Fats", "140g"),
+      Meals("assets/images/carbo.svg", "Carbo", "140g"),
+    ];
+    return meals;
+  }
 }

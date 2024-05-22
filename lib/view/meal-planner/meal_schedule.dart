@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../model/ExerciseSet.dart';
+import '../../model/Meals.dart';
 import '../../res/components/CustomDatePickerTimeline.dart';
 import '../../res/colors.dart';
 import '../../utils/routes/route_names.dart';
@@ -259,7 +260,136 @@ class _MealScheduleState extends State<MealSchedule> {
                         },
                       ),
                       SizedBox(
-                        height: 70,
+                        height: 20,
+                      ),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 20),
+                          child: Text(
+                            'Today Meal Nutritions',
+                            style: TextStyle(
+                              color: Color(0xFF1D1517),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: Meals.getTodayMeal()
+                              .length, // Number of items in the list
+                          itemBuilder: (BuildContext context, int index) {
+                            // Each item is a container with a box shadow
+                            Meals meals = Meals.getTodayMeal()[index];
+                            return Container(
+                              margin: EdgeInsets.symmetric(vertical: 10),
+                              height: 80,
+                              width: double.infinity,
+                              padding: EdgeInsets.all(10),
+                              decoration: index.isEven
+                                  ? BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(16.0),
+                                      boxShadow: const [
+                                          BoxShadow(
+                                            color: Color(0x111D1617),
+                                            blurRadius: 40,
+                                            offset: Offset(0, 10),
+                                            spreadRadius: 0,
+                                          ),
+                                        ])
+                                  : BoxDecoration(color: Colors.transparent),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            meals.name,
+                                            style: TextStyle(
+                                              color: Color(0xFF1D1517),
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          SvgPicture.asset(meals.imgPath)
+                                        ],
+                                      ),
+                                      Text(
+                                        meals.details,
+                                        textAlign: TextAlign.right,
+                                        style: const TextStyle(
+                                          color: Color(0xFF7B6F72),
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Container(
+                                    width: double.maxFinite,
+                                    height: 10,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Stack(
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Container(
+                                            width: double.maxFinite,
+                                            height: 10,
+                                            decoration: BoxDecoration(
+                                              gradient: AppColor.loaderBg,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                          ),
+                                        ),
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          child: const SizedBox(
+                                            width: double.maxFinite,
+                                            height: 10,
+                                            child: LinearProgressIndicator(
+                                              value: 0.1,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                      Colors.transparent),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
                       ),
                     ],
                   ),
