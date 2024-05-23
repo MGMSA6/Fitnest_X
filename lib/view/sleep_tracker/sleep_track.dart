@@ -120,9 +120,16 @@ class _SleepTrackState extends State<SleepTrack> {
                   height: 148,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    gradient: AppColor.buttonColors,
-                    borderRadius: BorderRadius.circular(22),
-                  ),
+                      gradient: AppColor.buttonColors,
+                      borderRadius: BorderRadius.circular(22),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x4C95ADFE),
+                          blurRadius: 22,
+                          offset: Offset(0, 10),
+                          spreadRadius: 0,
+                        )
+                      ]),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

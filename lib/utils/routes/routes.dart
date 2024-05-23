@@ -12,6 +12,7 @@ import 'package:fitnest_x/view/onboarding/Notifications.dart';
 import 'package:fitnest_x/view/onboarding/Welcome.dart';
 
 import 'package:fitnest_x/utils/routes/route_names.dart';
+import 'package:fitnest_x/view/sleep_tracker/sleep_schedule.dart';
 import 'package:fitnest_x/view/sleep_tracker/sleep_track.dart';
 import 'package:flutter/material.dart';
 
@@ -99,6 +100,9 @@ class Routes {
       case RouteNames.sleepTrack:
         return MaterialPageRoute(
             builder: (BuildContext context) => const SleepTrack());
+      case RouteNames.sleepSchedule:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const SleepSchedule());
       // case RouteNames.mealDetails:
       //   return MaterialPageRoute(builder: (BuildContext context) => const MealDetails(trainingTarget: trainingTarget));
       case RouteNames.cal:

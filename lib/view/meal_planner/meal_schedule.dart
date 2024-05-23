@@ -87,7 +87,7 @@ class _MealScheduleState extends State<MealSchedule> {
                               ),
                             ),
                             const Text(
-                              'Workout Schedule',
+                              'Meal Schedule',
                               style: TextStyle(
                                 color: Color(0xFF1D1517),
                                 fontSize: 16,
