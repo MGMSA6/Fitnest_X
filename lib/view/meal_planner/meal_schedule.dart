@@ -397,8 +397,8 @@ class _MealScheduleState extends State<MealSchedule> {
               ),
             ),
             Positioned(
-              right: 20,
-              bottom: 20,
+              right: 10,
+              bottom: 0,
               child: Container(
                 height: 60,
                 width: 60,

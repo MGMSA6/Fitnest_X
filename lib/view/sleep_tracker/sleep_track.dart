@@ -1,4 +1,5 @@
 import 'package:fitnest_x/res/colors.dart';
+import 'package:fitnest_x/utils/routes/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -239,7 +240,9 @@ class _SleepTrackState extends State<SleepTrack> {
                             color: Colors.transparent,
                             child: InkWell(
                               borderRadius: BorderRadius.circular(55),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.pushNamed(context, RouteNames.sleepSchedule);
+                              },
                               child: const Center(
                                 child: Text(
                                   'Check',

@@ -458,12 +458,15 @@ class _SleepScheduleState extends State<SleepSchedule> {
                         ],
                       ),
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
                 ],
               ),
               Positioned(
                 right: 20,
-                bottom: 20,
+                bottom: 0,
                 child: Container(
                   height: 60,
                   width: 60,

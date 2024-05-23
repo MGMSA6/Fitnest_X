@@ -23,6 +23,7 @@ class RouteNames {
   static const String mealSchedule = "MealSchedule";
   static const String sleepTrack = "SleepTrack";
   static const String sleepSchedule = "SleepSchedule";
+  static const String addAlarm = "AddAlarm";
   static const String cal = "Cal";
   static const String workout = "Workout";
   static const String mealDetails = "MealDetails";
