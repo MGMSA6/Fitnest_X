@@ -7,14 +7,14 @@ import '../../utils/DateUtil.dart';
 import '../../res/components/TimePicker.dart';
 import '../../res/colors.dart';
 
-class AddAlarm extends StatefulWidget {
-  const AddAlarm({super.key});
+class Comparison extends StatefulWidget {
+  const Comparison({super.key});
 
   @override
-  State<AddAlarm> createState() => _AddAlarmState();
+  State<Comparison> createState() => _ComparisonState();
 }
 
-class _AddAlarmState extends State<AddAlarm> {
+class _ComparisonState extends State<Comparison> {
   DateTime selectedDate = DateTime.now();
 
   @override
@@ -50,14 +50,14 @@ class _AddAlarmState extends State<AddAlarm> {
                               Navigator.pop(context);
                             },
                             child: const Icon(
-                            Icons.arrow_back_ios_rounded,
-                            size: 18,
-                          ),
+                              Icons.arrow_back_ios_rounded,
+                              size: 18,
+                            ),
                           ),
                         ),
                       ),
                       Text(
-                        'Add Alarm',
+                        'Comparison',
                         style: TextStyle(
                           color: Color(0xFF1D1517),
                           fontSize: 16,
@@ -103,12 +103,13 @@ class _AddAlarmState extends State<AddAlarm> {
                             children: [
                               Row(
                                 children: [
-                                  SvgPicture.asset("assets/images/bed2.svg"),
+                                  SvgPicture.asset(
+                                      "assets/images/calendar.svg"),
                                   SizedBox(
                                     width: 10,
                                   ),
                                   Text(
-                                    'Bedtime',
+                                    'Select Month 1',
                                     style: TextStyle(
                                       color: Color(0xFF7B6F72),
                                       fontSize: 12,
@@ -120,7 +121,7 @@ class _AddAlarmState extends State<AddAlarm> {
                               Row(
                                 children: [
                                   Text(
-                                    '09:00 PM',
+                                    'May',
                                     style: TextStyle(
                                       color: Color(0xFFACA3A5),
                                       fontSize: 10,
@@ -161,12 +162,13 @@ class _AddAlarmState extends State<AddAlarm> {
                             children: [
                               Row(
                                 children: [
-                                  SvgPicture.asset("assets/images/time.svg"),
+                                  SvgPicture.asset(
+                                      "assets/images/calendar.svg"),
                                   SizedBox(
                                     width: 10,
                                   ),
                                   Text(
-                                    'Hours of sleep',
+                                    'Select Month 2',
                                     style: TextStyle(
                                       color: Color(0xFF7B6F72),
                                       fontSize: 12,
@@ -178,7 +180,7 @@ class _AddAlarmState extends State<AddAlarm> {
                               Row(
                                 children: [
                                   Text(
-                                    '8hours 30minutes',
+                                    'Select Month',
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
                                       color: Color(0xFFACA3A5),
@@ -196,103 +198,6 @@ class _AddAlarmState extends State<AddAlarm> {
                             ],
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFF7F8F8),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () {},
-                        borderRadius: BorderRadius.circular(15),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  SvgPicture.asset("assets/images/repeat.svg"),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Repeat',
-                                    style: TextStyle(
-                                      color: Color(0xFF7B6F72),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Mon to Fri',
-                                    style: TextStyle(
-                                      color: Color(0xFFACA3A5),
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  SvgPicture.asset(
-                                      "assets/images/icon_arrow.svg")
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFF7F8F8),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              SvgPicture.asset("assets/images/vibrate.svg"),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                'Vibrate When Alarm Sound',
-                                style: TextStyle(
-                                  color: Color(0xFF7B6F72),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          ),
-                          GradientSwitch(
-                            width: 44,
-                            height: 24,
-                            onChanged: (value) {},
-                          )
-                        ],
                       ),
                     ),
                   ),
@@ -328,7 +233,7 @@ class _AddAlarmState extends State<AddAlarm> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Add",
+                            "Compare",
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,

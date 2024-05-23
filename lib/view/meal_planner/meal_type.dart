@@ -14,7 +14,6 @@ class MealType extends StatefulWidget {
 }
 
 class _MealTypeState extends State<MealType> {
-  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

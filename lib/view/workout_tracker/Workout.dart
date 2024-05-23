@@ -1,4 +1,5 @@
 import 'package:fitnest_x/utils/routes/route_names.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -533,15 +534,17 @@ class _WorkoutState extends State<Workout> {
                                           children: [
                                             Row(
                                               children: [
-                                                new Image.asset(
+                                                Image.asset(
                                                   sets.exercises[index].imgPath,
                                                   width: 60.0,
                                                   height: 60.0,
                                                   fit: BoxFit.cover,
                                                   errorBuilder: (context, error,
                                                       stackTrace) {
-                                                    print(
-                                                        'Error loading image: $error');
+                                                    if (kDebugMode) {
+                                                      print(
+                                                          'Error loading image: $error');
+                                                    }
                                                     return Text(
                                                         'Error loading image');
                                                   },

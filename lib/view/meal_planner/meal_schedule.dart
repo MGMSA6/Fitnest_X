@@ -18,32 +18,7 @@ class MealSchedule extends StatefulWidget {
 
 class _MealScheduleState extends State<MealSchedule> {
   bool isHeartFilled = false;
-  final DateTime _selectedDate = DateTime.now();
 
-  final List<CalendarEventData> _events = [
-    // Add today's 8 PM event
-    CalendarEventData(
-      date: DateTime.now(),
-      title: "New Event",
-      // Replace with your desired title
-      description: "This is a new event for today.",
-      startTime: DateTime(
-        DateTime.now().year,
-        DateTime.now().month,
-        DateTime.now().day,
-        10, // Set hour to 8 PM
-        0, // Set minute to 0
-      ),
-      endTime: DateTime(
-        DateTime.now().year,
-        DateTime.now().month,
-        DateTime.now().day,
-        11, // Set end time if needed (optional)
-        0, // Set minute to 0 (optional)
-      ),
-    ),
-    // ... your existing events (optional)
-  ];
 
   @override
   Widget build(BuildContext context) {

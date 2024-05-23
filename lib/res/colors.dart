@@ -20,6 +20,8 @@ class AppColor {
   static Color pinkBg2 = const Color(0xFFEEA4CE).withOpacity(0.20);
   static Color whiteBg = const Color(0xFFFFFFFF).withOpacity(0.50);
 
+  static Color reminderBg = const Color(0xFFFF0000).withOpacity(0.10);
+
   static const List<Color> gradientColors = [
     Color(0xff92A3FD),
     Color(0xff9DCEFF)
