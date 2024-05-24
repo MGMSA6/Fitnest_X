@@ -12,6 +12,8 @@ class AppColor {
   static const Color secondaryColor = Color(0xffC58BF2);
   static const Color secondaryColor1 = Color(0xffeea4ce);
   static const Color workBg = Color(0xFFb8cffe);
+  static const Color inActiveTabText = Color(0xFFACA3A5);
+
 
   static Color blueBg1 = const Color(0xFF92A3FD).withOpacity(0.20);
   static Color blueBg2 = const Color(0xFF9DCEFF).withOpacity(0.20);

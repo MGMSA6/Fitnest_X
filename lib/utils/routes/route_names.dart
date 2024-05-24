@@ -26,6 +26,7 @@ class RouteNames {
   static const String addAlarm = "AddAlarm";
   static const String progressPhoto = "ProgressPhoto";
   static const String comparison = "Comparison";
+  static const String result = "Result";
   static const String cal = "Cal";
   static const String workout = "Workout";
   static const String mealDetails = "MealDetails";
