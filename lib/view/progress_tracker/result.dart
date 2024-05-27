@@ -1,8 +1,9 @@
-import 'package:custom_sliding_segmented_control/custom_sliding_segmented_control.dart';
 import 'package:fitnest_x/res/colors.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/LatestWorkOut.dart';
+import '../../model/result_set.dart';
 import '../../res/components/tab_screen.dart';
 
 class Result extends StatefulWidget {
@@ -13,7 +14,7 @@ class Result extends StatefulWidget {
 }
 
 class _ResultState extends State<Result> {
-  int _selectedValue = 0;
+  final List<LatestWorkOut> latestWorkOut = LatestWorkOut.getDummyData();
 
   @override
   Widget build(BuildContext context) {
@@ -150,6 +151,86 @@ class _ResultState extends State<Result> {
                       value: 0.5, // Set the progress value here (0.0 to 1.0)
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'May',
+                      style: TextStyle(
+                        color: Color(0xFF7B6F72),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      'June',
+                      style: TextStyle(
+                        color: Color(0xFF7B6F72),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+                ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: ResultSet.getResultData().length, // Number of items in the list
+                  itemBuilder: (BuildContext context, int index) {
+                    // Each item is a container with a box shadow
+                    ResultSet resultSet = ResultSet.getResultData()[index];
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          resultSet.bodyPart,
+                          style: TextStyle(
+                            color: Color(0xFF7B6F72),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              resultSet.resultData[0].imgPath1,
+                              width: 150.0,
+                              height: 150.0,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                if (kDebugMode) {
+                                  print('Error loading image: $error');
+                                }
+                                return Text('Error loading image');
+                              },
+                            ),
+                            Image.asset(
+                              resultSet.resultData[0].imgPath2,
+                              width: 150.0,
+                              height: 150.0,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                if (kDebugMode) {
+                                  print('Error loading image: $error');
+                                }
+                                return Text('Error loading image');
+                              },
+                            )
+                          ],
+                        )
+                      ],
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      height: 20,
+                    );
+                  },
                 ),
               ],
             ),
