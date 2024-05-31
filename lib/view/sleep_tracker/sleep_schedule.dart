@@ -218,6 +218,7 @@ class _SleepScheduleState extends State<SleepSchedule> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: ListView.builder(
                       shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       itemCount: Sleep.getSleepData()
                           .length, // Number of items in the list
                       itemBuilder: (BuildContext context, int index) {

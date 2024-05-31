@@ -22,7 +22,7 @@ class _TabScreenState extends State<TabScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         width: double.maxFinite,
         height: 60,
         decoration: BoxDecoration(
@@ -40,7 +40,7 @@ class _TabScreenState extends State<TabScreen> {
                 });
               },
               child: AnimatedContainer(
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 width: _selectedIndex == index
                     ? tabWidth
                     : tabSwitcherWidth / tabTitles.length,

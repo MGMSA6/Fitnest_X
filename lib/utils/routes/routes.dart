@@ -14,7 +14,8 @@ import 'package:fitnest_x/view/onboarding/Welcome.dart';
 import 'package:fitnest_x/utils/routes/route_names.dart';
 import 'package:fitnest_x/view/progress_tracker/comparison.dart';
 import 'package:fitnest_x/view/progress_tracker/progress_photo.dart';
-import 'package:fitnest_x/view/progress_tracker/result.dart';
+import 'package:fitnest_x/view/progress_tracker/photo.dart';
+import 'package:fitnest_x/view/progress_tracker/statistic.dart';
 import 'package:fitnest_x/view/sleep_tracker/add_alarm.dart';
 import 'package:fitnest_x/view/sleep_tracker/sleep_schedule.dart';
 import 'package:fitnest_x/view/sleep_tracker/sleep_track.dart';
@@ -26,6 +27,7 @@ import '../../view/meal_planner/meal_schedule.dart';
 import '../../view/meal_planner/meal_type.dart';
 import '../../view/onboarding/Onboarding.dart';
 import '../../view/onboarding/Welcome1.dart';
+import '../../view/progress_tracker/result.dart';
 import '../../view/workout_tracker/Cal.dart';
 import '../../view/workout_tracker/add_schedule.dart';
 import '../../view/workout_tracker/workout_details.dart';
@@ -119,6 +121,12 @@ class Routes {
       case RouteNames.result:
         return MaterialPageRoute(
             builder: (BuildContext context) => const Result());
+      case RouteNames.photo:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const Photo());
+      case RouteNames.statistic:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const Statistic());
       // case RouteNames.mealDetails:
       //   return MaterialPageRoute(builder: (BuildContext context) => const MealDetails(trainingTarget: trainingTarget));
       case RouteNames.cal:

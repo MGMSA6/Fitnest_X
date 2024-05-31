@@ -312,6 +312,7 @@ class _ProgressPhotoState extends State<ProgressPhoto> {
                   ),
                   ListView.builder(
                     shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
                     itemCount: GallerySet.getGallerySetData().length,
                     itemBuilder: (BuildContext context, int index) {
                       GallerySet gallerySet =
