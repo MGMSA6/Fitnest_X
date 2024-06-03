@@ -24,6 +24,9 @@ class AppColor {
 
   static Color reminderBg = const Color(0xFFFF0000).withOpacity(0.10);
 
+  static Color cameraBg = const Color(0xFFFFFFFF).withOpacity(0.80);
+
+
   static const List<Color> gradientColors = [
     Color(0xff92A3FD),
     Color(0xff9DCEFF)
