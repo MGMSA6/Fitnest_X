@@ -11,7 +11,6 @@ class TabScreen extends StatefulWidget {
 }
 
 class _TabScreenState extends State<TabScreen> {
-
   List<String> tabTitles = ["Photo", "Statistic"];
 
   // Configurable values
@@ -19,7 +18,6 @@ class _TabScreenState extends State<TabScreen> {
   double tabSwitcherHeight = 50.0;
   double tabWidth = 130.0;
   double tabHeight = 40.0;
-
 
   @override
   void initState() {
@@ -43,7 +41,7 @@ class _TabScreenState extends State<TabScreen> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 000),
       width: double.maxFinite,
       height: 60,
       decoration: BoxDecoration(
@@ -54,12 +52,12 @@ class _TabScreenState extends State<TabScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: List.generate(
           tabTitles.length,
-              (index) => GestureDetector(
+          (index) => GestureDetector(
             onTap: () {
               widget.tabController.animateTo(index);
             },
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 000),
               width: widget.tabController.index == index
                   ? tabWidth
                   : tabSwitcherWidth / tabTitles.length,

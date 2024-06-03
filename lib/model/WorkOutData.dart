@@ -17,4 +17,19 @@ class WorkOutData {
 
     return workOutData;
   }
+
+
+  static List<WorkOutData> getWorkOutData1() {
+    final List<WorkOutData> workOutData = [
+      WorkOutData("Jan", 30),
+      WorkOutData("Feb", 50),
+      WorkOutData("Mar", 70),
+      WorkOutData("Apr", 60),
+      WorkOutData("May", 80),
+      WorkOutData("Jun", 90),
+      WorkOutData("Jul", 85),
+    ];
+
+    return workOutData;
+  }
 }
