@@ -29,6 +29,7 @@ class RouteNames {
   static const String result = "Result";
   static const String photo = "Photo";
   static const String statistic = "Statistic";
+  static const String tabBarExample = "TabBarExample";
   static const String cal = "Cal";
   static const String workout = "Workout";
   static const String mealDetails = "MealDetails";

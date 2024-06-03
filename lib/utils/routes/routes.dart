@@ -16,6 +16,7 @@ import 'package:fitnest_x/view/progress_tracker/comparison.dart';
 import 'package:fitnest_x/view/progress_tracker/progress_photo.dart';
 import 'package:fitnest_x/view/progress_tracker/photo.dart';
 import 'package:fitnest_x/view/progress_tracker/statistic.dart';
+import 'package:fitnest_x/view/progress_tracker/tab_bar_example.dart';
 import 'package:fitnest_x/view/sleep_tracker/add_alarm.dart';
 import 'package:fitnest_x/view/sleep_tracker/sleep_schedule.dart';
 import 'package:fitnest_x/view/sleep_tracker/sleep_track.dart';
@@ -127,6 +128,9 @@ class Routes {
       case RouteNames.statistic:
         return MaterialPageRoute(
             builder: (BuildContext context) => const Statistic());
+      case RouteNames.tabBarExample:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const TabBarExample());
       // case RouteNames.mealDetails:
       //   return MaterialPageRoute(builder: (BuildContext context) => const MealDetails(trainingTarget: trainingTarget));
       case RouteNames.cal:
