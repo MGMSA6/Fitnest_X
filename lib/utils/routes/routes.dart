@@ -4,7 +4,7 @@ import 'package:fitnest_x/view/auth/Login.dart';
 import 'package:fitnest_x/view/auth/SignUp.dart';
 import 'package:fitnest_x/view/auth/Signup1.dart';
 import 'package:fitnest_x/view/dashboard/Activity.dart';
-import 'package:fitnest_x/view/dashboard/Camera.dart';
+import 'package:fitnest_x/view/dashboard/Camera_photo.dart';
 import 'package:fitnest_x/view/dashboard/Dashboard.dart';
 import 'package:fitnest_x/view/dashboard/Profile.dart';
 import 'package:fitnest_x/view/dashboard/WorkoutFinished.dart';
@@ -76,7 +76,7 @@ class Routes {
             builder: (BuildContext context) => const Activity());
       case RouteNames.camera:
         return MaterialPageRoute(
-            builder: (BuildContext context) => const Camera());
+            builder: (BuildContext context) => const Camera_Photo());
       case RouteNames.dashboard:
         return MaterialPageRoute(
             builder: (BuildContext context) => const Dashboard());

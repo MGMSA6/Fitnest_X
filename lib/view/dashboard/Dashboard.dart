@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../workout_tracker/workout_tracker.dart';
-import 'Camera.dart';
+import 'Camera_photo.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -20,7 +20,7 @@ class _DashboardState extends State<Dashboard> {
   final List<Widget> _screens = [
     const Home(),
     const WorkoutTracker(),
-    const Camera(),
+    const Camera_Photo(),
     const Profile(),
   ];
 
