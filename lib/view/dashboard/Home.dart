@@ -1,8 +1,4 @@
-import 'dart:developer';
-import 'dart:math';
 
-import 'package:fitnest_x/view/dashboard/Activity.dart';
-import 'package:fitnest_x/view/onboarding/Notifications.dart';
 import 'package:fitnest_x/view/onboarding/Welcome.dart';
 import 'package:fitnest_x/res/colors.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +21,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   List<ChartData> getChartData() {
     final List<ChartData> chartData = [
       ChartData("", 80, Colors.white),
@@ -59,7 +56,7 @@ class _HomeState extends State<Home> {
     return menuItems;
   }
 
-  static late String selectedValue = "Daily";
+  static String selectedValue = "Daily";
 
   List<StaggeredGridTile> getItems() {
     List<StaggeredGridTile> items = [

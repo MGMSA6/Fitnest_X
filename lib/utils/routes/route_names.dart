@@ -1,5 +1,5 @@
 class RouteNames {
-  static const String welcome = "/Welcome";
+  static const String welcome = "Welcome";
   static const String welcome1 = "Welcome1";
   static const String onboarding = "Onboarding";
   static const String signUp = "SignUp";

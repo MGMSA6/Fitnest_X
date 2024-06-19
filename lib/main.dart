@@ -1,7 +1,12 @@
+import 'package:fitnest_x/repository/auth_repository.dart';
 import 'package:fitnest_x/utils/routes/route_names.dart';
 import 'package:fitnest_x/utils/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'blocs/global_loader_bloc/global_loader_bloc.dart';
+import 'blocs/login_bloc/login_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,13 +20,16 @@ class FitnestX extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiBlocProvider(providers: [
+      BlocProvider(create: (_) => GlobalLoaderBloc()),
+      BlocProvider(create: (context) => LoginBloc(AuthRepository(), context.read<GlobalLoaderBloc>())),
+    ], child: MaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       darkTheme: ThemeData(brightness: Brightness.dark),
       initialRoute: RouteNames.login,
       onGenerateRoute: Routes.generateRoute,
-    );
+    ));
   }
 }
