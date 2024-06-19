@@ -1,12 +1,8 @@
 import 'package:fitnest_x/res/colors.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../model/LatestWorkOut.dart';
 import '../../model/WorkOutData.dart';
-import '../../model/result_set.dart';
-import '../../res/components/tab_screen.dart';
 
 class Statistic extends StatefulWidget {
   const Statistic({super.key});

@@ -1,5 +1,5 @@
 class RouteNames {
-  static const String welcome = "Welcome";
+  static const String welcome = "/Welcome";
   static const String welcome1 = "Welcome1";
   static const String onboarding = "Onboarding";
   static const String signUp = "SignUp";
@@ -7,7 +7,7 @@ class RouteNames {
   static const String login = "Login";
   static const String finalized = "Finalized";
   static const String carousel = "Carousel";
-  static const String home = "Home";
+  static const String home = "/Home";
   static const String notification = "Notification";
   static const String profile = "Profile";
   static const String activity = "Activity";
