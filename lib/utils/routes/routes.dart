@@ -1,39 +1,7 @@
-import 'package:fitnest_x/view/auth/carousel_screen.dart';
-import 'package:fitnest_x/view/auth/finalized_screen.dart';
-import 'package:fitnest_x/view/auth/login_screen.dart';
-import 'package:fitnest_x/view/auth/sign_up_screen.dart';
-import 'package:fitnest_x/view/auth/sign_up1_screen.dart';
-import 'package:fitnest_x/view/dashboard/activity_screen.dart';
-import 'package:fitnest_x/view/dashboard/camera_photo_screen.dart';
-import 'package:fitnest_x/view/dashboard/dashboard_screen.dart';
-import 'package:fitnest_x/view/dashboard/profile_screen.dart';
-import 'package:fitnest_x/view/dashboard/workout_finished_screen.dart';
-import 'package:fitnest_x/view/onboarding/notification_screen.dart';
-import 'package:fitnest_x/view/onboarding/welcome_screen.dart';
-
 import 'package:fitnest_x/utils/routes/route_names.dart';
-import 'package:fitnest_x/view/progress_tracker/comparison_screen.dart';
-import 'package:fitnest_x/view/progress_tracker/progress_photo_screen.dart';
-import 'package:fitnest_x/view/progress_tracker/photo_screen.dart';
-import 'package:fitnest_x/view/progress_tracker/statistic_screen.dart';
-import 'package:fitnest_x/view/progress_tracker/tab_bar_example.dart';
-import 'package:fitnest_x/view/sleep_tracker/add_alarm_screen.dart';
-import 'package:fitnest_x/view/sleep_tracker/sleep_schedule_screen.dart';
-import 'package:fitnest_x/view/sleep_tracker/sleep_track_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../../view/dashboard/home_screen.dart';
-import '../../view/meal_planner/meal_planner.dart';
-import '../../view/meal_planner/meal_schedule.dart';
-import '../../view/meal_planner/meal_type.dart';
-import '../../view/onboarding/onboarding_screen.dart';
-import '../../view/onboarding/welcome1_screen.dart';
-import '../../view/progress_tracker/result_screen.dart';
-import '../../view/workout_tracker/cal_screen.dart';
-import '../../view/workout_tracker/add_schedule_screen.dart';
-import '../../view/workout_tracker/workout_details_screen.dart';
-import '../../view/workout_tracker/workout_schedule_screen.dart';
-import '../../view/workout_tracker/workout_tracker_screen.dart';
+import '../../view/onboarding/welcome_screen.dart';
+import '../../view/view.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {

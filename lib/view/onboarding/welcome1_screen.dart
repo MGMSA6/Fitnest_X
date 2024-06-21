@@ -1,4 +1,3 @@
-import 'package:fitnest_x/view/onboarding/onboarding_screen.dart';
 import 'package:fitnest_x/res/colors.dart';
 import 'package:fitnest_x/res/strings.dart';
 import 'package:flutter/material.dart';
