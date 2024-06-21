@@ -22,13 +22,13 @@ class FitnestX extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
       BlocProvider(create: (_) => GlobalLoaderBloc()),
-      BlocProvider(create: (context) => LoginBloc(AuthRepository(), context.read<GlobalLoaderBloc>())),
+      BlocProvider(create: (context) => LoginBloc(AuthRepository())),
     ], child: MaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       darkTheme: ThemeData(brightness: Brightness.dark),
-      initialRoute: RouteNames.login,
+      initialRoute: RouteNames.welcome,
       onGenerateRoute: Routes.generateRoute,
     ));
   }

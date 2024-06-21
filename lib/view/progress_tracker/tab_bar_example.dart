@@ -1,5 +1,5 @@
-import 'package:fitnest_x/view/progress_tracker/photo.dart';
-import 'package:fitnest_x/view/progress_tracker/statistic.dart';
+import 'package:fitnest_x/view/progress_tracker/photo_screen.dart';
+import 'package:fitnest_x/view/progress_tracker/statistic_screen.dart';
 import 'package:flutter/material.dart';
 
 class TabBarExample extends StatelessWidget {

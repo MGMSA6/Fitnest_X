@@ -1,4 +1,4 @@
-import 'package:fitnest_x/view/dashboard/Home.dart';
+import 'package:fitnest_x/view/dashboard/home_screen.dart';
 import 'package:fitnest_x/res/colors.dart';
 import 'package:fitnest_x/res/strings.dart';
 import 'package:flutter/material.dart';

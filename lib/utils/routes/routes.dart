@@ -1,42 +1,43 @@
-import 'package:fitnest_x/view/auth/Carousel.dart';
-import 'package:fitnest_x/view/auth/Finalized.dart';
-import 'package:fitnest_x/view/auth/Login.dart';
-import 'package:fitnest_x/view/auth/SignUp.dart';
-import 'package:fitnest_x/view/auth/Signup1.dart';
-import 'package:fitnest_x/view/dashboard/Activity.dart';
-import 'package:fitnest_x/view/dashboard/Camera_photo.dart';
-import 'package:fitnest_x/view/dashboard/Dashboard.dart';
-import 'package:fitnest_x/view/dashboard/Profile.dart';
-import 'package:fitnest_x/view/dashboard/WorkoutFinished.dart';
-import 'package:fitnest_x/view/onboarding/Notifications.dart';
-import 'package:fitnest_x/view/onboarding/Welcome.dart';
+import 'package:fitnest_x/view/auth/carousel_screen.dart';
+import 'package:fitnest_x/view/auth/finalized_screen.dart';
+import 'package:fitnest_x/view/auth/login_screen.dart';
+import 'package:fitnest_x/view/auth/sign_up_screen.dart';
+import 'package:fitnest_x/view/auth/sign_up1_screen.dart';
+import 'package:fitnest_x/view/dashboard/activity_screen.dart';
+import 'package:fitnest_x/view/dashboard/camera_photo_screen.dart';
+import 'package:fitnest_x/view/dashboard/dashboard_screen.dart';
+import 'package:fitnest_x/view/dashboard/profile_screen.dart';
+import 'package:fitnest_x/view/dashboard/workout_finished_screen.dart';
+import 'package:fitnest_x/view/onboarding/notification_screen.dart';
+import 'package:fitnest_x/view/onboarding/welcome_screen.dart';
 
 import 'package:fitnest_x/utils/routes/route_names.dart';
-import 'package:fitnest_x/view/progress_tracker/comparison.dart';
-import 'package:fitnest_x/view/progress_tracker/progress_photo.dart';
-import 'package:fitnest_x/view/progress_tracker/photo.dart';
-import 'package:fitnest_x/view/progress_tracker/statistic.dart';
+import 'package:fitnest_x/view/progress_tracker/comparison_screen.dart';
+import 'package:fitnest_x/view/progress_tracker/progress_photo_screen.dart';
+import 'package:fitnest_x/view/progress_tracker/photo_screen.dart';
+import 'package:fitnest_x/view/progress_tracker/statistic_screen.dart';
 import 'package:fitnest_x/view/progress_tracker/tab_bar_example.dart';
-import 'package:fitnest_x/view/sleep_tracker/add_alarm.dart';
-import 'package:fitnest_x/view/sleep_tracker/sleep_schedule.dart';
-import 'package:fitnest_x/view/sleep_tracker/sleep_track.dart';
+import 'package:fitnest_x/view/sleep_tracker/add_alarm_screen.dart';
+import 'package:fitnest_x/view/sleep_tracker/sleep_schedule_screen.dart';
+import 'package:fitnest_x/view/sleep_tracker/sleep_track_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../view/dashboard/Home.dart';
+import '../../view/dashboard/home_screen.dart';
 import '../../view/meal_planner/meal_planner.dart';
 import '../../view/meal_planner/meal_schedule.dart';
 import '../../view/meal_planner/meal_type.dart';
-import '../../view/onboarding/Onboarding.dart';
-import '../../view/onboarding/Welcome1.dart';
-import '../../view/progress_tracker/result.dart';
-import '../../view/workout_tracker/Cal.dart';
-import '../../view/workout_tracker/add_schedule.dart';
-import '../../view/workout_tracker/workout_details.dart';
-import '../../view/workout_tracker/workout_schedule.dart';
-import '../../view/workout_tracker/workout_tracker.dart';
+import '../../view/onboarding/onboarding_screen.dart';
+import '../../view/onboarding/welcome1_screen.dart';
+import '../../view/progress_tracker/result_screen.dart';
+import '../../view/workout_tracker/cal_screen.dart';
+import '../../view/workout_tracker/add_schedule_screen.dart';
+import '../../view/workout_tracker/workout_details_screen.dart';
+import '../../view/workout_tracker/workout_schedule_screen.dart';
+import '../../view/workout_tracker/workout_tracker_screen.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    print("Navigating to: ${settings.name}"); // Debug print
     switch (settings.name) {
       case RouteNames.welcome:
         return MaterialPageRoute(

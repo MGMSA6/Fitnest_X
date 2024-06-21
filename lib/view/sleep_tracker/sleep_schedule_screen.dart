@@ -7,7 +7,7 @@ import '../../model/WorkOutData.dart';
 import '../../model/sleep.dart';
 import '../../res/components/CustomDatePickerTimeline.dart';
 import '../../res/components/GradientSwitch.dart';
-import '../dashboard/Profile.dart';
+import '../dashboard/profile_screen.dart';
 
 class SleepSchedule extends StatefulWidget {
   const SleepSchedule({super.key});

@@ -1,14 +1,14 @@
-import 'package:fitnest_x/view/auth/Carousel.dart';
-import 'package:fitnest_x/view/auth/SignUp.dart';
 import 'package:fitnest_x/res/colors.dart';
 import 'package:fitnest_x/res/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+
 import '../../utils/routes/route_names.dart';
+import '../auth/carousel_screen.dart';
 
 class Onboarding extends StatelessWidget {
-  const Onboarding({Key? key});
+  const Onboarding();
 
   @override
   Widget build(BuildContext context) {
@@ -33,100 +33,96 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          PageView(
-            controller: _pageController,
-            children: const [
-              OnBoardingPage(
-                imageUrl: "assets/images/onboard1.svg",
-                title: AppString.trackGoal,
-                description: AppString.goalDescription,
-              ),
-              OnBoardingPage(
-                imageUrl: "assets/images/onboard2.svg",
-                title: AppString.getBurn,
-                description: AppString.burnDescription,
-              ),
-              OnBoardingPage(
-                imageUrl: "assets/images/onboard3.svg",
-                title: AppString.eatWell,
-                description: AppString.eatDescription,
-              ),
-              OnBoardingPage(
-                imageUrl: "assets/images/onboard4.svg",
-                title: AppString.sleepQuality,
-                description: AppString.sleepDescription,
-              ),
-            ],
-          ),
-          Positioned(
-            bottom: 20,
-            right: 20,
-            child: SizedBox(
-              width: 80, // Adjust the width as needed
-              height: 80, // Adjust the height as needed
-              child: Stack(
-                children: [
-                  Center(
-                    child: TweenAnimationBuilder(
-                      duration: const Duration(milliseconds: 500),
-                      tween: Tween<double>(begin: 0.0, end: _progressValue),
-                      builder:
-                          (BuildContext context, double value, Widget? child) {
-                        return CustomPaint(
-                          painter: CircularProgressBarPainter(value),
-                        );
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Stack(
+          children: [
+            PageView(
+              controller: _pageController,
+              children: const [
+                OnBoardingPage(
+                  imageUrl: "assets/images/onboard1.svg",
+                  title: AppString.trackGoal,
+                  description: AppString.goalDescription,
+                ),
+                OnBoardingPage(
+                  imageUrl: "assets/images/onboard2.svg",
+                  title: AppString.getBurn,
+                  description: AppString.burnDescription,
+                ),
+                OnBoardingPage(
+                  imageUrl: "assets/images/onboard3.svg",
+                  title: AppString.eatWell,
+                  description: AppString.eatDescription,
+                ),
+                OnBoardingPage(
+                  imageUrl: "assets/images/onboard4.svg",
+                  title: AppString.sleepQuality,
+                  description: AppString.sleepDescription,
+                ),
+              ],
+            ),
+            Positioned(
+              bottom: 20,
+              right: 20,
+              child: SizedBox(
+                width: 80, // Adjust the width as needed
+                height: 80, // Adjust the height as needed
+                child: Stack(
+                  children: [
+                    Center(
+                      child: TweenAnimationBuilder(
+                        duration: const Duration(milliseconds: 500),
+                        tween: Tween<double>(begin: 0.0, end: _progressValue),
+                        builder: (BuildContext context, double value,
+                            Widget? child) {
+                          return CustomPaint(
+                            painter: CircularProgressBarPainter(value),
+                          );
+                        },
+                      ),
+                    ),
+                    FloatingActionButton(
+                      onPressed: () {
+                        if (_pageController.page == 3) {
+                          Navigator.pushNamed(
+                              this.context, RouteNames.carousel);
+                         // Navigator.push(context, MaterialPageRoute(builder: (context) => const Carousel()));
+                        } else {
+                          _pageController.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeInOut,
+                          );
+                        }
                       },
-                    ),
-                  ),
-                  FloatingActionButton(
-                    onPressed: () {
-                      if (_pageController.page == 3) {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => const Carousel()));
-
-                        // Navigator.pushNamed(
-                        //   context,
-                        //   RouteNames.carousel,
-                        // );
-                        Navigator.of(context).pushNamed(RouteNames.carousel);
-                      } else {
-                        _pageController.nextPage(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeInOut,
-                        );
-                      }
-                    },
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        gradient: AppColor.buttonColors,
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.transparent,
-                          width: 0,
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          gradient: AppColor.buttonColors,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.transparent,
+                            width: 0,
+                          ),
                         ),
-                      ),
-                      child: const Center(
-                        child: Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          color: Colors.white,
+                        child: const Center(
+                          child: Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

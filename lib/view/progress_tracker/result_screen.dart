@@ -1,6 +1,6 @@
 import 'package:fitnest_x/res/colors.dart';
-import 'package:fitnest_x/view/progress_tracker/photo.dart';
-import 'package:fitnest_x/view/progress_tracker/statistic.dart';
+import 'package:fitnest_x/view/progress_tracker/photo_screen.dart';
+import 'package:fitnest_x/view/progress_tracker/statistic_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

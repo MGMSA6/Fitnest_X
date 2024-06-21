@@ -1,4 +1,4 @@
-import 'package:fitnest_x/view/dashboard/Dashboard.dart';
+import 'package:fitnest_x/view/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

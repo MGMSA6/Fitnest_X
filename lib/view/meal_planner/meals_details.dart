@@ -1,6 +1,6 @@
 import 'package:fitnest_x/model/Meals.dart';
 import 'package:fitnest_x/utils/routes/route_names.dart';
-import 'package:fitnest_x/view/onboarding/Welcome.dart';
+import 'package:fitnest_x/view/onboarding/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

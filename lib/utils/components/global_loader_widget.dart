@@ -12,18 +12,29 @@ class GlobalLoaderWidget extends StatelessWidget {
     return Stack(
       children: [
         child,
-        BlocBuilder<GlobalLoaderBloc, GlobalLoaderState>(
-          builder: (context, state) {
+        BlocListener<GlobalLoaderBloc, GlobalLoaderState>(
+          listener: (context, state) {
             if (state.isLoading) {
-              return Container(
-                color: Colors.black54,
-                child: const Center(
+              // Show loader
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) => const Center(
                   child: CircularProgressIndicator(),
                 ),
               );
+            } else {
+              // Hide loader
+              Navigator.of(context).pop();
             }
-            return SizedBox.shrink();
           },
+          child: BlocBuilder<GlobalLoaderBloc, GlobalLoaderState>(
+            builder: (context, state) {
+              // You can also handle the loading state here if needed,
+              // but it is not required since we handle it in the listener.
+              return const SizedBox.shrink();
+            },
+          ),
         ),
       ],
     );

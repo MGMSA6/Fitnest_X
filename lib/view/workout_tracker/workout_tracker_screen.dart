@@ -8,8 +8,8 @@ import '../../model/TrainingTarget.dart';
 import '../../model/WorkOutData.dart';
 import '../../res/components/GradientSwitch.dart';
 import '../../res/colors.dart';
-import '../onboarding/Welcome.dart';
-import 'Workout.dart';
+import '../onboarding/welcome_screen.dart';
+import 'workout_screen.dart';
 
 class WorkoutTracker extends StatefulWidget {
   const WorkoutTracker({super.key});

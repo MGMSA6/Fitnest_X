@@ -12,9 +12,8 @@ part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final AuthRepository _authRepository;
-  final GlobalLoaderBloc _globalLoaderBloc;
 
-  LoginBloc(this._authRepository, this._globalLoaderBloc)
+  LoginBloc(this._authRepository)
       : super(const LoginState()) {
     on<EmailEvent>(_onEmail);
     on<PasswordEvent>(_onPassword);
@@ -31,7 +30,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   void _onLogin(LoginApi event, Emitter<LoginState> emit) async {
     emit(state.copyWith(loginStatus: LoginStatus.LOADING));
-    _globalLoaderBloc.add(ShowLoader());
 
     Map data = {'email': state.email, 'password': state.password};
 
@@ -44,8 +42,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       }
       emit(state.copyWith(
           loginStatus: LoginStatus.ERR0R, message: error.toString()));
-    }).whenComplete(() {
-      _globalLoaderBloc.add(HideLoader());
     });
   }
 }

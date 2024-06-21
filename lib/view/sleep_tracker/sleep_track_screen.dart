@@ -7,7 +7,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import '../../model/WorkOutData.dart';
 import '../../model/sleep.dart';
 import '../../res/components/GradientSwitch.dart';
-import '../dashboard/Profile.dart';
+import '../dashboard/profile_screen.dart';
 
 class SleepTrack extends StatefulWidget {
   const SleepTrack({super.key});

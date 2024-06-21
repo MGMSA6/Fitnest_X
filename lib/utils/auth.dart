@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fitnest_x/view/dashboard/Dashboard.dart';
+import 'package:fitnest_x/view/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';

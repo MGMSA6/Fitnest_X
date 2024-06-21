@@ -1,11 +1,11 @@
-import 'package:fitnest_x/view/dashboard/Home.dart';
-import 'package:fitnest_x/view/dashboard/Profile.dart';
+import 'package:fitnest_x/view/dashboard/home_screen.dart';
+import 'package:fitnest_x/view/dashboard/profile_screen.dart';
 import 'package:fitnest_x/res/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../workout_tracker/workout_tracker.dart';
-import 'Camera_photo.dart';
+import '../workout_tracker/workout_tracker_screen.dart';
+import 'camera_photo_screen.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
