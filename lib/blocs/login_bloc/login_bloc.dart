@@ -4,7 +4,6 @@ import 'package:fitnest_x/model/enums/login_status.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../repository/auth_repository.dart';
-import '../global_loader_bloc/global_loader_bloc.dart';
 
 part 'login_event.dart';
 

@@ -1,11 +1,10 @@
+import 'package:fitnest_x/blocs/onboarding_bloc.dart';
 import 'package:fitnest_x/res/colors.dart';
 import 'package:fitnest_x/res/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-
-import '../../utils/routes/route_names.dart';
-import '../auth/carousel_screen.dart';
+import '../../utils/components/gradient_circular_progress_indicator.dart';
 
 class Onboarding extends StatelessWidget {
   const Onboarding();
@@ -20,7 +19,7 @@ class Onboarding extends StatelessWidget {
 }
 
 class OnBoardingScreen extends StatefulWidget {
-  const OnBoardingScreen({super.key});
+  const OnBoardingScreen();
 
   @override
   _OnBoardingScreenState createState() => _OnBoardingScreenState();
@@ -29,101 +28,95 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnBoardingScreen>
     with TickerProviderStateMixin {
   final PageController _pageController = PageController(initialPage: 0);
-  final double _progressValue = 0.0;
+  int currentPage = 0;
+
+  void _onNextPage() {
+    setState(() {
+      if (currentPage < 3) {
+        currentPage++;
+        _pageController.animateToPage(
+          currentPage,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeIn,
+        );
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Stack(
-          children: [
-            PageView(
-              controller: _pageController,
-              children: const [
-                OnBoardingPage(
-                  imageUrl: "assets/images/onboard1.svg",
-                  title: AppString.trackGoal,
-                  description: AppString.goalDescription,
-                ),
-                OnBoardingPage(
-                  imageUrl: "assets/images/onboard2.svg",
-                  title: AppString.getBurn,
-                  description: AppString.burnDescription,
-                ),
-                OnBoardingPage(
-                  imageUrl: "assets/images/onboard3.svg",
-                  title: AppString.eatWell,
-                  description: AppString.eatDescription,
-                ),
-                OnBoardingPage(
-                  imageUrl: "assets/images/onboard4.svg",
-                  title: AppString.sleepQuality,
-                  description: AppString.sleepDescription,
-                ),
-              ],
-            ),
-            Positioned(
-              bottom: 20,
-              right: 20,
-              child: SizedBox(
-                width: 80, // Adjust the width as needed
-                height: 80, // Adjust the height as needed
-                child: Stack(
-                  children: [
-                    Center(
-                      child: TweenAnimationBuilder(
-                        duration: const Duration(milliseconds: 500),
-                        tween: Tween<double>(begin: 0.0, end: _progressValue),
-                        builder: (BuildContext context, double value,
-                            Widget? child) {
-                          return CustomPaint(
-                            painter: CircularProgressBarPainter(value),
-                          );
-                        },
-                      ),
+    print("Widget Build");
+    double progress = (currentPage + 1) / 4; // 4 pages total
+    return BlocBuilder<OnboardingBloc, OnboardingState>(
+      builder: (context, state) {
+        int currentPage = 0;
+        if (state is OnboardingStep) {
+          currentPage = state.step;
+        }
+        double progress = (currentPage + 1) / 4; // 4 pages total
+
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Scaffold(
+            backgroundColor: Colors.white,
+            body: Stack(
+              children: [
+                PageView(
+                  controller: _pageController,
+                  onPageChanged: (int page) {
+                    if (page > currentPage) {
+                      context.read<OnboardingBloc>().add(OnboardingNext());
+                    } else if (page < currentPage) {
+                      context.read<OnboardingBloc>().add(OnboardingPrevious());
+                    }
+                  },
+                  children: const [
+                    OnBoardingPage(
+                      imageUrl: "assets/images/onboard1.svg",
+                      title: AppString.trackGoal,
+                      description: AppString.goalDescription,
                     ),
-                    FloatingActionButton(
-                      onPressed: () {
-                        if (_pageController.page == 3) {
-                          Navigator.pushNamed(
-                              this.context, RouteNames.carousel);
-                         // Navigator.push(context, MaterialPageRoute(builder: (context) => const Carousel()));
-                        } else {
-                          _pageController.nextPage(
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.easeInOut,
-                          );
-                        }
-                      },
-                      backgroundColor: Colors.transparent,
-                      elevation: 0,
-                      child: Container(
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          gradient: AppColor.buttonColors,
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Colors.transparent,
-                            width: 0,
-                          ),
-                        ),
-                        child: const Center(
-                          child: Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
+                    OnBoardingPage(
+                      imageUrl: "assets/images/onboard2.svg",
+                      title: AppString.getBurn,
+                      description: AppString.burnDescription,
+                    ),
+                    OnBoardingPage(
+                      imageUrl: "assets/images/onboard3.svg",
+                      title: AppString.eatWell,
+                      description: AppString.eatDescription,
+                    ),
+                    OnBoardingPage(
+                      imageUrl: "assets/images/onboard4.svg",
+                      title: AppString.sleepQuality,
+                      description: AppString.sleepDescription,
                     ),
                   ],
                 ),
-              ),
+                Positioned(
+                    right: 20,
+                    bottom: 20,
+                    child: GradientCircularProgressIndicator(
+                      progress: progress,
+                      onPressed: () {
+                        if (currentPage < 3) {
+                          context.read<OnboardingBloc>().add(OnboardingNext());
+                          _pageController.nextPage(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeIn,
+                          );
+                        } else {
+                          context
+                              .read<OnboardingBloc>()
+                              .add(OnboardingFinish());
+                        }
+                      },
+                    )),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
@@ -188,42 +181,5 @@ class OnBoardingPage extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-class CircularProgressBarPainter extends CustomPainter {
-  final double progress;
-
-  CircularProgressBarPainter(this.progress);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()
-      ..shader = AppColor.buttonColors.createShader(
-          Rect.fromCircle(center: size.center(Offset.zero), radius: 1.0))
-      ..strokeCap = StrokeCap.round
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 10.0;
-
-    double startAngle = -0.5 * 2 * 3.14;
-    double sweepAngle = progress * 2 * 3.14;
-
-    canvas.drawArc(
-        Rect.fromCircle(
-            center: size.center(Offset.zero), radius: size.width / 2),
-        startAngle,
-        sweepAngle,
-        false,
-        paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
-  }
-
-  @override
-  bool shouldRebuildSemantics(covariant CustomPainter oldDelegate) {
-    return false;
   }
 }

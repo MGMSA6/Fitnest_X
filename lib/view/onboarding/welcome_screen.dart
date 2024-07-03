@@ -16,6 +16,7 @@ class _SplashScreenPageState extends State<Welcome> {
   Widget build(BuildContext context) {
     return Material(
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

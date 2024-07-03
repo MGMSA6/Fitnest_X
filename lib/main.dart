@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'blocs/global_loader_bloc/global_loader_bloc.dart';
 import 'blocs/login_bloc/login_bloc.dart';
+import 'blocs/onboarding_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +24,7 @@ class FitnestX extends StatelessWidget {
     return MultiBlocProvider(providers: [
       BlocProvider(create: (_) => GlobalLoaderBloc()),
       BlocProvider(create: (context) => LoginBloc(AuthRepository())),
+      BlocProvider(create: (context) => OnboardingBloc(4))
     ], child: MaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,

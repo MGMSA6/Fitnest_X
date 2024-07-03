@@ -16,6 +16,7 @@ class _SplashScreenPageState extends State<Welcome1> {
   Widget build(BuildContext context) {
     return Material(
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: Container(
           decoration: const BoxDecoration(
             gradient: AppColor.brandColors,
