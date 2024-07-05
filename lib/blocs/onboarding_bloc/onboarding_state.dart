@@ -1,4 +1,4 @@
-part of 'onboarding_bloc.dart';
+import 'package:equatable/equatable.dart';
 
 abstract class OnboardingState extends Equatable {
   const OnboardingState();

@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import '../../repository/auth_repository.dart';
 
 part 'login_event.dart';
-
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {

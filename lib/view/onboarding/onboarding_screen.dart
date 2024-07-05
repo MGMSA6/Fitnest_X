@@ -1,10 +1,15 @@
-import 'package:fitnest_x/blocs/onboarding_bloc.dart';
+import 'package:fitnest_x/blocs/onboarding_bloc/onboarding_bloc.dart';
 import 'package:fitnest_x/res/colors.dart';
 import 'package:fitnest_x/res/strings.dart';
+import 'package:fitnest_x/view/auth/sign_up_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../blocs/onboarding_bloc/onboarding_event.dart';
+import '../../blocs/onboarding_bloc/onboarding_state.dart';
 import '../../utils/components/gradient_circular_progress_indicator.dart';
+
 
 class Onboarding extends StatelessWidget {
   const Onboarding();
@@ -30,23 +35,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
   final PageController _pageController = PageController(initialPage: 0);
   int currentPage = 0;
 
-  void _onNextPage() {
-    setState(() {
-      if (currentPage < 3) {
-        currentPage++;
-        _pageController.animateToPage(
-          currentPage,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeIn,
-        );
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    print("Widget Build");
-    double progress = (currentPage + 1) / 4; // 4 pages total
+    if (kDebugMode) {
+      print("Widget Build");
+    }
+
     return BlocBuilder<OnboardingBloc, OnboardingState>(
       builder: (context, state) {
         int currentPage = 0;
@@ -54,7 +48,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
           currentPage = state.step;
         }
         double progress = (currentPage + 1) / 4; // 4 pages total
-
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           home: Scaffold(
@@ -109,6 +102,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                           context
                               .read<OnboardingBloc>()
                               .add(OnboardingFinish());
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignUp()));
+                          //Navigator.pushNamed(this.context, RouteNames.home);
                         }
                       },
                     )),

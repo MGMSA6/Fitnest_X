@@ -4,7 +4,6 @@ import 'package:fitnest_x/res/colors.dart';
 import 'package:fitnest_x/res/strings.dart';
 import 'package:fitnest_x/utils/utils.dart';
 import 'package:fitnest_x/utils/validator.dart';
-import 'package:fitnest_x/view/dashboard/home_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
