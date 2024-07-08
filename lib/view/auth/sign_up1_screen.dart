@@ -2,9 +2,9 @@ import 'package:fitnest_x/utils/auth.dart';
 import 'package:fitnest_x/res/colors.dart';
 import 'package:fitnest_x/res/strings.dart';
 import 'package:fitnest_x/utils/validator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../utils/routes/route_names.dart';
 
 class Signup1 extends StatefulWidget {
@@ -29,6 +29,7 @@ class _SignupState extends State<Signup1> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -53,172 +54,20 @@ class _SignupState extends State<Signup1> {
                       const SizedBox(
                         height: 15,
                       ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                          color: AppColor.borderColor,
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                        child: TextFormField(
-                          controller: _firstNameController,
-                          decoration: InputDecoration(
-                              labelText: AppString.first_name,
-                              counterText: "",
-                              labelStyle:
-                                  const TextStyle(color: AppColor.grayColor2),
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: SvgPicture.asset(
-                                  "assets/images/profile.svg",
-                                ),
-                              ),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(14)),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(14),
-                                borderSide: const BorderSide(
-                                    color: Colors.transparent, width: 0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(14),
-                                borderSide: const BorderSide(
-                                    color: Colors.transparent, width: 0),
-                              )),
-                          maxLength: 12,
-                          validator: (value) {
-                            return AppValidator.validateFirstName(value);
-                          },
-                          onTap: () {},
-                        ),
-                      ),
+                      _buildFirstNameField(context, _firstNameController),
                       const SizedBox(
                         width: 20,
                         height: 15,
                       ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                          color: AppColor.borderColor,
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                        child: TextFormField(
-                          controller: _lastNameController,
-                          decoration: InputDecoration(
-                              labelText: AppString.last_name,
-                              counterText: "",
-                              labelStyle:
-                                  const TextStyle(color: AppColor.grayColor2),
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: SvgPicture.asset(
-                                  "assets/images/profile.svg",
-                                ),
-                              ),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(14)),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(14),
-                                borderSide: const BorderSide(
-                                    color: Colors.transparent, width: 0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(14),
-                                borderSide: const BorderSide(
-                                    color: Colors.transparent, width: 0),
-                              )),
-                          maxLength: 15,
-                          validator: (value) {
-                            return AppValidator.validateLastName(value);
-                          },
-                          onTap: () {},
-                        ),
-                      ),
+                      _buildLastNameField(context, _lastNameController),
                       const SizedBox(
                         height: 15,
                       ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                          color: AppColor.borderColor,
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                        child: TextFormField(
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                              labelText: AppString.email,
-                              counterText: "",
-                              // Handle null value
-                              labelStyle:
-                                  const TextStyle(color: AppColor.grayColor2),
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child:
-                                    SvgPicture.asset("assets/images/email.svg"),
-                              ),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(14)),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(14),
-                                borderSide: const BorderSide(
-                                    color: Colors.transparent, width: 0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(14),
-                                borderSide: const BorderSide(
-                                    color: Colors.transparent, width: 0),
-                              )),
-                          maxLength: 25,
-                          validator: (value) {
-                            return AppValidator.validateEmail(value);
-                          },
-                          onTap: () {},
-                        ),
-                      ),
+                      _buildEmailField(context, _emailController),
                       const SizedBox(
                         height: 15,
                       ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                          color: AppColor.borderColor,
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                        child: TextFormField(
-                          controller: _passwordController,
-                          decoration: InputDecoration(
-                              labelText: AppString.password,
-                              counterText: "",
-                              labelStyle:
-                                  const TextStyle(color: AppColor.grayColor2),
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child:
-                                    SvgPicture.asset("assets/images/lock.svg"),
-                              ),
-                              suffixIcon: const Icon(
-                                Icons.visibility_off_outlined,
-                                color: AppColor.grayColor1,
-                              ),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(14)),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(14),
-                                borderSide: const BorderSide(
-                                    color: Colors.transparent, width: 0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(14),
-                                borderSide: const BorderSide(
-                                    color: Colors.transparent, width: 0),
-                              )),
-                          obscureText: true,
-                          maxLength: 6,
-                          validator: (value) {
-                            return AppValidator.validatePassword(value);
-                          },
-                          onTap: () {},
-                        ),
-                      ),
+                      _buildLastNameField(context, _passwordController),
                       const SizedBox(
                         height: 15,
                       ),
@@ -435,4 +284,158 @@ class _SignupState extends State<Signup1> {
       ),
     );
   }
+}
+
+Widget _buildFirstNameField(
+    BuildContext context, TextEditingController firstNameController) {
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    decoration: BoxDecoration(
+      color: AppColor.borderColor,
+      borderRadius: BorderRadius.circular(14),
+    ),
+    child: TextFormField(
+      controller: firstNameController,
+      decoration: InputDecoration(
+          labelText: AppString.first_name,
+          counterText: "",
+          labelStyle: const TextStyle(color: AppColor.grayColor2),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: SvgPicture.asset(
+              "assets/images/profile.svg",
+            ),
+          ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14),
+            borderSide: const BorderSide(color: Colors.transparent, width: 0),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14),
+            borderSide: const BorderSide(color: Colors.transparent, width: 0),
+          )),
+      maxLength: 12,
+      validator: (value) {
+        return AppValidator.validateFirstName(value);
+      },
+      onTap: () {},
+    ),
+  );
+}
+
+Widget _buildLastNameField(
+    BuildContext context, TextEditingController lastNameController) {
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    decoration: BoxDecoration(
+      color: AppColor.borderColor,
+      borderRadius: BorderRadius.circular(14),
+    ),
+    child: TextFormField(
+      controller: lastNameController,
+      decoration: InputDecoration(
+          labelText: AppString.last_name,
+          counterText: "",
+          labelStyle: const TextStyle(color: AppColor.grayColor2),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: SvgPicture.asset(
+              "assets/images/profile.svg",
+            ),
+          ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14),
+            borderSide: const BorderSide(color: Colors.transparent, width: 0),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14),
+            borderSide: const BorderSide(color: Colors.transparent, width: 0),
+          )),
+      maxLength: 15,
+      validator: (value) {
+        return AppValidator.validateLastName(value);
+      },
+      onTap: () {},
+    ),
+  );
+}
+
+Widget _buildEmailField(
+    BuildContext context, TextEditingController emailController) {
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    decoration: BoxDecoration(
+      color: AppColor.borderColor,
+      borderRadius: BorderRadius.circular(14),
+    ),
+    child: TextFormField(
+      controller: emailController,
+      decoration: InputDecoration(
+          labelText: AppString.email,
+          counterText: "",
+          // Handle null value
+          labelStyle: const TextStyle(color: AppColor.grayColor2),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: SvgPicture.asset("assets/images/email.svg"),
+          ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14),
+            borderSide: const BorderSide(color: Colors.transparent, width: 0),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14),
+            borderSide: const BorderSide(color: Colors.transparent, width: 0),
+          )),
+      maxLength: 25,
+      validator: (value) {
+        return AppValidator.validateEmail(value);
+      },
+      onTap: () {},
+    ),
+  );
+}
+
+Widget _buildPasswordField(
+    BuildContext context, TextEditingController passwordController) {
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    decoration: BoxDecoration(
+      color: AppColor.borderColor,
+      borderRadius: BorderRadius.circular(14),
+    ),
+    child: TextFormField(
+      controller: passwordController,
+      decoration: InputDecoration(
+          labelText: AppString.password,
+          counterText: "",
+          labelStyle: const TextStyle(color: AppColor.grayColor2),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: SvgPicture.asset("assets/images/lock.svg"),
+          ),
+          suffixIcon: const Icon(
+            Icons.visibility_off_outlined,
+            color: AppColor.grayColor1,
+          ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14),
+            borderSide: const BorderSide(color: Colors.transparent, width: 0),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14),
+            borderSide: const BorderSide(color: Colors.transparent, width: 0),
+          )),
+      obscureText: true,
+      maxLength: 6,
+      validator: (value) {
+        return AppValidator.validatePassword(value);
+      },
+      onTap: () {},
+    ),
+  );
 }

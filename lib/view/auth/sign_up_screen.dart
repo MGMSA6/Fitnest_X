@@ -1,5 +1,6 @@
 import 'package:fitnest_x/res/strings.dart';
 import 'package:fitnest_x/utils/validator.dart';
+import 'package:fitnest_x/view/auth/sign_up1_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../blocs/sign_up_bloc/sign_up_bloc.dart';
 import '../../res/colors.dart';
-import '../../utils/routes/route_names.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -102,10 +102,14 @@ class _SignUpState extends State<SignUp> {
                             borderRadius: BorderRadius.circular(99),
                             onTap: () {
                               if (_formKey.currentState!.validate()) {
-                                Navigator.pushNamed(
-                                  context,
-                                  RouteNames.signUp1,
-                                );
+                                // Navigator.pushNamed(
+                                //   context,
+                                //   RouteNames.signUp1,
+                                // );
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const Signup1()));
                               }
                             },
                             child: const SizedBox(
@@ -197,9 +201,6 @@ class _SignUpState extends State<SignUp> {
                   .toList(),
               onChanged: (String? value) {
                 // Handle dropdown value change
-                // setState(() {
-                //   _selectedGender = value;
-                // });
                 context.read<SignUpBloc>().add(SelectGender(value!));
               },
             );
@@ -217,7 +218,7 @@ class _SignUpState extends State<SignUp> {
         borderRadius: BorderRadius.circular(14),
       ),
       child: BlocBuilder<SignUpBloc, SignUpState>(
-        buildWhen: (previous, current) => previous.dob != current.dob,
+        buildWhen: (current, previous) => current.dob != previous.dob,
         builder: (context, state) {
           if (kDebugMode) {
             print('Dob widget');
