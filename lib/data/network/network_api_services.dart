@@ -13,8 +13,7 @@ class NetworkApiServices extends BaseApiServices {
     dynamic jsonResponse;
     try {
       if (await InternetChecker.isInternetAvailable()) {
-        final getResponse =
-            await http.get(Uri.parse(url));
+        final getResponse = await http.get(Uri.parse(url));
         jsonResponse = ResponseHandler.returnResponse(getResponse);
       } else {
         throw FetchDataException("No Internet Connection");

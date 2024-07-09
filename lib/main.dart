@@ -1,3 +1,4 @@
+import 'package:fitnest_x/blocs/account_bloc/create_account_bloc.dart';
 import 'package:fitnest_x/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:fitnest_x/repository/auth_repository.dart';
 import 'package:fitnest_x/utils/routes/route_names.dart';
@@ -27,14 +28,15 @@ class FitnestX extends StatelessWidget {
           BlocProvider(create: (_) => GlobalLoaderBloc()),
           BlocProvider(create: (context) => LoginBloc(AuthRepository())),
           BlocProvider(create: (context) => OnboardingBloc(4)),
-          BlocProvider(create: (context) => SignUpBloc())
+          BlocProvider(create: (context) => SignUpBloc()),
+          BlocProvider(create: (context) => CreateAccountBloc())
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           themeMode: ThemeMode.light,
           theme: ThemeData(primarySwatch: Colors.deepPurple),
           darkTheme: ThemeData(brightness: Brightness.dark),
-          initialRoute: RouteNames.welcome,
+          initialRoute: RouteNames.signUp1,
           onGenerateRoute: Routes.generateRoute,
         ));
   }

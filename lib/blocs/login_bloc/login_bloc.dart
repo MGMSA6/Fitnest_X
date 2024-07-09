@@ -6,13 +6,13 @@ import 'package:flutter/foundation.dart';
 import '../../repository/auth_repository.dart';
 
 part 'login_event.dart';
+
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final AuthRepository _authRepository;
 
-  LoginBloc(this._authRepository)
-      : super(const LoginState()) {
+  LoginBloc(this._authRepository) : super(const LoginState()) {
     on<EmailEvent>(_onEmail);
     on<PasswordEvent>(_onPassword);
     on<LoginApi>(_onLogin);

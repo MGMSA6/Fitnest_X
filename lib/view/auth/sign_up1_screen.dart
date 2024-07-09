@@ -1,11 +1,12 @@
 import 'package:fitnest_x/utils/auth.dart';
 import 'package:fitnest_x/res/colors.dart';
 import 'package:fitnest_x/res/strings.dart';
-import 'package:fitnest_x/utils/validator.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:fitnest_x/widgets/common_button.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../utils/routes/route_names.dart';
+import '../../widgets/widgets.dart';
 
 class Signup1 extends StatefulWidget {
   const Signup1({super.key});
@@ -26,6 +27,9 @@ class _SignupState extends State<Signup1> {
 
   @override
   Widget build(BuildContext context) {
+    if (kDebugMode) {
+      print("Root Widget");
+    }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -54,20 +58,22 @@ class _SignupState extends State<Signup1> {
                       const SizedBox(
                         height: 15,
                       ),
-                      _buildFirstNameField(context, _firstNameController),
+                      FirstnameWidget(
+                        firstNameController: _firstNameController,
+                      ),
                       const SizedBox(
                         width: 20,
                         height: 15,
                       ),
-                      _buildLastNameField(context, _lastNameController),
+                      LastnameWidget(lastNameController: _lastNameController),
                       const SizedBox(
                         height: 15,
                       ),
-                      _buildEmailField(context, _emailController),
+                      EmailWidget(emailController: _emailController),
                       const SizedBox(
                         height: 15,
                       ),
-                      _buildLastNameField(context, _passwordController),
+                      PasswordWidget(passwordController: _passwordController),
                       const SizedBox(
                         height: 15,
                       ),
@@ -77,8 +83,8 @@ class _SignupState extends State<Signup1> {
                           children: [
                             Checkbox(
                                 fillColor:
-                                    MaterialStateProperty.resolveWith((states) {
-                                  if (states.contains(MaterialState.selected)) {
+                                    WidgetStateProperty.resolveWith((states) {
+                                  if (states.contains(WidgetState.selected)) {
                                     return Colors.black;
                                   }
                                   return null;
@@ -103,60 +109,7 @@ class _SignupState extends State<Signup1> {
                       const SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(99),
-                          gradient: AppColor.buttonColors,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 0,
-                              blurRadius: 8,
-                              offset: const Offset(
-                                  0, 4), // changes the position of the shadow
-                            ),
-                          ],
-                        ),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(99),
-                            onTap: () {
-                              if (_formKey.currentState!.validate()) {
-                                if (isChecked) {
-                                  Navigator.pushNamed(
-                                    context,
-                                    RouteNames.login,
-                                  );
-                                } else {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(const SnackBar(
-                                    content: Text(
-                                        "Please accept the terms and conditions"),
-                                  ));
-                                }
-                              }
-                            },
-                            child: const SizedBox(
-                              height: 60,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    AppString.register,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700,
-                                        fontFamily: 'Poppins',
-                                        color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      CommonButton(isChecked: isChecked, formKey: _formKey),
                       const SizedBox(
                         height: 20,
                       ),
@@ -284,158 +237,4 @@ class _SignupState extends State<Signup1> {
       ),
     );
   }
-}
-
-Widget _buildFirstNameField(
-    BuildContext context, TextEditingController firstNameController) {
-  return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 20),
-    decoration: BoxDecoration(
-      color: AppColor.borderColor,
-      borderRadius: BorderRadius.circular(14),
-    ),
-    child: TextFormField(
-      controller: firstNameController,
-      decoration: InputDecoration(
-          labelText: AppString.first_name,
-          counterText: "",
-          labelStyle: const TextStyle(color: AppColor.grayColor2),
-          prefixIcon: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: SvgPicture.asset(
-              "assets/images/profile.svg",
-            ),
-          ),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: Colors.transparent, width: 0),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: Colors.transparent, width: 0),
-          )),
-      maxLength: 12,
-      validator: (value) {
-        return AppValidator.validateFirstName(value);
-      },
-      onTap: () {},
-    ),
-  );
-}
-
-Widget _buildLastNameField(
-    BuildContext context, TextEditingController lastNameController) {
-  return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 20),
-    decoration: BoxDecoration(
-      color: AppColor.borderColor,
-      borderRadius: BorderRadius.circular(14),
-    ),
-    child: TextFormField(
-      controller: lastNameController,
-      decoration: InputDecoration(
-          labelText: AppString.last_name,
-          counterText: "",
-          labelStyle: const TextStyle(color: AppColor.grayColor2),
-          prefixIcon: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: SvgPicture.asset(
-              "assets/images/profile.svg",
-            ),
-          ),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: Colors.transparent, width: 0),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: Colors.transparent, width: 0),
-          )),
-      maxLength: 15,
-      validator: (value) {
-        return AppValidator.validateLastName(value);
-      },
-      onTap: () {},
-    ),
-  );
-}
-
-Widget _buildEmailField(
-    BuildContext context, TextEditingController emailController) {
-  return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 20),
-    decoration: BoxDecoration(
-      color: AppColor.borderColor,
-      borderRadius: BorderRadius.circular(14),
-    ),
-    child: TextFormField(
-      controller: emailController,
-      decoration: InputDecoration(
-          labelText: AppString.email,
-          counterText: "",
-          // Handle null value
-          labelStyle: const TextStyle(color: AppColor.grayColor2),
-          prefixIcon: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: SvgPicture.asset("assets/images/email.svg"),
-          ),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: Colors.transparent, width: 0),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: Colors.transparent, width: 0),
-          )),
-      maxLength: 25,
-      validator: (value) {
-        return AppValidator.validateEmail(value);
-      },
-      onTap: () {},
-    ),
-  );
-}
-
-Widget _buildPasswordField(
-    BuildContext context, TextEditingController passwordController) {
-  return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 20),
-    decoration: BoxDecoration(
-      color: AppColor.borderColor,
-      borderRadius: BorderRadius.circular(14),
-    ),
-    child: TextFormField(
-      controller: passwordController,
-      decoration: InputDecoration(
-          labelText: AppString.password,
-          counterText: "",
-          labelStyle: const TextStyle(color: AppColor.grayColor2),
-          prefixIcon: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: SvgPicture.asset("assets/images/lock.svg"),
-          ),
-          suffixIcon: const Icon(
-            Icons.visibility_off_outlined,
-            color: AppColor.grayColor1,
-          ),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: Colors.transparent, width: 0),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: Colors.transparent, width: 0),
-          )),
-      obscureText: true,
-      maxLength: 6,
-      validator: (value) {
-        return AppValidator.validatePassword(value);
-      },
-      onTap: () {},
-    ),
-  );
 }
