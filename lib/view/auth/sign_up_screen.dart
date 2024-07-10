@@ -16,7 +16,6 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final String? _selectedGender = AppString.male;
 
   @override
   Widget build(BuildContext context) {

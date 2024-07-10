@@ -67,6 +67,7 @@ class AppString {
   static const String or = "or";
   static const String haveAccount = "Already have an account? ";
   static const String login = "Login";
+  static const String terms = "Please accept the terms and conditions";
 
 /*------  SignUp End ------*/
 

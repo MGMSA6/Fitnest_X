@@ -4,15 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../blocs/account_bloc/create_account_bloc.dart';
-import '../blocs/account_bloc/create_account_event.dart';
 import '../res/colors.dart';
 import '../res/strings.dart';
 import '../utils/validator.dart';
 
 class PasswordWidget extends StatelessWidget {
   final TextEditingController passwordController;
+  final ValueChanged<String>? onChanged;
 
-  const PasswordWidget({super.key, required this.passwordController});
+  const PasswordWidget(
+      {super.key, required this.passwordController, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +60,7 @@ class PasswordWidget extends StatelessWidget {
             validator: (value) {
               return AppValidator.validatePassword(value);
             },
-            onChanged: (value) {
-              context.read<CreateAccountBloc>().add(PasswordChanged(value));
-            },
+            onChanged: onChanged,
           );
         },
       ),

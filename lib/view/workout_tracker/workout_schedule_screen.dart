@@ -1,6 +1,7 @@
 import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 import '../../res/components/CustomDatePickerTimeline.dart';
 import '../../res/colors.dart';
 import '../../utils/routes/route_names.dart';
@@ -14,7 +15,6 @@ class WorkoutSchedule extends StatefulWidget {
 
 class _WorkoutScheduleState extends State<WorkoutSchedule> {
   bool isHeartFilled = false;
-  final DateTime _selectedDate = DateTime.now();
 
   final List<CalendarEventData> _events = [
     // Add today's 8 PM event
@@ -118,7 +118,9 @@ class _WorkoutScheduleState extends State<WorkoutSchedule> {
                         children: [
                           SvgPicture.asset("assets/images/arrow_left.svg"),
                           Text(
-                            'May 2021',
+                            DateFormat.MMM().format(DateTime.now()).toString() +
+                                ' ' +
+                                DateTime.now().year.toString(),
                             style: TextStyle(
                               color: Color(0xFFACA3A5),
                               fontSize: 14,

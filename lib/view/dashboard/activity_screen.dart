@@ -358,6 +358,7 @@ class _ActivityState extends State<Activity> {
           ),
           ListView.builder(
             shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: 3, // Number of items in the list
             itemBuilder: (BuildContext context, int index) {
               // Each item is a container with a box shadow

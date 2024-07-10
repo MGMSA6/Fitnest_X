@@ -40,7 +40,7 @@ class CommonButton extends StatelessWidget {
                 );
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text("Please accept the terms and conditions"),
+                  content: Text(AppString.terms),
                 ));
               }
             }

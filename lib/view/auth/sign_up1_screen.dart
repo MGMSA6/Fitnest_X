@@ -4,7 +4,10 @@ import 'package:fitnest_x/res/strings.dart';
 import 'package:fitnest_x/widgets/common_button.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../blocs/account_bloc/create_account_bloc.dart';
+import '../../blocs/account_bloc/create_account_event.dart';
 import '../../utils/routes/route_names.dart';
 import '../../widgets/widgets.dart';
 
@@ -69,11 +72,25 @@ class _SignupState extends State<Signup1> {
                       const SizedBox(
                         height: 15,
                       ),
-                      EmailWidget(emailController: _emailController),
+                      EmailWidget(
+                        emailController: _emailController,
+                        onChanged: (value) {
+                          context
+                              .read<CreateAccountBloc>()
+                              .add(EmailChanged(value));
+                        },
+                      ),
                       const SizedBox(
                         height: 15,
                       ),
-                      PasswordWidget(passwordController: _passwordController),
+                      PasswordWidget(
+                        passwordController: _passwordController,
+                        onChanged: (value) {
+                          context
+                              .read<CreateAccountBloc>()
+                              .add(PasswordChanged(value));
+                        },
+                      ),
                       const SizedBox(
                         height: 15,
                       ),

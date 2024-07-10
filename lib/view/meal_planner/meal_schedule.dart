@@ -1,13 +1,10 @@
-import 'package:calendar_view/calendar_view.dart';
 import 'package:fitnest_x/model/MealSet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../model/ExerciseSet.dart';
 import '../../model/Meals.dart';
 import '../../res/components/CustomDatePickerTimeline.dart';
 import '../../res/colors.dart';
-import '../../utils/routes/route_names.dart';
 
 class MealSchedule extends StatefulWidget {
   const MealSchedule({super.key});
@@ -255,6 +252,7 @@ class _MealScheduleState extends State<MealSchedule> {
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: ListView.builder(
                           shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: Meals.getTodayMeal()
                               .length, // Number of items in the list
                           itemBuilder: (BuildContext context, int index) {

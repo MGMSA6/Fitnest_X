@@ -4,15 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../blocs/account_bloc/create_account_bloc.dart';
-import '../blocs/account_bloc/create_account_event.dart';
 import '../res/colors.dart';
 import '../res/strings.dart';
 import '../utils/validator.dart';
 
 class EmailWidget extends StatelessWidget {
   final TextEditingController emailController;
+  final ValueChanged<String>? onChanged;
 
-  const EmailWidget({super.key, required this.emailController});
+  const EmailWidget(
+      {super.key, required this.emailController, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +56,7 @@ class EmailWidget extends StatelessWidget {
             validator: (value) {
               return AppValidator.validateEmail(value);
             },
-            onChanged: (value) {
-              context.read<CreateAccountBloc>().add(EmailChanged(value));
-            },
+            onChanged: onChanged,
           );
         },
       ),
