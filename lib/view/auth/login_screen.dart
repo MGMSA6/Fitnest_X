@@ -1,5 +1,4 @@
 import 'package:fitnest_x/model/enums/login_status.dart';
-import 'package:fitnest_x/repository/auth_repository.dart';
 import 'package:fitnest_x/res/colors.dart';
 import 'package:fitnest_x/res/strings.dart';
 import 'package:fitnest_x/utils/utils.dart';
@@ -11,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../blocs/login_bloc/login_bloc.dart';
+import '../../core/service_locator.dart';
 import '../../utils/routes/route_names.dart';
 
 class Login extends StatefulWidget {
@@ -29,7 +29,7 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     super.initState();
-    _loginBloc = LoginBloc(AuthRepository());
+    _loginBloc = LoginBloc(getIt());
   }
 
   @override
@@ -107,6 +107,8 @@ class _LoginState extends State<Login> {
                               }
                             } else if (state.loginStatus ==
                                 LoginStatus.SUCCESS) {
+                              Utils.flushBarSuccessMessage(
+                                  state.message, context);
                               Navigator.pushNamed(
                                   this.context, RouteNames.home);
                             }

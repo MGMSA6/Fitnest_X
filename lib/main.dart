@@ -10,11 +10,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'blocs/global_loader_bloc/global_loader_bloc.dart';
 import 'blocs/login_bloc/login_bloc.dart';
 import 'blocs/onboarding_bloc/onboarding_bloc.dart';
+import 'core/service_locator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
+  ServiceLocator.setup();
   runApp(const FitnestX());
 }
 
