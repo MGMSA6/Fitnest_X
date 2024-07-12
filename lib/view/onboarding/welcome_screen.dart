@@ -1,3 +1,4 @@
+import 'package:fitnest_x/session/session_controller.dart';
 import 'package:fitnest_x/utils/routes/route_names.dart';
 import 'package:fitnest_x/res/strings.dart';
 import 'package:flutter/material.dart';
@@ -126,4 +127,10 @@ class GradientText extends StatelessWidget {
       ),
     );
   }
+}
+
+void check(){
+
+ return SessionController()
+
 }

@@ -1,6 +1,7 @@
 import 'package:fitnest_x/model/enums/login_status.dart';
 import 'package:fitnest_x/res/colors.dart';
 import 'package:fitnest_x/res/strings.dart';
+import 'package:fitnest_x/session/session_controller.dart';
 import 'package:fitnest_x/utils/utils.dart';
 import 'package:fitnest_x/widgets/email_widget.dart';
 import 'package:fitnest_x/widgets/password_widget.dart';

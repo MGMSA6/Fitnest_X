@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fitnest_x/model/enums/login_status.dart';
+import 'package:fitnest_x/session/session_controller.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../repository/auth_repository.dart';
@@ -34,6 +35,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     await _authRepository.login(data).then((onValue) {
       emit(state.copyWith(
           loginStatus: LoginStatus.SUCCESS, message: 'Login Successful'));
+      SessionController().saveUserInPreference(onValue);
+      SessionController().getUserFromPreference();
     }).onError((error, stackTrace) {
       if (kDebugMode) {
         print(stackTrace);
